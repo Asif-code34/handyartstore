@@ -1,0 +1,223 @@
+/* ===== admin-orders.css ===== */
+/* Elegant, responsive order management table */
+
+.admin-orders {
+  padding: 40px 20px 60px;
+  background: var(--cream);
+  min-height: 70vh;
+}
+
+.admin-orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto 28px;
+}
+
+.admin-orders-header h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  margin: 0;
+}
+
+/* ---- Table Wrapper ---- */
+.admin-orders-table-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(212, 160, 138, 0.06);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.admin-orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  min-width: 600px;
+}
+
+.admin-orders-table thead {
+  background: var(--warm-beige);
+  border-bottom: 2px solid rgba(212, 160, 138, 0.1);
+}
+
+.admin-orders-table th {
+  padding: 16px 20px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--deep-brown);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+}
+
+.admin-orders-table tbody tr {
+  border-bottom: 1px solid rgba(212, 160, 138, 0.06);
+  transition: background 0.2s ease;
+}
+
+.admin-orders-table tbody tr:hover {
+  background: var(--cream);
+}
+
+.admin-orders-table tbody td {
+  padding: 14px 20px;
+  color: var(--charcoal);
+  vertical-align: middle;
+}
+
+/* ---- Order ID ---- */
+.order-id {
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: var(--warm-brown);
+}
+
+/* ---- User ---- */
+.order-user {
+  font-weight: 500;
+  color: var(--deep-brown);
+}
+
+/* ---- Total ---- */
+.order-total {
+  font-weight: 600;
+  color: var(--terracotta);
+}
+
+/* ---- Date ---- */
+.order-date {
+  color: var(--warm-brown);
+  font-size: 0.9rem;
+}
+
+/* ---- Status Select ---- */
+.order-status {
+  min-width: 140px;
+}
+
+.status-select {
+  padding: 6px 14px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(212, 160, 138, 0.12);
+  background: var(--cream);
+  color: var(--charcoal);
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b6b5e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.status-select:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(212, 160, 138, 0.08);
+}
+
+/* Status colours */
+.status-select.pending {
+  background-color: rgba(245, 158, 11, 0.06);
+  border-color: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.status-select.shipped {
+  background-color: rgba(59, 130, 246, 0.06);
+  border-color: rgba(59, 130, 246, 0.2);
+  color: #3b82f6;
+}
+
+.status-select.delivered {
+  background-color: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.status-select option {
+  background: var(--white);
+  color: var(--charcoal);
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 768px) {
+  .admin-orders {
+    padding: 24px 12px 40px;
+  }
+
+  .admin-orders-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .admin-orders-table-wrapper {
+    border-radius: var(--radius);
+  }
+
+  .admin-orders-table {
+    font-size: 0.85rem;
+    min-width: 520px;
+  }
+
+  .admin-orders-table th,
+  .admin-orders-table td {
+    padding: 10px 14px;
+  }
+
+  .status-select {
+    font-size: 0.75rem;
+    padding: 4px 32px 4px 12px;
+    background-position: right 10px center;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-orders {
+    padding: 16px 8px 32px;
+  }
+
+  .admin-orders-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .admin-orders-table {
+    font-size: 0.75rem;
+    min-width: 400px;
+  }
+
+  .admin-orders-table th,
+  .admin-orders-table td {
+    padding: 8px 10px;
+  }
+
+  .order-id {
+    font-size: 0.7rem;
+  }
+  .order-date {
+    font-size: 0.75rem;
+  }
+  .order-total {
+    font-size: 0.8rem;
+  }
+  .status-select {
+    font-size: 0.65rem;
+    padding: 2px 28px 2px 10px;
+    background-position: right 8px center;
+    min-width: 90px;
+  }
+}

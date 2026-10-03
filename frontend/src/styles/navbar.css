@@ -1,0 +1,1006 @@
+
+/* ================================================================
+   HANDYARTSTORE — PRODUCTION NAVBAR
+   Compatible with current Navbar.jsx
+   ================================================================ */
+
+
+/* ================================================================
+   GLOBAL
+   ================================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --cream: #fcf8f3;
+  --white: #ffffff;
+
+  --warm-beige: #f5ede4;
+  --soft-blush: #f0ded9;
+
+  --terracotta: #d4a08a;
+  --terracotta-hover: #c28a72;
+
+  --deep-brown: #5a3f36;
+  --charcoal: #2d2420;
+  --warm-brown: #8b6b5e;
+
+  --danger: #b85a4a;
+
+  --shadow-sm: 0 2px 16px rgba(90, 63, 54, 0.08);
+  --shadow-md: 0 8px 32px rgba(90, 63, 54, 0.14);
+  --shadow-lg: 0 16px 48px rgba(90, 63, 54, 0.16);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+
+  --transition: 0.25s ease;
+}
+
+
+/* ================================================================
+   NAVBAR
+   ================================================================ */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(212, 160, 138, 0.16);
+
+  box-shadow: var(--shadow-sm);
+
+  isolation: isolate;
+}
+
+
+/* ================================================================
+   NAVBAR CONTAINER
+   ================================================================ */
+
+.navbar-container {
+  width: 100%;
+  max-width: 1280px;
+
+  min-height: 72px;
+
+  margin: 0 auto;
+  padding: 0 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+
+/* ================================================================
+   BRAND
+   ================================================================ */
+
+.navbar-brand {
+  flex-shrink: 0;
+}
+
+.navbar-brand a {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 11px;
+
+  text-decoration: none;
+
+  font-family: "Playfair Display", Georgia, serif;
+
+  font-size: 1.35rem;
+  font-weight: 700;
+
+  color: var(--deep-brown);
+
+  letter-spacing: -0.02em;
+
+  transition: color var(--transition);
+}
+
+.navbar-brand a:hover {
+  color: var(--terracotta-hover);
+}
+
+
+/* Logo */
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 2px 10px rgba(212, 160, 138, 0.20);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+.navbar-brand a:hover .brand-logo {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 5px 18px rgba(212, 160, 138, 0.30);
+}
+
+
+/* Brand text */
+
+.brand-name {
+  background:
+    linear-gradient(
+      135deg,
+      var(--deep-brown) 35%,
+      var(--terracotta) 100%
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+}
+
+
+/* ================================================================
+   HAMBURGER
+   ================================================================ */
+
+.hamburger {
+  display: none;
+
+  width: 30px;
+  height: 22px;
+
+  padding: 0;
+  margin: 0;
+
+  flex-direction: column;
+  justify-content: space-between;
+
+  border: 0;
+  background: transparent;
+
+  cursor: pointer;
+
+  z-index: 1002;
+}
+
+.hamburger-line {
+  display: block;
+
+  width: 100%;
+  height: 2.5px;
+
+  background: var(--deep-brown);
+
+  border-radius: 999px;
+
+  transform-origin: center;
+
+  transition:
+    transform var(--transition),
+    opacity var(--transition),
+    background var(--transition);
+}
+
+.hamburger:hover .hamburger-line {
+  background: var(--terracotta-hover);
+}
+
+
+/* Hamburger → X */
+
+.hamburger.active .hamburger-line:nth-child(1) {
+  transform: translateY(9.75px) rotate(45deg);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger.active .hamburger-line:nth-child(3) {
+  transform: translateY(-9.75px) rotate(-45deg);
+}
+
+
+/* ================================================================
+   NAV LINKS
+   ================================================================ */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 4px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  flex: 1;
+}
+
+.navbar-links li {
+  display: flex;
+  align-items: center;
+}
+
+
+/* Common navigation links */
+
+.navbar-links a,
+.navbar-links .btn-logout,
+.navbar-links .btn-login {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+
+  padding: 8px 15px;
+
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+
+  color: var(--warm-brown);
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  line-height: 1;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition),
+    background var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+
+/* Hover */
+
+.navbar-links a:hover,
+.navbar-links .btn-logout:hover,
+.navbar-links .btn-login:hover {
+  color: var(--deep-brown);
+  background: var(--warm-beige);
+}
+
+
+/* ================================================================
+   ACTIVE NAV LINK
+   ================================================================ */
+
+.navbar-links a:not(.btn-login):not(.btn-logout)::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 4px;
+
+  width: 0;
+  height: 2px;
+
+  transform: translateX(-50%);
+
+  border-radius: 999px;
+
+  background: var(--terracotta);
+
+  transition: width var(--transition);
+}
+
+.navbar-links a:not(.btn-login):not(.btn-logout):hover::after {
+  width: 55%;
+}
+
+.navbar-links a:not(.btn-login):not(.btn-logout).active {
+  color: var(--deep-brown);
+  font-weight: 600;
+}
+
+.navbar-links a:not(.btn-login):not(.btn-logout).active::after {
+  width: 55%;
+}
+
+
+/* ================================================================
+   CART COUNT
+   ================================================================ */
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 20px;
+  height: 20px;
+
+  padding: 0 6px;
+
+  margin-left: 3px;
+
+  border-radius: 999px;
+
+  background: var(--terracotta);
+  color: var(--white);
+
+  font-size: 0.65rem;
+  font-weight: 700;
+
+  line-height: 1;
+
+  transition:
+    transform var(--transition),
+    background var(--transition);
+}
+
+.navbar-links a:hover .cart-count {
+  background: var(--terracotta-hover);
+  transform: scale(1.06);
+}
+
+
+/* ================================================================
+   LOGIN BUTTON
+   ================================================================ */
+
+.navbar-links .btn-login {
+  padding: 9px 22px;
+
+  margin-left: 6px;
+
+  border-radius: 999px;
+
+  background: var(--deep-brown);
+  color: var(--white);
+
+  font-weight: 600;
+
+  box-shadow:
+    0 3px 12px rgba(90, 63, 54, 0.16);
+}
+
+.navbar-links .btn-login:hover {
+  background: var(--charcoal);
+  color: var(--white);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 18px rgba(90, 63, 54, 0.22);
+}
+
+.navbar-links .btn-login::after {
+  display: none;
+}
+
+
+/* ================================================================
+   PROFILE DROPDOWN
+   ================================================================ */
+
+.profile-dropdown-wrapper {
+  position: relative;
+
+  flex-shrink: 0;
+}
+
+.profile-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  min-height: 40px;
+
+  padding: 8px 12px;
+
+  border: 0;
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+
+  color: var(--warm-brown);
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition),
+    background var(--transition);
+}
+
+.profile-trigger:hover {
+  color: var(--deep-brown);
+  background: var(--warm-beige);
+}
+
+.profile-name {
+  display: block;
+
+  max-width: 140px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.profile-arrow {
+  display: inline-block;
+
+  font-size: 0.65rem;
+
+  transition: transform var(--transition);
+}
+
+.profile-trigger[aria-expanded="true"] .profile-arrow {
+  transform: rotate(180deg);
+}
+
+
+/* ================================================================
+   PROFILE DROPDOWN MENU
+   ================================================================ */
+
+.profile-dropdown {
+  position: absolute;
+
+  top: calc(100% + 10px);
+  right: 0;
+
+  display: none;
+
+  min-width: 190px;
+
+  margin: 0;
+  padding: 7px;
+
+  list-style: none;
+
+  background: var(--white);
+
+  border: 1px solid rgba(212, 160, 138, 0.18);
+
+  border-radius: var(--radius);
+
+  box-shadow: var(--shadow-lg);
+
+  z-index: 1100;
+
+  animation: profileDropdownIn 0.18s ease;
+}
+
+.profile-dropdown.open {
+  display: block;
+}
+
+@keyframes profileDropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-dropdown li {
+  width: 100%;
+}
+
+
+/* Dropdown links */
+
+.profile-dropdown a,
+.profile-dropdown .btn-logout {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  min-height: 40px;
+
+  padding: 9px 12px;
+
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: var(--warm-brown);
+
+  font-size: 0.88rem;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition),
+    background var(--transition);
+}
+
+.profile-dropdown a:hover {
+  background: var(--warm-beige);
+  color: var(--deep-brown);
+}
+
+
+/* Logout */
+
+.profile-dropdown .btn-logout {
+  color: var(--danger);
+}
+
+.profile-dropdown .btn-logout:hover {
+  color: var(--danger);
+  background: rgba(184, 90, 74, 0.07);
+}
+
+
+/* ================================================================
+   FOCUS ACCESSIBILITY
+   ================================================================ */
+
+.navbar a:focus-visible,
+.navbar button:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+}
+
+
+/* ================================================================
+   TABLET
+   ================================================================ */
+
+@media (max-width: 1024px) {
+  .navbar-container {
+    padding: 0 24px;
+    gap: 16px;
+  }
+
+  .navbar-links {
+    gap: 2px;
+  }
+
+  .navbar-links a,
+  .navbar-links .btn-logout,
+  .navbar-links .btn-login {
+    padding-left: 11px;
+    padding-right: 11px;
+
+    font-size: 0.86rem;
+  }
+
+  .profile-trigger {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  .profile-name {
+    max-width: 110px;
+  }
+}
+
+
+/* ================================================================
+   MOBILE
+   ================================================================ */
+
+@media (max-width: 768px) {
+  .navbar-container {
+    min-height: 64px;
+
+    padding: 0 18px;
+  }
+
+
+  /* Brand */
+
+  .navbar-brand a {
+    gap: 9px;
+    font-size: 1.12rem;
+  }
+
+  .brand-logo {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 9px;
+  }
+
+
+  /* Hamburger */
+
+  .hamburger {
+    display: flex;
+  }
+
+
+  /* Mobile menu */
+
+  .navbar-links {
+    position: absolute;
+
+    top: 64px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 4px;
+
+    width: 100%;
+
+    max-height: calc(100vh - 64px);
+
+    padding: 14px 18px 22px;
+
+    overflow-y: auto;
+
+    background: rgba(255, 255, 255, 0.98);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border-bottom:
+      1px solid rgba(212, 160, 138, 0.16);
+
+    box-shadow:
+      0 16px 45px rgba(90, 63, 54, 0.12);
+
+    border-radius:
+      0 0 var(--radius-lg) var(--radius-lg);
+
+    transform: translateY(-120%);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+      transform 0.3s ease,
+      opacity 0.25s ease,
+      visibility 0.3s ease;
+
+    z-index: 1050;
+  }
+
+
+  /* Open menu */
+
+  .navbar-links.open {
+    transform: translateY(0);
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+  }
+
+
+  /* Every item full width */
+
+  .navbar-links li {
+    width: 100%;
+  }
+
+
+  /* Mobile links */
+
+  .navbar-links a,
+  .navbar-links .btn-login,
+  .navbar-links .btn-logout {
+    width: 100%;
+
+    min-height: 46px;
+
+    padding: 12px 15px;
+
+    justify-content: flex-start;
+
+    border-radius: 9px;
+
+    font-size: 0.95rem;
+  }
+
+
+  /* Remove desktop underline */
+
+  .navbar-links a:not(.btn-login):not(.btn-logout)::after {
+    display: none;
+  }
+
+
+  /* Mobile active link */
+
+  .navbar-links a:not(.btn-login):not(.btn-logout).active {
+    background: var(--warm-beige);
+
+    color: var(--deep-brown);
+  }
+
+
+  /* Login */
+
+  .navbar-links .btn-login {
+    justify-content: center;
+
+    margin-top: 5px;
+
+    background: var(--deep-brown);
+
+    color: var(--white);
+  }
+
+  .navbar-links .btn-login:hover {
+    background: var(--charcoal);
+    color: var(--white);
+  }
+
+
+  /* Cart */
+
+  .cart-count {
+    min-width: 19px;
+    height: 19px;
+
+    font-size: 0.62rem;
+  }
+
+
+  /* Profile */
+
+  .profile-dropdown-wrapper {
+    width: 100%;
+  }
+
+  .profile-trigger {
+    width: 100%;
+
+    min-height: 46px;
+
+    padding: 12px 15px;
+
+    justify-content: flex-start;
+
+    border-radius: 9px;
+
+    font-size: 0.95rem;
+  }
+
+  .profile-name {
+    max-width: none;
+
+    font-size: 0.95rem;
+  }
+
+  .profile-arrow {
+    margin-left: auto;
+  }
+
+
+  /* Mobile dropdown becomes inline */
+
+  .profile-dropdown {
+    position: static;
+
+    width: 100%;
+    min-width: 0;
+
+    margin: 4px 0 0;
+
+    padding: 4px 0 4px 12px;
+
+    background: transparent;
+
+    border: 0;
+
+    border-left:
+      2px solid rgba(212, 160, 138, 0.25);
+
+    border-radius: 0;
+
+    box-shadow: none;
+
+    animation: none;
+  }
+
+  .profile-dropdown a,
+  .profile-dropdown .btn-logout {
+    min-height: 42px;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ================================================================
+   SMALL MOBILE
+   ================================================================ */
+
+@media (max-width: 480px) {
+  .navbar-container {
+    min-height: 60px;
+
+    padding: 0 14px;
+  }
+
+  .navbar-brand a {
+    gap: 8px;
+
+    font-size: 1rem;
+  }
+
+  .brand-logo {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 8px;
+  }
+
+  .hamburger {
+    width: 28px;
+    height: 20px;
+  }
+
+  .navbar-links {
+    top: 60px;
+
+    max-height: calc(100vh - 60px);
+
+    padding:
+      12px 14px 18px;
+  }
+
+  .navbar-links a,
+  .navbar-links .btn-login,
+  .navbar-links .btn-logout {
+    min-height: 44px;
+
+    padding: 11px 13px;
+
+    font-size: 0.9rem;
+  }
+
+  .profile-trigger {
+    min-height: 44px;
+
+    padding: 11px 13px;
+  }
+
+  .profile-name {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ================================================================
+   VERY SMALL SCREENS
+   ================================================================ */
+
+@media (max-width: 360px) {
+  .navbar-container {
+    padding: 0 12px;
+  }
+
+  .brand-name {
+    font-size: 0.94rem;
+  }
+
+  .brand-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .navbar-links {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar *,
+  .navbar *::before,
+  .navbar *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ================================================================
+   SCROLLBAR — MOBILE MENU
+   ================================================================ */
+
+.navbar-links::-webkit-scrollbar {
+  width: 5px;
+}
+
+.navbar-links::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.navbar-links::-webkit-scrollbar-thumb {
+  background: rgba(212, 160, 138, 0.5);
+
+  border-radius: 999px;
+}
+
+
+/* Firefox */
+
+.navbar-links {
+  scrollbar-width: thin;
+  scrollbar-color:
+    rgba(212, 160, 138, 0.5)
+    transparent;
+}
+

@@ -1,0 +1,528 @@
+/* ===== contact.css ===== */
+/* Elegant, vibrant contact page for HandyArtStore */
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.contact-hero {
+  position: relative;
+  padding: 60px 0 50px;
+  background: linear-gradient(160deg, #fcf8f3 0%, #f5ede4 35%, #f0ded9 100%);
+  overflow: hidden;
+  text-align: center;
+}
+
+.contact-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(212, 160, 138, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 60%, rgba(181, 201, 176, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.contact-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.contact-hero-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--terracotta);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  padding: 5px 18px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(212, 160, 138, 0.15);
+}
+
+.contact-hero-content h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 3.2rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin-bottom: 12px;
+}
+
+.contact-hero-content h1 span {
+  color: var(--terracotta);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.contact-hero-content p {
+  font-size: 1.05rem;
+  color: var(--warm-brown);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ================================================================
+   CONTACT SECTION
+   ================================================================ */
+.contact-section {
+  padding: 56px 0 60px;
+  background: var(--cream);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ---- Form ---- */
+.contact-form-wrapper {
+  background: var(--white);
+  padding: 36px 32px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(212, 160, 138, 0.06);
+}
+
+.contact-form-wrapper h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  margin: 0 0 6px 0;
+}
+
+.contact-form-wrapper h2::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--terracotta);
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.contact-form {
+  margin-top: 20px;
+}
+
+.contact-form .form-group {
+  margin-bottom: 18px;
+}
+
+.contact-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--warm-brown);
+  margin-bottom: 4px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(212, 160, 138, 0.12);
+  border-radius: var(--radius-sm);
+  background: var(--cream);
+  color: var(--charcoal);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: var(--transition);
+  outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(212, 160, 138, 0.08);
+  background: var(--white);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--warm-brown);
+  opacity: 0.4;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-success {
+  padding: 12px 16px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: var(--radius-sm);
+  color: #10b981;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.form-error {
+  padding: 12px 16px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: var(--radius-sm);
+  color: #ef4444;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.05rem;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner-small {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Contact Info ---- */
+.contact-info-wrapper {
+  position: sticky;
+  top: 100px;
+}
+
+.contact-info-card {
+  background: var(--white);
+  padding: 36px 28px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(212, 160, 138, 0.06);
+}
+
+.contact-info-card h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  margin: 0 0 8px 0;
+}
+
+.contact-info-description {
+  color: var(--warm-brown);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.contact-info-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.contact-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-info-item h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  margin: 0 0 1px 0;
+}
+
+.contact-info-item p,
+.contact-info-item a {
+  color: var(--warm-brown);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info-item a:hover {
+  color: var(--terracotta);
+}
+
+/* ---- Social ---- */
+.contact-social {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1.5px solid var(--warm-beige);
+}
+
+.contact-social > span {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--warm-brown);
+  margin-bottom: 10px;
+}
+
+.contact-social-links {
+  display: flex;
+  gap: 14px;
+}
+
+.contact-social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--warm-beige);
+  color: var(--warm-brown);
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.contact-social-links a:hover {
+  background: var(--terracotta);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 16px rgba(212, 160, 138, 0.25);
+}
+
+/* ================================================================
+   EXTRA / FAQ SECTION
+   ================================================================ */
+.contact-extra {
+  padding: 48px 0 60px;
+  background: var(--white);
+  border-top: 1px solid rgba(212, 160, 138, 0.06);
+}
+
+.extra-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.extra-item {
+  text-align: center;
+  padding: 28px 20px;
+  background: var(--cream);
+  border-radius: var(--radius);
+  border: 1px solid rgba(212, 160, 138, 0.06);
+  transition: var(--transition);
+}
+
+.extra-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm);
+  border-color: rgba(212, 160, 138, 0.15);
+}
+
+.extra-icon {
+  font-size: 2.6rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.extra-item h4 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  margin: 0 0 6px 0;
+}
+
+.extra-item p {
+  color: var(--warm-brown);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+
+@media (max-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 850px) {
+  .contact-hero-content h1 {
+    font-size: 2.6rem;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .contact-info-wrapper {
+    position: static;
+  }
+  .extra-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-hero {
+    padding: 40px 0 32px;
+  }
+  .contact-hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .contact-hero-content p {
+    font-size: 0.95rem;
+    padding: 0 16px;
+  }
+
+  .contact-section {
+    padding: 40px 0 48px;
+  }
+  .contact-form-wrapper {
+    padding: 28px 20px;
+  }
+  .contact-form-wrapper h2 {
+    font-size: 1.5rem;
+  }
+  .contact-info-card {
+    padding: 28px 20px;
+  }
+
+  .extra-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .extra-item {
+    padding: 20px 16px;
+  }
+  .extra-icon {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-hero-content h1 {
+    font-size: 1.8rem;
+  }
+  .contact-hero-content p {
+    font-size: 0.85rem;
+  }
+  .contact-hero-badge {
+    font-size: 0.6rem;
+    padding: 4px 14px;
+  }
+
+  .contact-form-wrapper {
+    padding: 20px 16px;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+  .btn-submit {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  .contact-info-card {
+    padding: 20px 16px;
+  }
+  .contact-info-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .extra-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .extra-item {
+    padding: 18px 14px;
+  }
+  .extra-item h4 {
+    font-size: 1rem;
+  }
+  .extra-item p {
+    font-size: 0.85rem;
+  }
+
+  .contact-social-links a {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+}
+
+/* ===== WhatsApp Card ===== */
+.contact-whatsapp {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 16px;
+  padding: 16px 18px;
+  background: rgba(37, 211, 102, 0.06);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(37, 211, 102, 0.12);
+  transition: var(--transition);
+}
+
+.contact-whatsapp:hover {
+  background: rgba(37, 211, 102, 0.10);
+  border-color: rgba(37, 211, 102, 0.2);
+}
+
+.contact-whatsapp .contact-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-whatsapp h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+  margin: 0 0 1px 0;
+}
+
+.contact-whatsapp .whatsapp-link {
+  font-weight: 600;
+  color: #25d366;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.contact-whatsapp .whatsapp-link:hover {
+  color: #128c7e;
+}
+
+.contact-whatsapp p {
+  font-size: 0.8rem;
+  color: var(--warm-brown);
+  margin: 2px 0 0 0;
+}

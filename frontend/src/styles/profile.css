@@ -1,0 +1,414 @@
+/* ================================================================
+   ROOT VARIABLES (if not already defined globally)
+   ================================================================ */
+:root {
+  --cream: #fdf8f3;
+  --warm-beige: #f5ede4;
+  --deep-brown: #5a3e2b;
+  --warm-brown: #8b6b4d;
+  --terracotta: #c87a5a;
+  --charcoal: #2d2a24;
+  --white: #ffffff;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.10);
+  --radius: 8px;
+  --radius-lg: 16px;
+}
+
+/* ================================================================
+   PAGE LAYOUT
+   ================================================================ */
+.profile-page {
+  min-height: 70vh;
+  padding: 40px 20px 60px;
+  background: var(--cream);
+}
+
+.profile-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ================================================================
+   USER CARD
+   ================================================================ */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: var(--white);
+  padding: 24px 28px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(212, 160, 138, 0.06);
+  margin-bottom: 32px;
+}
+
+.profile-user {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.profile-user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+}
+
+.profile-email {
+  margin: 0;
+  color: var(--warm-brown);
+  font-size: 0.95rem;
+}
+
+.profile-role {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 12px;
+  border-radius: 50px;
+  background: rgba(200, 122, 90, 0.10);
+  color: var(--terracotta);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  align-self: flex-start;
+}
+
+.btn-logout {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 50px;
+  background: rgba(239, 68, 68, 0.08);
+  color: #ef4444;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-logout:hover {
+  background: #ef4444;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+/* ================================================================
+   ORDERS SECTION
+   ================================================================ */
+.profile-orders {
+  background: var(--white);
+  padding: 24px 28px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(212, 160, 138, 0.06);
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.orders-title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--deep-brown);
+}
+
+.btn-refresh {
+  padding: 6px 18px;
+  border: none;
+  border-radius: 50px;
+  background: var(--warm-beige);
+  color: var(--deep-brown);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-refresh:hover {
+  background: var(--terracotta);
+  color: #fff;
+}
+
+/* ================================================================
+   LOADING SKELETON
+   ================================================================ */
+.orders-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-skeleton {
+  background: var(--warm-beige);
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-line {
+  height: 16px;
+  background: #e5e0d8;
+  border-radius: 4px;
+  width: 100%;
+}
+.skeleton-line.short {
+  width: 40%;
+}
+.skeleton-line.medium {
+  width: 60%;
+}
+
+/* ================================================================
+   ERROR STATE
+   ================================================================ */
+.orders-error {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.error-message {
+  color: #dc2626;
+  margin-bottom: 16px;
+}
+
+.btn-retry {
+  padding: 10px 28px;
+  border: none;
+  border-radius: 50px;
+  background: var(--terracotta);
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-retry:hover {
+  background: #b06547;
+  transform: translateY(-2px);
+}
+
+/* ================================================================
+   EMPTY STATE
+   ================================================================ */
+.orders-empty {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 12px;
+}
+
+.orders-empty p {
+  color: var(--warm-brown);
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 10px 28px;
+  background: var(--terracotta);
+  color: #fff;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+.btn-primary:hover {
+  background: #b06547;
+  transform: translateY(-2px);
+}
+
+/* ================================================================
+   ORDERS LIST
+   ================================================================ */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.order-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--cream);
+  border-radius: var(--radius);
+  border: 1px solid rgba(212, 160, 138, 0.06);
+  transition: background 0.2s ease;
+}
+.order-card:hover {
+  background: var(--warm-beige);
+}
+
+.order-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 30px;
+  flex: 1;
+}
+
+.order-info .label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--warm-brown);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.order-info .value {
+  font-weight: 500;
+  color: var(--charcoal);
+}
+
+.order-id .value {
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+}
+
+.total-price {
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
+.order-status {
+  display: flex;
+  align-items: center;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  background: #e5e7eb;
+  color: #6b7280;
+}
+.status-badge.pending {
+  background: #fef3c7;
+  color: #d97706;
+}
+.status-badge.processing {
+  background: #dbeafe;
+  color: #2563eb;
+}
+.status-badge.shipped {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+.status-badge.delivered {
+  background: #d1fae5;
+  color: #059669;
+}
+.status-badge.cancelled {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 640px) {
+  .profile-page {
+    padding: 20px 12px 40px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px;
+    gap: 16px;
+  }
+  .profile-user {
+    gap: 14px;
+  }
+  .profile-avatar {
+    width: 52px;
+    height: 52px;
+    font-size: 1.4rem;
+  }
+  .profile-name {
+    font-size: 1.2rem;
+  }
+  .btn-logout {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .profile-orders {
+    padding: 20px;
+  }
+  .orders-title {
+    font-size: 1.1rem;
+  }
+
+  .order-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .order-info {
+    gap: 12px;
+  }
+  .order-status {
+    align-self: flex-start;
+  }
+
+  .orders-empty .empty-icon {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+  .profile-name {
+    font-size: 1rem;
+  }
+  .profile-email {
+    font-size: 0.85rem;
+  }
+  .order-info .value {
+    font-size: 0.9rem;
+  }
+  .order-id .value {
+    font-size: 0.75rem;
+  }
+}
