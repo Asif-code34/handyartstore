@@ -1,11 +1,28 @@
 /* ===== admin-users.css ===== */
-/* Elegant, responsive user management table */
+/* Elegant, production-grade, fully responsive user directory */
 
 .admin-users {
+  --au-bg: var(--cream, #faf6f1);
+  --au-surface: var(--white, #ffffff);
+  --au-border: rgba(212, 160, 138, 0.12);
+  --au-border-soft: rgba(212, 160, 138, 0.06);
+  --au-text: var(--charcoal, #2d2420);
+  --au-text-soft: var(--warm-brown, #8b6b5e);
+  --au-text-strong: var(--deep-brown, #5a3f36);
+  --au-accent: var(--terracotta, #d4a08a);
+  --au-shadow-sm: var(--shadow-sm, 0 4px 16px rgba(90, 63, 54, 0.06));
+  --au-shadow: 0 8px 24px rgba(90, 63, 54, 0.08);
+  --au-radius-lg: var(--radius-lg, 18px);
+  --au-radius: var(--radius, 14px);
+
   padding: 40px 20px 60px;
-  background: var(--cream);
+  background: var(--au-bg);
   min-height: 70vh;
 }
+
+/* ================================================================
+   HEADER
+   ================================================================ */
 
 .admin-users-header {
   display: flex;
@@ -21,185 +38,461 @@
   font-family: "Playfair Display", Georgia, serif;
   font-size: 2rem;
   font-weight: 600;
-  color: var(--deep-brown);
+  color: var(--au-text-strong);
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .user-count {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--warm-brown);
-  background: var(--warm-beige);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  color: var(--au-text-soft);
+
+  background: var(--warm-beige, #f5ede4);
+
   padding: 6px 18px;
   border-radius: 50px;
-  border: 1px solid rgba(212, 160, 138, 0.1);
+
+  border: 1px solid var(--au-border);
+  white-space: nowrap;
 }
 
-/* ---- Table Wrapper ---- */
+/* ================================================================
+   TABLE WRAPPER
+   ================================================================ */
+
 .admin-users-table-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  border: 1px solid rgba(212, 160, 138, 0.06);
+
+  background: var(--au-surface);
+  border-radius: var(--au-radius-lg);
+
+  box-shadow: var(--au-shadow-sm);
+  border: 1px solid var(--au-border-soft);
+
   overflow: hidden;
   overflow-x: auto;
 }
+
+/* ================================================================
+   TABLE (desktop)
+   ================================================================ */
 
 .admin-users-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
-  min-width: 580px;
+  min-width: 620px;
 }
 
 .admin-users-table thead {
-  background: var(--warm-beige);
-  border-bottom: 2px solid rgba(212, 160, 138, 0.1);
+  background: var(--warm-beige, #f5ede4);
+  border-bottom: 2px solid var(--au-border);
 }
 
 .admin-users-table th {
   padding: 16px 20px;
   text-align: left;
-  font-weight: 600;
-  color: var(--deep-brown);
+  font-weight: 700;
+  color: var(--au-text-strong);
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
 .admin-users-table tbody tr {
-  border-bottom: 1px solid rgba(212, 160, 138, 0.06);
-  transition: background 0.2s ease;
+  border-bottom: 1px solid var(--au-border-soft);
+  transition: background-color 0.2s ease;
 }
 
 .admin-users-table tbody tr:hover {
-  background: var(--cream);
+  background: var(--au-bg);
+}
+
+.admin-users-table tbody tr:last-child {
+  border-bottom: none;
 }
 
 .admin-users-table tbody td {
   padding: 14px 20px;
-  color: var(--charcoal);
+  color: var(--au-text);
   vertical-align: middle;
 }
 
-/* ---- User ID ---- */
+/* ================================================================
+   CELLS
+   ================================================================ */
+
 .user-id {
-  font-family: 'Courier New', monospace;
-  font-size: 0.85rem;
-  color: var(--warm-brown);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, "Courier New", monospace;
+  font-size: 0.83rem;
+  color: var(--au-text-soft);
+  white-space: nowrap;
 }
 
-/* ---- User Name ---- */
 .user-name {
-  font-weight: 500;
-  color: var(--deep-brown);
-}
-
-/* ---- User Email ---- */
-.user-email {
-  color: var(--warm-brown);
-}
-
-/* ---- Role Badge ---- */
-.role-badge {
-  display: inline-block;
-  padding: 4px 14px;
-  border-radius: 50px;
-  font-size: 0.75rem;
   font-weight: 600;
+  color: var(--au-text-strong);
+}
+
+.user-email {
+  color: var(--au-text-soft);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.user-role {
+  white-space: nowrap;
+}
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px 14px;
+  border-radius: 50px;
+
+  font-size: 0.7rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+
+  white-space: nowrap;
 }
 
 .role-badge.admin {
-  background: rgba(212, 160, 138, 0.12);
-  color: var(--terracotta);
-  border: 1px solid rgba(212, 160, 138, 0.15);
+  background: rgba(212, 160, 138, 0.14);
+  color: #b97961;
+  border: 1px solid rgba(212, 160, 138, 0.25);
 }
 
 .role-badge.user {
-  background: rgba(16, 185, 129, 0.08);
-  color: #10b981;
-  border: 1px solid rgba(16, 185, 129, 0.12);
+  background: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
-/* ---- Joined Date ---- */
 .user-joined {
-  color: var(--warm-brown);
+  color: var(--au-text-soft);
   font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 /* ================================================================
-   RESPONSIVE
+   EMPTY STATE
    ================================================================ */
 
-@media (max-width: 768px) {
+.admin-users-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 64px 24px;
+
+  text-align: center;
+}
+
+.admin-users-empty .empty-icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.admin-users-empty h2 {
+  margin: 0 0 6px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--au-text-strong);
+}
+
+.admin-users-empty p {
+  margin: 0;
+  color: var(--au-text-soft);
+  font-size: 0.95rem;
+}
+
+/* ================================================================
+   RESPONSIVE — TABLET (≤ 1024px)
+   ================================================================ */
+
+@media (max-width: 1024px) {
   .admin-users {
-    padding: 24px 12px 40px;
-  }
-
-  .admin-users-header h1 {
-    font-size: 1.6rem;
-  }
-  .user-count {
-    font-size: 0.85rem;
-    padding: 4px 14px;
-  }
-
-  .admin-users-table-wrapper {
-    border-radius: var(--radius);
+    padding: 32px 16px 48px;
   }
 
   .admin-users-table {
-    font-size: 0.85rem;
-    min-width: 460px;
+    min-width: 560px;
+    font-size: 0.9rem;
   }
 
   .admin-users-table th,
   .admin-users-table td {
-    padding: 10px 14px;
+    padding: 12px 16px;
   }
 }
 
+/* ================================================================
+   RESPONSIVE — CARD VIEW (≤ 900px)
+   Table transforms into stacked user cards.
+   ================================================================ */
+
+@media (max-width: 900px) {
+  .admin-users {
+    padding: 28px 14px 44px;
+  }
+
+  .admin-users-header {
+    margin-bottom: 20px;
+  }
+
+  .admin-users-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .admin-users-table-wrapper {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .admin-users-table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    font-size: 0.95rem;
+  }
+
+  .admin-users-table thead {
+    display: none;
+  }
+
+  .admin-users-table tbody {
+    display: block;
+  }
+
+  .admin-users-table tbody tr {
+    display: block;
+
+    margin-bottom: 14px;
+    padding: 16px 18px;
+
+    background: var(--au-surface);
+
+    border: 1px solid var(--au-border);
+    border-radius: var(--au-radius-lg);
+
+    box-shadow: var(--au-shadow-sm);
+
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .admin-users-table tbody tr:hover {
+    background: var(--au-surface);
+    border-color: rgba(212, 160, 138, 0.25);
+    box-shadow: var(--au-shadow);
+  }
+
+  .admin-users-table tbody tr:last-child {
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--au-border);
+  }
+
+  .admin-users-table tbody td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid var(--au-border-soft);
+  }
+
+  .admin-users-table tbody td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  /* Label rendered from data-label attribute */
+  .admin-users-table tbody td::before {
+    content: attr(data-label);
+
+    flex-shrink: 0;
+
+    color: var(--au-text-soft);
+    opacity: 0.75;
+
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Emphasize the ID row as a card header */
+  .user-id {
+    padding-top: 0 !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 6px;
+    border-bottom: 1px solid var(--au-border) !important;
+    font-size: 0.85rem;
+  }
+
+  .user-id::before {
+    color: var(--au-text-strong);
+    opacity: 1;
+  }
+
+  .user-email {
+    text-align: right;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .user-role,
+  .user-joined {
+    font-size: 0.9rem;
+  }
+
+  .role-badge {
+    font-size: 0.68rem;
+    padding: 4px 12px;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE — SMALL PHONES (≤ 480px)
+   ================================================================ */
+
 @media (max-width: 480px) {
   .admin-users {
-    padding: 16px 8px 32px;
+    padding: 20px 12px 36px;
   }
 
   .admin-users-header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 16px;
   }
+
   .admin-users-header h1 {
-    font-size: 1.4rem;
+    font-size: 1.45rem;
   }
+
   .user-count {
     font-size: 0.8rem;
-    padding: 3px 12px;
+    padding: 5px 14px;
   }
 
-  .admin-users-table {
-    font-size: 0.75rem;
-    min-width: 360px;
+  .admin-users-table tbody tr {
+    padding: 14px;
+    border-radius: var(--au-radius);
+    margin-bottom: 12px;
   }
 
-  .admin-users-table th,
-  .admin-users-table td {
-    padding: 8px 10px;
+  .admin-users-table tbody td {
+    padding: 8px 0;
+    gap: 12px;
+    font-size: 0.88rem;
+  }
+
+  .admin-users-table tbody td::before {
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
   }
 
   .user-id {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
+
+  .user-name {
+    font-size: 0.92rem;
+  }
+
+  .user-email {
+    font-size: 0.82rem;
+  }
+
   .user-joined {
-    font-size: 0.7rem;
+    font-size: 0.82rem;
   }
+
   .role-badge {
-    font-size: 0.6rem;
-    padding: 2px 10px;
+    font-size: 0.62rem;
+    padding: 3px 10px;
+  }
+
+  .admin-users-empty {
+    padding: 48px 18px;
+  }
+
+  .admin-users-empty .empty-icon {
+    font-size: 2.5rem;
+  }
+
+  .admin-users-empty h2 {
+    font-size: 1.15rem;
+  }
+
+  .admin-users-empty p {
+    font-size: 0.88rem;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE — VERY SMALL PHONES (≤ 360px)
+   ================================================================ */
+
+@media (max-width: 360px) {
+  .admin-users {
+    padding: 16px 10px 32px;
+  }
+
+  .admin-users-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .admin-users-table tbody tr {
+    padding: 12px;
+  }
+
+  .admin-users-table tbody td {
+    font-size: 0.82rem;
+    gap: 10px;
+  }
+
+  .admin-users-table tbody td::before {
+    font-size: 0.58rem;
+  }
+
+  .user-email {
+    font-size: 0.78rem;
+  }
+}
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-users *,
+  .admin-users *::before,
+  .admin-users *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

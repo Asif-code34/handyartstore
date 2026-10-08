@@ -1,6 +1,12 @@
 /* ============================================================
-   HOME PAGE
-============================================================ */
+   HANDYARTSTORE — HOME PAGE STYLESHEET
+   Production-grade · Mobile-first responsive
+   ============================================================ */
+
+
+/* ============================================================
+   1. ROOT
+   ============================================================ */
 
 .home-page {
   width: 100%;
@@ -16,31 +22,43 @@
 
 
 /* ============================================================
-   BUTTONS
-============================================================ */
+   2. BUTTONS
+   ============================================================ */
 
 .home-btn {
   min-height: 48px;
   padding: 0 22px;
   border-radius: 10px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+
   font-size: 0.94rem;
   font-weight: 700;
+  line-height: 1;
+
   text-decoration: none;
+
   border: 1px solid transparent;
+  cursor: pointer;
+
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     background 0.2s ease,
     border-color 0.2s ease;
-  cursor: pointer;
 }
 
 .home-btn:hover {
   transform: translateY(-2px);
+}
+
+.home-btn:focus-visible,
+.home-page a:focus-visible {
+  outline: 3px solid rgba(157, 92, 99, 0.28);
+  outline-offset: 3px;
 }
 
 .home-btn-primary {
@@ -76,22 +94,13 @@
 
 
 /* ============================================================
-   HERO
-============================================================ */
+   3. HERO
+   ============================================================ */
 
 .home-hero {
   background:
-    radial-gradient(
-      circle at 85% 20%,
-      rgba(224, 186, 174, 0.28),
-      transparent 32%
-    ),
-    linear-gradient(
-      135deg,
-      #fcf7f3 0%,
-      #fffaf7 55%,
-      #f8efeb 100%
-    );
+    radial-gradient(circle at 85% 20%, rgba(224, 186, 174, 0.28), transparent 32%),
+    linear-gradient(135deg, #fcf7f3 0%, #fffaf7 55%, #f8efeb 100%);
   padding: 72px 0 90px;
 }
 
@@ -184,8 +193,8 @@
 
 
 /* ============================================================
-   HERO VISUAL
-============================================================ */
+   4. HERO VISUAL
+   ============================================================ */
 
 .home-hero-visual {
   position: relative;
@@ -241,13 +250,17 @@
   position: absolute;
   right: 0;
   bottom: 25px;
+
   display: flex;
   align-items: center;
   gap: 12px;
+
   padding: 13px 17px;
+
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(130, 95, 88, 0.1);
   border-radius: 14px;
+
   box-shadow: 0 15px 35px rgba(75, 48, 43, 0.14);
 }
 
@@ -276,8 +289,8 @@
 
 
 /* ============================================================
-   VALUE STRIP
-============================================================ */
+   5. VALUE STRIP
+   ============================================================ */
 
 .home-value-strip {
   border-bottom: 1px solid #eee7e4;
@@ -293,8 +306,10 @@
   display: flex;
   align-items: center;
   gap: 13px;
+
   min-height: 100px;
   padding: 20px 18px;
+
   border-right: 1px solid #eee7e4;
 }
 
@@ -328,8 +343,8 @@
 
 
 /* ============================================================
-   GENERAL SECTION
-============================================================ */
+   6. GENERAL SECTION
+   ============================================================ */
 
 .home-section {
   padding: 88px 0;
@@ -376,8 +391,8 @@
 
 
 /* ============================================================
-   CATEGORIES
-============================================================ */
+   7. CATEGORIES
+   ============================================================ */
 
 .home-categories-section {
   background: #ffffff;
@@ -391,15 +406,20 @@
 
 .home-category-card {
   min-height: 155px;
+
   display: flex;
   align-items: center;
   gap: 16px;
+
   padding: 22px;
+
   border: 1px solid #eee5e2;
   border-radius: 16px;
+
   background: #ffffff;
   color: inherit;
   text-decoration: none;
+
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
@@ -454,8 +474,8 @@
 
 
 /* ============================================================
-   FEATURED PRODUCTS
-============================================================ */
+   8. FEATURED PRODUCTS  ← the grid that needed responsive rules
+   ============================================================ */
 
 .home-featured-section {
   background: #fcf9f7;
@@ -469,8 +489,8 @@
 
 
 /* ============================================================
-   CUSTOM ORDER
-============================================================ */
+   9. CUSTOM ORDER
+   ============================================================ */
 
 .home-custom-section {
   padding: 88px 0;
@@ -487,6 +507,7 @@
 
 .home-custom-content {
   padding: 65px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -539,8 +560,8 @@
 
 
 /* ============================================================
-   BULK ORDERS
-============================================================ */
+   10. BULK ORDERS
+   ============================================================ */
 
 .home-bulk-section {
   padding: 0 0 88px;
@@ -551,7 +572,9 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 25px;
+
   padding: 38px 45px;
+
   border-radius: 20px;
   background: #754d53;
   color: #ffffff;
@@ -586,17 +609,13 @@
 
 
 /* ============================================================
-   FINAL CTA
-============================================================ */
+   11. FINAL CTA
+   ============================================================ */
 
 .home-final-cta {
   padding: 95px 0;
   background:
-    radial-gradient(
-      circle at 20% 30%,
-      rgba(230, 197, 187, 0.35),
-      transparent 30%
-    ),
+    radial-gradient(circle at 20% 30%, rgba(230, 197, 187, 0.35), transparent 30%),
     #fcf7f4;
 }
 
@@ -634,143 +653,129 @@
 
 
 /* ============================================================
-   STATES
-============================================================ */
+   12. SKELETONS (needed by Home.jsx while loading)
+   ============================================================ */
 
-.home-state {
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 35px 20px;
-  text-align: center;
-  border: 1px dashed #ded3cf;
-  border-radius: 18px;
-  background: #ffffff;
-}
-
-.home-state > span {
-  font-size: 2rem;
-}
-
-.home-state h3 {
-  margin: 12px 0 6px;
-  color: #493d3a;
-  font-size: 1rem;
-}
-
-.home-state p {
-  margin: 0 0 20px;
-  color: #877b77;
-  font-size: 0.84rem;
-}
-
-
-/* ============================================================
-   SKELETONS
-============================================================ */
-
-.home-category-skeleton,
+.home-skeleton-category,
 .home-product-skeleton {
-  overflow: hidden;
-}
-
-.home-skeleton-category {
-  cursor: default;
+  animation: homeSkeletonPulse 1.5s ease-in-out infinite;
 }
 
 .home-skeleton-circle {
-  flex-shrink: 0;
   width: 58px;
   height: 58px;
   border-radius: 15px;
-  background: linear-gradient(
-    90deg,
-    #f1ece9 25%,
-    #e9e1dd 50%,
-    #f1ece9 75%
-  );
+  background: linear-gradient(90deg, #f3ebe5 25%, #faf6f2 50%, #f3ebe5 75%);
   background-size: 200% 100%;
-  animation: homeSkeleton 1.4s infinite;
+  animation: homeSkeletonShimmer 1.4s infinite;
+  flex-shrink: 0;
 }
 
 .home-skeleton-content {
   flex: 1;
+  min-width: 0;
 }
 
 .home-skeleton-line {
-  border-radius: 6px;
-  background: linear-gradient(
-    90deg,
-    #f1ece9 25%,
-    #e9e1dd 50%,
-    #f1ece9 75%
-  );
-  background-size: 200% 100%;
-  animation: homeSkeleton 1.4s infinite;
+  height: 11px;
+  border-radius: 999px;
+  background: #eee5df;
 }
 
-.home-skeleton-line-lg {
-  width: 85%;
-  height: 14px;
-}
-
-.home-skeleton-line-md {
-  width: 65%;
-  height: 12px;
-}
-
-.home-skeleton-line-sm {
-  width: 45%;
-  height: 10px;
-  margin-top: 9px;
-}
+.home-skeleton-line-lg { width: 78%; }
+.home-skeleton-line-md { width: 55%; margin-top: 12px; }
+.home-skeleton-line-sm { width: 34%; margin-top: 15px; }
 
 .home-product-skeleton {
   overflow: hidden;
+  border: 1px solid #f1e9e3;
   border-radius: 16px;
   background: #ffffff;
-  border: 1px solid #eee7e4;
 }
 
 .home-product-skeleton-image {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  background: linear-gradient(
-    90deg,
-    #f1ece9 25%,
-    #e9e1dd 50%,
-    #f1ece9 75%
-  );
+  aspect-ratio: 1 / 1.08;
+  background: linear-gradient(90deg, #eee4dd 25%, #f8f2ed 50%, #eee4dd 75%);
   background-size: 200% 100%;
-  animation: homeSkeleton 1.4s infinite;
+  animation: homeSkeletonShimmer 1.4s infinite;
 }
 
 .home-product-skeleton-content {
   padding: 18px;
 }
 
-@keyframes homeSkeleton {
-  0% {
-    background-position: 200% 0;
+@keyframes homeSkeletonShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes homeSkeletonPulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.78; }
+}
+
+
+/* ============================================================
+   13. STATE BLOCKS (error / empty)
+   ============================================================ */
+
+.home-state {
+  max-width: 560px;
+  margin: 20px auto 40px;
+  padding: 48px 30px;
+
+  text-align: center;
+
+  border: 1px solid #eadfd7;
+  border-radius: 20px;
+
+  background: #fffaf8;
+}
+
+.home-state > span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 2rem;
+}
+
+.home-state h3 {
+  margin: 0 0 8px;
+  color: #352c2a;
+  font-size: 1.25rem;
+}
+
+.home-state p {
+  margin: 0 0 20px;
+  color: #7d706c;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+
+/* ============================================================
+   14. RESPONSIVE — LARGE DESKTOP (≥1440)
+   ============================================================ */
+
+@media (min-width: 1440px) {
+  .home-container {
+    width: min(1280px, calc(100% - 80px));
   }
 
-  100% {
-    background-position: -200% 0;
+  .home-hero {
+    padding: 96px 0 110px;
   }
 }
 
 
 /* ============================================================
-   TABLET
-============================================================ */
+   15. RESPONSIVE — LAPTOP / SMALL DESKTOP (≤1199)
+   ============================================================ */
 
-@media (max-width: 1050px) {
-
+@media (max-width: 1199px) {
   .home-hero-grid {
-    grid-template-columns: 1fr 0.9fr;
-    gap: 35px;
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 1fr);
+    gap: 44px;
   }
 
   .home-hero-visual {
@@ -782,107 +787,68 @@
   }
 
   .home-hero-small-image {
-    width: 150px;
-    height: 150px;
-  }
-
-  .home-category-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .home-product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .home-value-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .home-value-item {
-    border-bottom: 1px solid #eee7e4;
+    width: 160px;
+    height: 160px;
   }
 
   .home-custom-content {
-    padding: 45px;
+    padding: 48px;
   }
 
+  /* Featured products: 3 columns */
+  .home-product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .home-category-grid {
+    gap: 14px;
+  }
 }
 
 
 /* ============================================================
-   MOBILE
-============================================================ */
+   16. RESPONSIVE — TABLET LANDSCAPE (≤991)
+   ============================================================ */
 
-@media (max-width: 768px) {
-
+@media (max-width: 991px) {
   .home-container {
-    width: min(100% - 28px, 600px);
+    width: min(100% - 40px, 900px);
   }
 
+  /* Hero stacks */
   .home-hero {
-    padding: 45px 0 55px;
+    padding: 56px 0 72px;
   }
 
   .home-hero-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 45px;
-  }
-
-  .home-hero-content {
-    max-width: none;
+    grid-template-columns: 1fr;
+    gap: 48px;
     text-align: center;
   }
 
-  .home-eyebrow {
-    justify-content: center;
+  .home-hero-content {
+    max-width: 640px;
+    margin-inline: auto;
   }
 
-  .home-hero-content h1 {
-    margin-top: 14px;
-    font-size: clamp(2.35rem, 10vw, 3.3rem);
-    line-height: 1.04;
-  }
-
-  .home-hero-content > p {
-    margin: 0 auto;
-    font-size: 0.94rem;
-    line-height: 1.7;
-  }
-
-  .home-hero-actions {
-    justify-content: center;
-  }
-
+  .home-hero-actions,
   .home-hero-trust {
     justify-content: center;
-    gap: 14px;
-  }
-
-  .home-trust-item p {
-    font-size: 0.72rem;
   }
 
   .home-hero-visual {
-    width: 100%;
-    min-height: 390px;
+    min-height: 460px;
   }
 
   .home-hero-main-image {
+    height: 420px;
     right: 8%;
-    width: 70%;
-    height: 360px;
-    border-radius: 130px 130px 18px 18px;
-  }
-
-  .home-hero-small-image {
-    width: 125px;
-    height: 125px;
-    border-width: 5px;
+    width: 64%;
   }
 
   .home-hero-small-image-one {
-    top: 75px;
+    top: 80px;
     left: 0;
   }
 
@@ -891,224 +857,91 @@
     bottom: 0;
   }
 
-  .home-hero-floating-card {
-    right: 0;
-    bottom: 10px;
-    padding: 9px 12px;
-  }
-
-  .home-hero-floating-card > span {
-    width: 34px;
-    height: 34px;
-    font-size: 1rem;
-  }
-
-  .home-hero-floating-card strong {
-    font-size: 0.74rem;
-  }
-
-  .home-hero-floating-card small {
-    font-size: 0.62rem;
-  }
-
-
-  /* VALUE STRIP */
-
+  /* Value strip → 2 columns */
   .home-value-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .home-value-item {
-    min-height: 85px;
-    padding: 15px 8px;
-    gap: 9px;
+    min-height: 90px;
   }
 
-  .home-value-item:first-child {
-    border-left: 0;
-  }
-
-  .home-value-item h3 {
-    font-size: 0.74rem;
-  }
-
-  .home-value-item p {
-    font-size: 0.64rem;
-  }
-
-  .home-value-icon {
-    width: 35px;
-    height: 35px;
-    border-radius: 9px;
-    font-size: 0.95rem;
-  }
-
-
-  /* SECTIONS */
-
-  .home-section {
-    padding: 62px 0;
-  }
-
+  /* Section headings left-align, link goes below */
   .home-section-heading {
+    flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 25px;
+    gap: 16px;
   }
 
-  .home-section-heading h2 {
-    font-size: 1.8rem;
-  }
-
-  .home-section-heading p {
-    font-size: 0.82rem;
-  }
-
-  .home-section-link {
-    margin-top: 10px;
-  }
-
-
-  /* CATEGORIES */
-
+  /* Categories 3-col */
   .home-category-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .home-category-card {
-    min-height: 125px;
-    padding: 15px;
-    gap: 10px;
-    border-radius: 13px;
-  }
-
-  .home-category-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 11px;
-    font-size: 1.2rem;
-  }
-
-  .home-category-content h3 {
-    font-size: 0.77rem;
-  }
-
-  .home-category-link {
-    margin-top: 6px;
-    font-size: 0.65rem;
-  }
-
-
-  /* PRODUCTS */
-
+  /* Featured products 3-col */
   .home-product-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
   }
 
-
-  /* CUSTOM */
-
-  .home-custom-section {
-    padding: 62px 0;
-  }
-
+  /* Custom order stacks */
   .home-custom-card {
     grid-template-columns: 1fr;
-    border-radius: 18px;
   }
 
   .home-custom-content {
-    padding: 35px 24px;
-  }
-
-  .home-custom-content h2 {
-    font-size: 1.9rem;
-  }
-
-  .home-custom-content p {
-    font-size: 0.87rem;
-  }
-
-  .home-custom-features {
-    gap: 8px;
-  }
-
-  .home-custom-features span {
-    font-size: 0.65rem;
-    padding: 7px 9px;
+    padding: 44px 36px;
   }
 
   .home-custom-image {
-    min-height: 280px;
-    max-height: 350px;
+    min-height: 340px;
   }
 
-
-  /* BULK */
-
-  .home-bulk-section {
-    padding-bottom: 62px;
-  }
-
+  /* Bulk banner stacks */
   .home-bulk-card {
-    grid-template-columns: 1fr;
-    gap: 15px;
-    padding: 28px 23px;
-    border-radius: 18px;
-  }
-
-  .home-bulk-icon {
-    width: 48px;
-    height: 48px;
-    font-size: 1.2rem;
-  }
-
-  .home-bulk-content h2 {
-    font-size: 1.4rem;
-  }
-
-  .home-bulk-content p {
-    font-size: 0.78rem;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    padding: 32px;
   }
 
   .home-bulk-card .home-btn {
-    width: 100%;
+    grid-column: 1 / -1;
+    justify-self: start;
   }
-
-
-  /* FINAL CTA */
-
-  .home-final-cta {
-    padding: 70px 0;
-  }
-
-  .home-final-content h2 {
-    font-size: 2rem;
-  }
-
-  .home-final-content p {
-    font-size: 0.88rem;
-  }
-
 }
 
 
 /* ============================================================
-   SMALL PHONES
-============================================================ */
+   17. RESPONSIVE — TABLET PORTRAIT (≤767)
+   ============================================================ */
 
-@media (max-width: 420px) {
-
+@media (max-width: 767px) {
   .home-container {
-    width: calc(100% - 22px);
+    width: calc(100% - 32px);
+  }
+
+  /* HERO */
+  .home-hero {
+    padding: 44px 0 60px;
+  }
+
+  .home-hero-grid {
+    gap: 36px;
   }
 
   .home-hero-content h1 {
-    font-size: 2.2rem;
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    margin: 14px 0 16px;
+  }
+
+  .home-hero-content > p {
+    font-size: 0.98rem;
+    line-height: 1.7;
   }
 
   .home-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
     width: 100%;
   }
 
@@ -1116,53 +949,503 @@
     width: 100%;
   }
 
+  .home-hero-trust {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .home-trust-item p {
+    font-size: 0.78rem;
+  }
+
+  /* Hero visual — vertical, no absolute chaos */
   .home-hero-visual {
-    min-height: 330px;
+    min-height: 380px;
   }
 
   .home-hero-main-image {
-    height: 305px;
-    width: 72%;
+    height: 340px;
+    width: 70%;
+    right: 0;
+    border-radius: 130px 130px 20px 20px;
   }
 
   .home-hero-small-image {
-    width: 105px;
-    height: 105px;
+    width: 130px;
+    height: 130px;
+    border-width: 6px;
+  }
+
+  .home-hero-small-image-one {
+    top: 60px;
+    left: 0;
+  }
+
+  .home-hero-small-image-two {
+    left: 5%;
+    bottom: 0;
   }
 
   .home-hero-floating-card {
-    padding: 7px 9px;
+    right: 0;
+    bottom: 12px;
+    padding: 10px 14px;
   }
 
-  .home-hero-floating-card small {
-    display: none;
+  .home-hero-floating-card > span {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
   }
 
-  .home-category-card {
-    min-height: 112px;
-    padding: 12px;
-  }
+  .home-hero-floating-card strong { font-size: 0.78rem; }
+  .home-hero-floating-card small  { font-size: 0.68rem; }
 
-  .home-category-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-  }
-
-  .home-category-content h3 {
-    font-size: 0.7rem;
-  }
-
-  .home-product-grid {
-    gap: 9px;
+  /* VALUE STRIP → 1 column? No, keep 2 for compactness */
+  .home-value-grid {
+    grid-template-columns: 1fr;
   }
 
   .home-value-item {
-    padding: 12px 5px;
+    min-height: auto;
+    padding: 16px 0;
+    border-right: 0;
+    border-bottom: 1px solid #f1e9e3;
   }
 
-  .home-value-icon {
-    display: none;
+  .home-value-item:first-child {
+    border-left: 0;
   }
 
+  .home-value-item:last-child {
+    border-bottom: 0;
+  }
+
+  /* Sections */
+  .home-section {
+    padding: 60px 0;
+  }
+
+  .home-section-heading {
+    margin-bottom: 26px;
+  }
+
+  .home-section-heading h2 {
+    font-size: clamp(1.6rem, 6vw, 2rem);
+  }
+
+  /* Categories 2-col */
+  .home-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .home-category-card {
+    min-height: 130px;
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .home-category-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.35rem;
+    border-radius: 12px;
+  }
+
+  .home-category-content h3 {
+    font-size: 0.86rem;
+  }
+
+  /* ★ FEATURED PRODUCTS → 2 columns at tablet-portrait */
+  .home-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  /* CUSTOM ORDER */
+  .home-custom-section {
+    padding: 60px 0;
+  }
+
+  .home-custom-card {
+    border-radius: 20px;
+  }
+
+  .home-custom-content {
+    padding: 36px 26px;
+  }
+
+  .home-custom-content h2 {
+    font-size: clamp(1.6rem, 6vw, 2.1rem);
+  }
+
+  .home-custom-content p {
+    font-size: 0.92rem;
+  }
+
+  .home-custom-features {
+    margin: 20px 0 24px;
+  }
+
+  .home-custom-image {
+    min-height: 260px;
+  }
+
+  /* BULK */
+  .home-bulk-section {
+    padding-bottom: 60px;
+  }
+
+  .home-bulk-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 28px 24px;
+    border-radius: 18px;
+  }
+
+  .home-bulk-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 1.25rem;
+  }
+
+  .home-bulk-content h2 {
+    font-size: 1.35rem;
+  }
+
+  .home-bulk-card .home-btn {
+    width: 100%;
+  }
+
+  /* FINAL CTA */
+  .home-final-cta {
+    padding: 68px 0;
+  }
+
+  .home-final-content h2 {
+    font-size: clamp(1.7rem, 6.5vw, 2.3rem);
+  }
+
+  .home-final-content p {
+    font-size: 0.95rem;
+  }
+}
+
+
+/* ============================================================
+   18. RESPONSIVE — MOBILE (≤575)   ← SINGLE-COLUMN PRODUCTS
+   ============================================================ */
+
+@media (max-width: 575px) {
+  .home-container {
+    width: calc(100% - 28px);
+  }
+
+  .home-hero {
+    padding: 36px 0 48px;
+  }
+
+  .home-hero-grid {
+    gap: 30px;
+  }
+
+  .home-eyebrow,
+  .home-section-eyebrow {
+    font-size: 0.7rem;
+  }
+
+  .home-hero-content h1 {
+    font-size: clamp(1.95rem, 10vw, 2.6rem);
+    line-height: 1.08;
+  }
+
+  .home-hero-content > p {
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .home-hero-actions {
+    margin-top: 24px;
+  }
+
+  .home-btn {
+    min-height: 46px;
+    font-size: 0.88rem;
+    padding: 0 18px;
+  }
+
+  .home-hero-trust {
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .home-trust-item span {
+    width: 18px;
+    height: 18px;
+    font-size: 0.62rem;
+  }
+
+  .home-trust-item p {
+    font-size: 0.74rem;
+  }
+
+  /* Hero visual — more compact */
+  .home-hero-visual {
+    min-height: 320px;
+  }
+
+  .home-hero-main-image {
+    height: 280px;
+    width: 72%;
+    border-radius: 110px 110px 18px 18px;
+    border-width: 5px;
+  }
+
+  .home-hero-small-image {
+    width: 110px;
+    height: 110px;
+    border-width: 5px;
+    border-radius: 14px;
+  }
+
+  .home-hero-small-image-one {
+    top: 50px;
+  }
+
+  .home-hero-floating-card {
+    padding: 8px 12px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+
+  .home-hero-floating-card > span {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  .home-hero-floating-card strong { font-size: 0.72rem; }
+  .home-hero-floating-card small  { font-size: 0.64rem; }
+
+  /* Sections */
+  .home-section {
+    padding: 50px 0;
+  }
+
+  .home-section-heading h2 {
+    font-size: 1.55rem;
+  }
+
+  .home-section-heading p {
+    font-size: 0.88rem;
+  }
+
+  /* Categories → 2 columns, smaller */
+  .home-category-grid {
+    gap: 10px;
+  }
+
+  .home-category-card {
+    min-height: 118px;
+    padding: 14px;
+    gap: 12px;
+    border-radius: 14px;
+  }
+
+  .home-category-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2rem;
+    border-radius: 11px;
+  }
+
+  .home-category-content h3 {
+    font-size: 0.8rem;
+  }
+
+  .home-category-link {
+    font-size: 0.68rem;
+    margin-top: 6px;
+  }
+
+  /* ★★ FEATURED PRODUCTS → 1 COLUMN — the fix ★★ */
+  .home-product-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  /* Custom order */
+  .home-custom-section {
+    padding: 50px 0;
+  }
+
+  .home-custom-content {
+    padding: 28px 20px;
+  }
+
+  .home-custom-content h2 {
+    font-size: 1.5rem;
+    margin: 10px 0 14px;
+  }
+
+  .home-custom-content p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+
+  .home-custom-features {
+    gap: 8px;
+    margin: 18px 0 22px;
+  }
+
+  .home-custom-features span {
+    padding: 6px 10px;
+    font-size: 0.68rem;
+  }
+
+  .home-custom-image {
+    min-height: 220px;
+  }
+
+  /* Bulk */
+  .home-bulk-section {
+    padding-bottom: 50px;
+  }
+
+  .home-bulk-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .home-bulk-content h2 {
+    font-size: 1.2rem;
+  }
+
+  .home-bulk-content p {
+    font-size: 0.82rem;
+  }
+
+  /* Final CTA */
+  .home-final-cta {
+    padding: 56px 0;
+  }
+
+  .home-final-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 0.95rem;
+  }
+
+  .home-final-content h2 {
+    font-size: 1.6rem;
+    margin: 14px 0 10px;
+  }
+
+  .home-final-content p {
+    font-size: 0.9rem;
+    margin-bottom: 22px;
+  }
+
+  /* States */
+  .home-state {
+    padding: 36px 22px;
+    border-radius: 16px;
+  }
+
+  .home-state h3 {
+    font-size: 1.1rem;
+  }
+}
+
+
+/* ============================================================
+   19. RESPONSIVE — SMALL PHONES (≤380)
+   ============================================================ */
+
+@media (max-width: 380px) {
+  .home-container {
+    width: calc(100% - 22px);
+  }
+
+  .home-hero-content h1 {
+    font-size: 1.85rem;
+  }
+
+  .home-hero-content > p {
+    font-size: 0.86rem;
+  }
+
+  .home-hero-visual {
+    min-height: 280px;
+  }
+
+  .home-hero-main-image {
+    height: 240px;
+  }
+
+  .home-hero-small-image {
+    width: 90px;
+    height: 90px;
+    border-width: 4px;
+  }
+
+  .home-hero-small-image-one {
+    top: 40px;
+  }
+
+  /* Category grid → 1 col on tiny phones */
+  .home-category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-category-card {
+    min-height: 96px;
+  }
+
+  .home-section-heading h2 {
+    font-size: 1.4rem;
+  }
+
+  .home-custom-content h2 {
+    font-size: 1.35rem;
+  }
+
+  .home-final-content h2 {
+    font-size: 1.45rem;
+  }
+}
+
+
+/* ============================================================
+   20. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page *,
+  .home-page *::before,
+  .home-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ============================================================
+   21. TOUCH DEVICES — swap hover-lift for tap feedback
+   ============================================================ */
+
+@media (hover: none) {
+  .home-btn:hover,
+  .home-category-card:hover {
+    transform: none;
+  }
+
+  .home-btn:active,
+  .home-category-card:active {
+    transform: scale(0.98);
+  }
 }

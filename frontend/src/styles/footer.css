@@ -42,9 +42,21 @@
   color: var(--terracotta);
 }
 
+/* Logo image (replaces the old 🧶 emoji) */
 .footer-logo {
-  font-size: 1.8rem;
-  line-height: 1;
+  display: block;
+
+  width: 38px;
+  height: 38px;
+
+  object-fit: contain;
+  flex-shrink: 0;
+
+  /* If the PNG is dark and the footer is dark brown,
+     a soft white ring helps it stand out. Remove if not needed: */
+  /* background: rgba(255, 255, 255, 0.08); */
+  /* padding: 4px; */
+  /* border-radius: 50%; */
 }
 
 .footer-description {
@@ -246,23 +258,43 @@
   .footer-policy {
     text-align: center;
   }
-  .footer-links{
-display:flex;
-flex-direction:column;
-align-items:center;
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-categories {
+    justify-items: center;
+  }
+
+  /* Center the brand row (logo + text) on mobile */
+  .footer-brand {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Slightly smaller logo on phones */
+  .footer-logo {
+    width: 32px;
+    height: 32px;
+  }
 }
 
-.footer-categories{
-justify-items:center;
-}
-
-}
-.footer-contact li{
-flex-wrap:wrap;
+.footer-contact li {
+  flex-wrap: wrap;
 }
 
 @media (max-width: 420px) {
   .footer-categories {
     grid-template-columns: 1fr;
+  }
+
+  .footer-logo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .footer-brand {
+    font-size: 1.3rem;
   }
 }

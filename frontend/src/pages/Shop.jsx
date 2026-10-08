@@ -777,7 +777,7 @@
 
 // export default Shop;
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import "../styles/shop.css";
@@ -910,6 +910,7 @@ const Shop = () => {
 
   const [sortBy, setSortBy] = useState("featured");
   const [currentPage, setCurrentPage] = useState(1);
+  const productsRef = useRef(null);
 
   /* ==========================================================
      URL STATE
@@ -1200,6 +1201,18 @@ const Shop = () => {
      CATEGORY NAVIGATION
   ========================================================== */
 
+  // const handleCategoryChange = (slug) => {
+  //   const params = new URLSearchParams(searchParams);
+
+  //   if (slug === "all") {
+  //     params.delete("category");
+  //   } else {
+  //     params.set("category", slug);
+  //   }
+
+  //   setCurrentPage(1);
+  //   setSearchParams(params);
+  // };
   const handleCategoryChange = (slug) => {
     const params = new URLSearchParams(searchParams);
 
@@ -1211,8 +1224,21 @@ const Shop = () => {
 
     setCurrentPage(1);
     setSearchParams(params);
-  };
 
+    // After the DOM commits the new filtered list, land on the
+    // products section instead of letting the browser snap to top.
+    requestAnimationFrame(() => {
+      if (!productsRef.current) return;
+
+      const navOffset = 90;
+      const top =
+        productsRef.current.getBoundingClientRect().top +
+        window.scrollY -
+        navOffset;
+
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+  };
   /* ==========================================================
      SEARCH
   ========================================================== */
@@ -1268,6 +1294,18 @@ const Shop = () => {
      PAGINATION
   ========================================================== */
 
+  // const handlePageChange = (page) => {
+  //   if (page < 1 || page > totalPages || page === safeCurrentPage) {
+  //     return;
+  //   }
+
+  //   setCurrentPage(page);
+
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: "smooth",
+  //   });
+  // };
   const handlePageChange = (page) => {
     if (page < 1 || page > totalPages || page === safeCurrentPage) {
       return;
@@ -1275,12 +1313,21 @@ const Shop = () => {
 
     setCurrentPage(page);
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+    // Wait one frame so React commits the new page's DOM,
+    // then scroll to the top of the product grid (not the page top).
+    requestAnimationFrame(() => {
+      if (!productsRef.current) return;
+
+      const navOffset = 90; // height of sticky navbar + filter bar
+
+      const top =
+        productsRef.current.getBoundingClientRect().top +
+        window.scrollY -
+        navOffset;
+
+      window.scrollTo({ top, behavior: "smooth" });
     });
   };
-
   /* ==========================================================
      PAGE NUMBERS
   ========================================================== */
@@ -1591,7 +1638,12 @@ const Shop = () => {
           PRODUCTS
       ====================================================== */}
 
-      <section className="shop-products" aria-label="Products">
+      {/* <section className="shop-products" aria-label="Products"> */}
+      <section
+        className="shop-products"
+        ref={productsRef}
+        aria-label="Products"
+      >
         <div className="container">
           {loading ? (
             <div className="product-grid skeleton-grid">

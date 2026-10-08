@@ -1,3 +1,13 @@
+/* ============================================================
+   HANDYARTSTORE — MY ORDERS STYLESHEET
+   Production-grade · Mobile responsive
+   ============================================================ */
+
+
+/* ============================================================
+   1. PAGE ROOT + CONTAINER
+   ============================================================ */
+
 .my-orders-page {
   min-height: calc(100vh - 80px);
   background: #faf7f4;
@@ -10,9 +20,10 @@
   margin: 0 auto;
 }
 
-/* =========================
-   HEADER
-========================= */
+
+/* ============================================================
+   2. HEADER
+   ============================================================ */
 
 .orders-header {
   display: flex;
@@ -20,6 +31,10 @@
   justify-content: space-between;
   gap: 30px;
   margin-bottom: 35px;
+}
+
+.orders-header > div {
+  min-width: 0;
 }
 
 .orders-eyebrow {
@@ -51,16 +66,21 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+
   min-height: 46px;
   padding: 0 20px;
+
   border: 1px solid #d9b6a8;
   border-radius: 8px;
+
   background: #fff;
   color: #8c5948;
+
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
+
   transition:
     background 0.2s ease,
     border-color 0.2s ease,
@@ -73,17 +93,29 @@
   transform: translateY(-1px);
 }
 
-/* =========================
-   SUMMARY BAR
-========================= */
+.continue-shopping-btn:focus-visible,
+.orders-primary-btn:focus-visible,
+.view-order-btn:focus-visible,
+.orders-help-btn:focus-visible,
+a.order-item-name:focus-visible {
+  outline: 3px solid rgba(169, 110, 89, 0.3);
+  outline-offset: 3px;
+}
+
+
+/* ============================================================
+   3. SUMMARY BAR
+   ============================================================ */
 
 .orders-summary-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+
   padding: 16px 20px;
   margin-bottom: 18px;
+
   border: 1px solid #eadfd9;
   border-radius: 10px;
   background: #fff;
@@ -92,6 +124,7 @@
 .orders-count {
   color: #4a3b35;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 .orders-count strong {
@@ -102,11 +135,13 @@
 .orders-summary-text {
   color: #8a7c76;
   font-size: 13px;
+  text-align: right;
 }
 
-/* =========================
-   ORDER CARD
-========================= */
+
+/* ============================================================
+   4. ORDER LIST + CARD
+   ============================================================ */
 
 .orders-list {
   display: flex;
@@ -116,10 +151,13 @@
 
 .order-card {
   overflow: hidden;
+
   border: 1px solid #e8ded9;
   border-radius: 12px;
   background: #fff;
+
   box-shadow: 0 3px 15px rgba(60, 45, 38, 0.04);
+
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
@@ -129,16 +167,19 @@
   box-shadow: 0 8px 25px rgba(60, 45, 38, 0.08);
 }
 
-/* =========================
-   ORDER HEADER
-========================= */
+
+/* ============================================================
+   5. ORDER HEADER
+   ============================================================ */
 
 .order-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+
   padding: 20px 22px;
+
   border-bottom: 1px solid #eee5e1;
   background: #fffdfc;
 }
@@ -147,6 +188,11 @@
   display: flex;
   align-items: center;
   gap: 45px;
+  min-width: 0;
+}
+
+.order-header-left > div:first-child {
+  min-width: 0;
 }
 
 .order-label {
@@ -163,6 +209,8 @@
   color: #3d302b;
   font-size: 16px;
   font-weight: 700;
+  /* prevents long order IDs from overflowing */
+  overflow-wrap: anywhere;
 }
 
 .order-date {
@@ -173,20 +221,26 @@
   color: #554740;
   font-size: 13px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
-/* =========================
-   STATUS
-========================= */
+
+/* ============================================================
+   6. STATUS BADGE
+   ============================================================ */
 
 .order-status {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+
   padding: 7px 12px;
+
   border-radius: 30px;
+
   font-size: 12px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .status-icon {
@@ -208,9 +262,10 @@
   color: #398053;
 }
 
-/* =========================
-   ORDER ITEMS
-========================= */
+
+/* ============================================================
+   7. ORDER ITEMS
+   ============================================================ */
 
 .order-items {
   padding: 4px 22px;
@@ -220,7 +275,9 @@
   display: flex;
   align-items: center;
   gap: 15px;
+
   padding: 17px 0;
+
   border-bottom: 1px solid #f0e9e5;
 }
 
@@ -232,7 +289,9 @@
   flex: 0 0 72px;
   width: 72px;
   height: 72px;
+
   overflow: hidden;
+
   border: 1px solid #e9dfda;
   border-radius: 8px;
   background: #faf7f4;
@@ -249,8 +308,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 100%;
   height: 100%;
+
   color: #9c8980;
   font-size: 25px;
 }
@@ -264,12 +325,17 @@
   display: block;
   width: fit-content;
   max-width: 100%;
+
   overflow: hidden;
+
   margin-bottom: 7px;
+
   color: #453731;
+
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
+
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -283,6 +349,7 @@ a.order-item-name:hover {
   align-items: center;
   flex-wrap: wrap;
   gap: 7px;
+
   color: #897a73;
   font-size: 12px;
 }
@@ -296,18 +363,22 @@ a.order-item-name:hover {
   color: #463731;
   font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
 }
 
-/* =========================
-   FOOTER
-========================= */
+
+/* ============================================================
+   8. ORDER FOOTER
+   ============================================================ */
 
 .order-card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 25px;
+
   padding: 18px 22px;
+
   border-top: 1px solid #eee5e1;
   background: #fffdfc;
 }
@@ -316,6 +387,7 @@ a.order-item-name:hover {
   display: flex;
   align-items: center;
   gap: 35px;
+  min-width: 0;
 }
 
 .order-footer-info > div {
@@ -349,16 +421,21 @@ a.order-item-name:hover {
   align-items: center;
   justify-content: center;
   gap: 9px;
+
   min-height: 40px;
   padding: 0 16px;
+
   border: 1px solid #d5ad9d;
   border-radius: 7px;
+
   background: #fff;
   color: #9b614f;
+
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
+
   transition:
     background 0.2s ease,
     color 0.2s ease,
@@ -371,20 +448,24 @@ a.order-item-name:hover {
   transform: translateY(-1px);
 }
 
-/* =========================
-   EMPTY STATE
-========================= */
+
+/* ============================================================
+   9. EMPTY STATE
+   ============================================================ */
 
 .orders-empty {
   display: flex;
   align-items: center;
   flex-direction: column;
+
   max-width: 600px;
   margin: 45px auto 0;
   padding: 65px 25px;
+
   border: 1px solid #e8ded9;
   border-radius: 12px;
   background: #fff;
+
   text-align: center;
 }
 
@@ -392,11 +473,15 @@ a.order-item-name:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 75px;
   height: 75px;
+
   margin-bottom: 20px;
+
   border-radius: 50%;
   background: #faf0eb;
+
   font-size: 32px;
 }
 
@@ -419,16 +504,22 @@ a.order-item-name:hover {
   align-items: center;
   justify-content: center;
   gap: 10px;
+
   min-height: 44px;
   padding: 0 20px;
+
   border: none;
   border-radius: 7px;
+
   background: #a96e59;
   color: #fff;
+
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
+
   cursor: pointer;
+
   transition:
     background 0.2s ease,
     transform 0.2s ease;
@@ -439,20 +530,24 @@ a.order-item-name:hover {
   transform: translateY(-1px);
 }
 
-/* =========================
-   ERROR
-========================= */
+
+/* ============================================================
+   10. ERROR STATE
+   ============================================================ */
 
 .orders-error {
   display: flex;
   align-items: center;
   flex-direction: column;
+
   max-width: 600px;
   margin: 45px auto;
   padding: 55px 25px;
+
   border: 1px solid #edd9d4;
   border-radius: 12px;
   background: #fff;
+
   text-align: center;
 }
 
@@ -473,15 +568,17 @@ a.order-item-name:hover {
   font-size: 14px;
 }
 
-/* =========================
-   LOADING
-========================= */
+
+/* ============================================================
+   11. LOADING
+   ============================================================ */
 
 .orders-loading {
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+
   min-height: 450px;
   text-align: center;
 }
@@ -489,10 +586,13 @@ a.order-item-name:hover {
 .orders-spinner {
   width: 42px;
   height: 42px;
+
   margin-bottom: 20px;
+
   border: 3px solid #eadbd5;
   border-top-color: #a96e59;
   border-radius: 50%;
+
   animation: ordersSpin 0.8s linear infinite;
 }
 
@@ -509,21 +609,22 @@ a.order-item-name:hover {
 }
 
 @keyframes ordersSpin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
-/* =========================
-   HELP
-========================= */
+
+/* ============================================================
+   12. HELP SECTION
+   ============================================================ */
 
 .orders-help {
   display: flex;
   align-items: center;
   gap: 15px;
+
   margin-top: 25px;
   padding: 20px 22px;
+
   border: 1px solid #e9ddd7;
   border-radius: 10px;
   background: #fff;
@@ -533,16 +634,20 @@ a.order-item-name:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+
   flex: 0 0 42px;
   width: 42px;
   height: 42px;
+
   border-radius: 50%;
   background: #faf0eb;
+
   font-size: 19px;
 }
 
 .orders-help > div:nth-child(2) {
   flex: 1;
+  min-width: 0;
 }
 
 .orders-help h3 {
@@ -559,24 +664,75 @@ a.order-item-name:hover {
 
 .orders-help-btn {
   padding: 9px 15px;
+
   border: 1px solid #d8b3a4;
   border-radius: 6px;
+
   color: #965f4e;
+
   font-size: 12px;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-/* =========================
-   TABLET
-========================= */
+.orders-help-btn:hover {
+  background: #fff7f2;
+  color: #7a4a3a;
+  border-color: #bd907d;
+}
+
+
+/* ============================================================
+   13. RESPONSIVE — LARGE TABLET  (≤ 992)
+   ============================================================ */
+
+@media (max-width: 992px) {
+  .my-orders-page {
+    padding: 48px 18px 70px;
+  }
+
+  .order-card-header {
+    padding: 18px 20px;
+  }
+
+  .order-header-left {
+    gap: 30px;
+  }
+
+  .order-items {
+    padding: 4px 20px;
+  }
+
+  .order-card-footer {
+    padding: 16px 20px;
+  }
+
+  .order-footer-info {
+    gap: 24px;
+  }
+
+  .order-footer-info .order-total {
+    padding-left: 24px;
+  }
+}
+
+
+/* ============================================================
+   14. RESPONSIVE — TABLET PORTRAIT  (≤ 768)
+   ============================================================ */
 
 @media (max-width: 768px) {
   .my-orders-page {
     padding: 40px 15px 60px;
   }
 
+  /* Header stacks */
   .orders-header {
     align-items: flex-start;
     flex-direction: column;
@@ -588,12 +744,19 @@ a.order-item-name:hover {
     width: 100%;
   }
 
+  /* Summary bar stacks */
   .orders-summary-bar {
     align-items: flex-start;
     flex-direction: column;
     gap: 5px;
+    padding: 14px 16px;
   }
 
+  .orders-summary-text {
+    text-align: left;
+  }
+
+  /* Order header stacks */
   .order-card-header {
     align-items: flex-start;
     flex-direction: column;
@@ -610,6 +773,7 @@ a.order-item-name:hover {
     align-self: flex-start;
   }
 
+  /* Footer stacks */
   .order-card-footer {
     align-items: stretch;
     flex-direction: column;
@@ -629,9 +793,11 @@ a.order-item-name:hover {
     width: 100%;
   }
 
+  /* Help — icon + text row, button drops to new row */
   .orders-help {
     align-items: flex-start;
     flex-wrap: wrap;
+    gap: 12px;
   }
 
   .orders-help > div:nth-child(2) {
@@ -640,81 +806,147 @@ a.order-item-name:hover {
 
   .orders-help-btn {
     width: 100%;
-    margin-left: 57px;
     text-align: center;
+    padding: 11px 16px;
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
+
+/* ============================================================
+   15. RESPONSIVE — MOBILE  (≤ 520)
+   ============================================================ */
 
 @media (max-width: 520px) {
   .my-orders-page {
     padding: 30px 12px 50px;
   }
 
+  .orders-eyebrow {
+    font-size: 10.5px;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
   .orders-header h1 {
-    font-size: 32px;
+    font-size: 30px;
+    margin-bottom: 8px;
   }
 
   .orders-header p {
     font-size: 13px;
+    line-height: 1.65;
   }
 
+  .continue-shopping-btn {
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  /* Summary bar */
+  .orders-summary-bar {
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+
+  .orders-count {
+    font-size: 13px;
+  }
+
+  .orders-count strong {
+    font-size: 16px;
+  }
+
+  .orders-summary-text {
+    font-size: 11.5px;
+    line-height: 1.55;
+  }
+
+  /* Card */
   .order-card {
-    border-radius: 9px;
+    border-radius: 10px;
   }
 
   .order-card-header {
-    padding: 16px;
+    padding: 14px 16px;
+    gap: 12px;
   }
 
   .order-header-left {
     align-items: flex-start;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .order-card-header h2 {
+    font-size: 15px;
   }
 
   .order-date {
     min-width: 0;
   }
 
+  .order-date strong {
+    font-size: 12.5px;
+  }
+
+  .order-status {
+    padding: 6px 10px;
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .status-icon {
+    font-size: 11px;
+  }
+
+  /* Items — image shrink + tighter padding */
   .order-items {
-    padding: 4px 16px;
+    padding: 2px 14px;
   }
 
   .order-item {
     align-items: flex-start;
     gap: 11px;
+    padding: 14px 0;
   }
 
   .order-item-image-wrapper {
-    flex-basis: 58px;
-    width: 58px;
-    height: 58px;
+    flex-basis: 60px;
+    width: 60px;
+    height: 60px;
+    border-radius: 7px;
+  }
+
+  .order-item-placeholder {
+    font-size: 22px;
   }
 
   .order-item-name {
     font-size: 13px;
+    margin-bottom: 5px;
   }
 
   .order-item-meta {
     font-size: 11px;
+    gap: 6px;
   }
 
   .order-item-total {
-    font-size: 12px;
+    font-size: 13px;
+    /* keep the price aligned to top like the rest */
+    padding-top: 2px;
   }
 
+  /* Footer — 2-col grid, total spans full width */
   .order-card-footer {
-    padding: 16px;
+    padding: 14px 16px;
+    gap: 14px;
   }
 
   .order-footer-info {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 14px;
   }
 
   .order-footer-info .order-total {
@@ -725,20 +957,208 @@ a.order-item-name:hover {
     border-left: none;
   }
 
+  .order-footer-info span {
+    font-size: 10.5px;
+  }
+
+  .order-footer-info strong {
+    font-size: 12.5px;
+  }
+
+  .order-footer-info .order-total strong {
+    font-size: 15px;
+  }
+
+  .view-order-btn {
+    min-height: 42px;
+    font-size: 13px;
+  }
+
+  /* Empty / error */
   .orders-empty {
     margin-top: 25px;
     padding: 45px 18px;
+    border-radius: 10px;
+  }
+
+  .orders-empty-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 28px;
+    margin-bottom: 16px;
   }
 
   .orders-empty h2 {
     font-size: 21px;
   }
 
+  .orders-empty p {
+    font-size: 13px;
+  }
+
+  .orders-error {
+    padding: 42px 18px;
+    border-radius: 10px;
+  }
+
+  .orders-error h2 {
+    font-size: 20px;
+  }
+
+  /* Loading */
+  .orders-loading {
+    min-height: 320px;
+  }
+
+  .orders-loading h2 {
+    font-size: 17px;
+  }
+
+  .orders-loading p {
+    font-size: 13px;
+  }
+
+  /* Help */
   .orders-help {
-    padding: 17px;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .orders-help h3 {
+    font-size: 13px;
+  }
+
+  .orders-help p {
+    font-size: 11.5px;
+    line-height: 1.55;
   }
 
   .orders-help-btn {
-    margin-left: 0;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+}
+
+
+/* ============================================================
+   16. RESPONSIVE — SMALL PHONES  (≤ 380)
+   ============================================================ */
+
+@media (max-width: 380px) {
+  .my-orders-page {
+    padding: 24px 10px 44px;
+  }
+
+  .orders-header h1 {
+    font-size: 26px;
+  }
+
+  .orders-header p {
+    font-size: 12.5px;
+  }
+
+  .orders-summary-bar {
+    padding: 11px 12px;
+  }
+
+  .orders-summary-text {
+    font-size: 11px;
+  }
+
+  .order-card-header {
+    padding: 12px 14px;
+  }
+
+  .order-card-header h2 {
+    font-size: 14px;
+  }
+
+  .order-items {
+    padding: 2px 12px;
+  }
+
+  .order-item {
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+  .order-item-image-wrapper {
+    flex-basis: 52px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .order-item-name {
+    font-size: 12.5px;
+  }
+
+  .order-item-total {
+    font-size: 12.5px;
+  }
+
+  .order-card-footer {
+    padding: 12px 14px;
+  }
+
+  .orders-empty {
+    padding: 36px 14px;
+  }
+
+  .orders-empty h2 {
+    font-size: 19px;
+  }
+
+  .orders-empty p {
+    font-size: 12.5px;
+  }
+
+  .orders-help {
+    padding: 14px;
+  }
+
+  .orders-help-btn {
+    padding: 9px 12px;
+  }
+}
+
+
+/* ============================================================
+   17. REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .my-orders-page *,
+  .my-orders-page *::before,
+  .my-orders-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ============================================================
+   18. TOUCH DEVICES — replace hover-lift with tap feedback
+   ============================================================ */
+
+@media (hover: none) {
+  .continue-shopping-btn:hover,
+  .orders-primary-btn:hover,
+  .view-order-btn:hover,
+  .order-card:hover {
+    transform: none;
+  }
+
+  .continue-shopping-btn:active,
+  .orders-primary-btn:active,
+  .view-order-btn:active {
+    transform: scale(0.98);
+    background: #fef5f0;
+  }
+
+  .view-order-btn:active {
+    background: #a96e59;
+    color: #fff;
   }
 }

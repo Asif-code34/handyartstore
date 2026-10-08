@@ -57,6 +57,7 @@
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .admin-orders-table tbody tr {
@@ -91,12 +92,14 @@
 .order-total {
   font-weight: 600;
   color: var(--terracotta);
+  white-space: nowrap;
 }
 
 /* ---- Date ---- */
 .order-date {
   color: var(--warm-brown);
   font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 /* ---- Status Select ---- */
@@ -117,6 +120,8 @@
   cursor: pointer;
   transition: var(--transition);
   appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b6b5e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
@@ -153,71 +158,263 @@
 }
 
 /* ================================================================
-   RESPONSIVE
+   RESPONSIVE — TABLET  (≤ 1024px)
    ================================================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .admin-orders {
-    padding: 24px 12px 40px;
-  }
-
-  .admin-orders-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .admin-orders-table-wrapper {
-    border-radius: var(--radius);
+    padding: 32px 16px 48px;
   }
 
   .admin-orders-table {
-    font-size: 0.85rem;
-    min-width: 520px;
+    min-width: 560px;
+    font-size: 0.9rem;
   }
 
   .admin-orders-table th,
   .admin-orders-table td {
-    padding: 10px 14px;
-  }
-
-  .status-select {
-    font-size: 0.75rem;
-    padding: 4px 32px 4px 12px;
-    background-position: right 10px center;
+    padding: 12px 16px;
   }
 }
 
-@media (max-width: 480px) {
+/* ================================================================
+   RESPONSIVE — CARD VIEW  (≤ 900px)
+   Table transforms into stacked order cards.
+   ================================================================ */
+
+@media (max-width: 900px) {
   .admin-orders {
-    padding: 16px 8px 32px;
+    padding: 28px 14px 44px;
+  }
+
+  .admin-orders-header {
+    margin-bottom: 20px;
   }
 
   .admin-orders-header h1 {
-    font-size: 1.4rem;
+    font-size: 1.7rem;
+  }
+
+  .admin-orders-table-wrapper {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
   }
 
   .admin-orders-table {
-    font-size: 0.75rem;
-    min-width: 400px;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    font-size: 0.95rem;
   }
 
-  .admin-orders-table th,
-  .admin-orders-table td {
-    padding: 8px 10px;
+  .admin-orders-table thead {
+    display: none;
+  }
+
+  .admin-orders-table tbody {
+    display: block;
+  }
+
+  .admin-orders-table tbody tr {
+    display: block;
+
+    margin-bottom: 14px;
+    padding: 16px 18px;
+
+    background: var(--white);
+
+    border: 1px solid rgba(212, 160, 138, 0.12);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .admin-orders-table tbody tr:hover {
+    background: var(--white);
+    border-color: rgba(212, 160, 138, 0.22);
+    box-shadow: 0 6px 20px rgba(90, 63, 54, 0.08);
+  }
+
+  .admin-orders-table tbody tr:last-child {
+    margin-bottom: 0;
+  }
+
+  .admin-orders-table tbody td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 9px 0;
+
+    border-bottom: 1px solid rgba(212, 160, 138, 0.08);
+  }
+
+  .admin-orders-table tbody td:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  /* Label rendered from data-label attribute */
+  .admin-orders-table tbody td::before {
+    content: attr(data-label);
+
+    flex-shrink: 0;
+
+    color: var(--warm-brown);
+    opacity: 0.65;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Give the Order ID row a stronger emphasis as a header */
+  .order-id {
+    padding-top: 0 !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(212, 160, 138, 0.16) !important;
+    font-size: 0.85rem;
+  }
+
+  .order-id::before {
+    color: var(--deep-brown);
+    opacity: 1;
+  }
+
+  /* Status row: select takes more room */
+  .order-status {
+    min-width: 0;
+  }
+
+  .order-status::before {
+    flex-shrink: 0;
+  }
+
+  .status-select {
+    flex: 1;
+    max-width: 200px;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 8px 34px 8px 14px;
+    background-position: right 12px center;
+  }
+
+  /* Make number/date slightly bigger for readability */
+  .order-total {
+    font-size: 0.95rem;
+  }
+
+  .order-date {
+    font-size: 0.9rem;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE — SMALL PHONES  (≤ 480px)
+   ================================================================ */
+
+@media (max-width: 480px) {
+  .admin-orders {
+    padding: 20px 12px 36px;
+  }
+
+  .admin-orders-header h1 {
+    font-size: 1.45rem;
+  }
+
+  .admin-orders-table tbody tr {
+    padding: 14px;
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+  }
+
+  .admin-orders-table tbody td {
+    padding: 8px 0;
+    gap: 12px;
+    font-size: 0.9rem;
+  }
+
+  .admin-orders-table tbody td::before {
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
   }
 
   .order-id {
-    font-size: 0.7rem;
-  }
-  .order-date {
-    font-size: 0.75rem;
-  }
-  .order-total {
     font-size: 0.8rem;
   }
+
+  .order-user {
+    font-size: 0.9rem;
+  }
+
+  .order-total {
+    font-size: 0.9rem;
+  }
+
+  .order-date {
+    font-size: 0.85rem;
+  }
+
   .status-select {
-    font-size: 0.65rem;
-    padding: 2px 28px 2px 10px;
+    font-size: 0.78rem;
+    padding: 7px 30px 7px 12px;
+    background-position: right 10px center;
+    max-width: 160px;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE — VERY SMALL PHONES  (≤ 360px)
+   ================================================================ */
+
+@media (max-width: 360px) {
+  .admin-orders {
+    padding: 16px 10px 32px;
+  }
+
+  .admin-orders-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .admin-orders-table tbody tr {
+    padding: 12px;
+  }
+
+  .admin-orders-table tbody td {
+    font-size: 0.85rem;
+    gap: 10px;
+  }
+
+  .admin-orders-table tbody td::before {
+    font-size: 0.6rem;
+  }
+
+  .status-select {
+    font-size: 0.72rem;
+    padding: 6px 26px 6px 10px;
     background-position: right 8px center;
-    min-width: 90px;
+    max-width: 140px;
+  }
+}
+
+/* ================================================================
+   REDUCED MOTION
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-orders *,
+  .admin-orders *::before,
+  .admin-orders *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

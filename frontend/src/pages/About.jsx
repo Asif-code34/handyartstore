@@ -2,56 +2,58 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/about.css";
 
+/* ============================================================
+   SOCIAL LINKS
+============================================================ */
+
 const socialLinks = [
-  {
-    label: "Website",
-    icon: "🌐",
-    href: "https://theshivanshvasu.com",
-    className: "website",
-  },
-  {
-    label: "YouTube",
-    icon: "▶",
-    href: "https://youtube.com/@shivanshvasu",
-    className: "youtube",
-  },
   {
     label: "Instagram",
     icon: "◎",
-    href: "https://instagram.com/theshivanshvasuofficial",
+    href: "https://instagram.com/handyartstore",
     className: "instagram",
-  },
-  {
-    label: "LinkedIn",
-    icon: "in",
-    href: "https://www.linkedin.com/in/theshivanshvasu",
-    className: "linkedin",
-  },
-  {
-    label: "X",
-    icon: "𝕏",
-    href: "https://x.com/theshivanshvasu",
-    className: "x",
   },
   {
     label: "WhatsApp",
     icon: "◉",
-    href: "https://whatsapp.com/channel/0029VbAWGE5ICVfcjjKTAS0B",
+    href: "https://wa.me/919999999999",
     className: "whatsapp",
   },
   {
-    label: "Linktree",
-    icon: "↗",
-    href: "https://linktr.ee/shivanshvasu",
-    className: "linktree",
+    label: "Pinterest",
+    icon: "❋",
+    href: "https://pinterest.com/handyartstore",
+    className: "pinterest",
+  },
+  {
+    label: "Facebook",
+    icon: "f",
+    href: "https://facebook.com/handyartstore",
+    className: "facebook",
+  },
+  {
+    label: "YouTube",
+    icon: "▶",
+    href: "https://youtube.com/@handyartstore",
+    className: "youtube",
+  },
+  {
+    label: "Email Us",
+    icon: "✉",
+    href: "mailto:hello@handyartstore.com",
+    className: "email",
   },
 ];
+
+/* ============================================================
+   ABOUT PAGE
+============================================================ */
 
 const About = () => {
   return (
     <main className="about-page">
       {/* =====================================================
-          HERO
+          HERO — Meet the maker
       ===================================================== */}
 
       <section className="about-hero">
@@ -71,8 +73,9 @@ const About = () => {
 
                 <img
                   src="/redFlowerBouquet.jpeg"
-                  alt="Shivansh Vasu"
+                  alt="A hand-crocheted bouquet crafted by HandyArtStore"
                   className="about-profile-image"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -80,46 +83,38 @@ const About = () => {
             {/* CONTENT */}
 
             <div className="about-hero-content">
-              <span className="about-eyebrow">✦ Meet the creator</span>
+              <span className="about-eyebrow">✦ Handmade with love</span>
 
               <h1>
-                Building things
-                <span> that bring people together.</span>
+                Every stitch tells
+                <span> a story worth keeping.</span>
               </h1>
 
               <p className="about-intro">
-                Welcome to my platform — a space where technology, creativity
-                and community come together. I share what I learn while
-                building, deploying and scaling thoughtfully engineered systems.
+                HandyArtStore is a small, independent studio crafting crochet
+                flowers, plushies, bags, home décor and keepsakes — all made by
+                hand, one careful stitch at a time. Every piece is designed to
+                be loved, gifted and treasured for years.
               </p>
 
               <div className="about-name">
                 <span className="about-name-line" />
+
                 <div>
-                  <strong>Shivansh Vasu</strong>
-                  <span>@theshivanshvasu</span>
+                  <strong>HandyArtStore</strong>
+                  <span>Handmade Crochet Studio</span>
                 </div>
               </div>
 
               <div className="about-hero-actions">
-                <a
-                  href="https://theshivanshvasu.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="about-btn about-btn-primary"
-                >
-                  Visit Website
+                <Link to="/shop" className="about-btn about-btn-primary">
+                  Shop the Collection
                   <span aria-hidden="true">→</span>
-                </a>
+                </Link>
 
-                <a
-                  href="https://youtube.com/@shivanshvasu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="about-btn about-btn-secondary"
-                >
-                  Watch on YouTube
-                </a>
+                <Link to="/contact" className="about-btn about-btn-secondary">
+                  Get in Touch
+                </Link>
               </div>
             </div>
           </div>
@@ -129,53 +124,60 @@ const About = () => {
       </section>
 
       {/* =====================================================
-          VALUES
+          VALUES — Why handmade matters
       ===================================================== */}
 
       <section className="about-values">
         <div className="about-container">
           <div className="about-section-heading">
-            <span className="about-section-eyebrow">What we're about</span>
+            <span className="about-section-eyebrow">What we stand for</span>
 
-            <h2>Build. Learn. Share.</h2>
+            <h2>Handmade. Heartfelt. Yours.</h2>
 
             <p>
-              A community built around curiosity, engineering and continuous
-              growth.
+              Three things every HandyArtStore piece is built around — no
+              shortcuts, no mass production, just care.
             </p>
           </div>
 
           <div className="about-values-grid">
             <article className="about-value-card">
-              <div className="about-value-icon">⚙️</div>
+              <div className="about-value-icon" aria-hidden="true">
+                🧶
+              </div>
 
-              <h3>Build</h3>
+              <h3>Made by Hand</h3>
 
               <p>
-                Turn ideas into practical, reliable and well-engineered
-                products.
+                Every flower, plushie and bag is crocheted by hand — never
+                machine-made. Small imperfections are part of what makes your
+                piece one of a kind.
               </p>
             </article>
 
             <article className="about-value-card">
-              <div className="about-value-icon">💡</div>
+              <div className="about-value-icon" aria-hidden="true">
+                💛
+              </div>
 
-              <h3>Learn</h3>
+              <h3>Premium Materials</h3>
 
               <p>
-                Keep exploring new technologies and share the lessons learned
-                along the way.
+                We use soft, durable, skin-friendly yarns and sturdy hardware so
+                your favourite pieces stay beautiful through everyday love.
               </p>
             </article>
 
             <article className="about-value-card">
-              <div className="about-value-icon">🤝</div>
+              <div className="about-value-icon" aria-hidden="true">
+                🌿
+              </div>
 
-              <h3>Grow Together</h3>
+              <h3>Made to Last</h3>
 
               <p>
-                Create a community where knowledge and experience can be shared
-                freely.
+                Slow-made with intention, not rushed for volume. Our pieces are
+                designed to become heirlooms — gifted, kept and remembered.
               </p>
             </article>
           </div>
@@ -183,40 +185,38 @@ const About = () => {
       </section>
 
       {/* =====================================================
-          STORY / COMMUNITY
+          STORY — How it started
       ===================================================== */}
 
       <section className="about-story">
         <div className="about-container">
           <div className="about-story-card">
             <div className="about-story-content">
-              <span className="about-section-eyebrow">Join the community</span>
+              <span className="about-section-eyebrow">Our story</span>
 
               <h2>
-                There's always more
-                <span> to build.</span>
+                It started with
+                <span> one ball of yarn.</span>
               </h2>
 
               <p>
-                Whether you're learning your first concept or working on complex
-                systems, the goal is simple: learn continuously, build
-                intentionally and help others grow along the way.
+                HandyArtStore began as a quiet hobby — a way to slow down,
+                create something with our hands and share a little warmth with
+                the people around us. What started as a single crochet flower
+                quickly turned into bouquets, plushies, bags and keepsakes for
+                customers across the country.
               </p>
 
               <p>
-                Follow along for engineering insights, projects, tutorials and
-                ideas from the journey.
+                Today, every order is still packed by hand, wrapped with care
+                and sent off with a small note — because we believe handmade
+                gifts should feel personal from the moment they arrive.
               </p>
 
-              <a
-                href="https://linktr.ee/shivanshvasu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="about-text-link"
-              >
-                Explore all platforms
+              <Link to="/shop" className="about-text-link">
+                Explore the collection
                 <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
 
             <div className="about-story-art">
@@ -224,11 +224,11 @@ const About = () => {
               <div className="about-art-circle about-art-circle-two" />
 
               <div className="about-art-card">
-                <span>✦</span>
+                <span aria-hidden="true">✦</span>
 
-                <strong>Grow together.</strong>
+                <strong>Made slow. Loved long.</strong>
 
-                <small>One idea at a time.</small>
+                <small>One stitch at a time.</small>
               </div>
             </div>
           </div>
@@ -236,7 +236,7 @@ const About = () => {
       </section>
 
       {/* =====================================================
-          SOCIAL LINKS
+          SOCIAL — Find us online
       ===================================================== */}
 
       <section className="about-social">
@@ -244,9 +244,12 @@ const About = () => {
           <div className="about-section-heading">
             <span className="about-section-eyebrow">Stay connected</span>
 
-            <h2>Find me online</h2>
+            <h2>Follow the journey</h2>
 
-            <p>Follow the journey across the platforms below.</p>
+            <p>
+              New drops, behind-the-scenes and custom order slots — shared first
+              on our socials.
+            </p>
           </div>
 
           <div className="about-social-grid">
@@ -257,9 +260,11 @@ const About = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`about-social-card ${social.className}`}
-                aria-label={`Visit ${social.label}`}
+                aria-label={`Visit HandyArtStore on ${social.label}`}
               >
-                <span className="about-social-icon">{social.icon}</span>
+                <span className="about-social-icon" aria-hidden="true">
+                  {social.icon}
+                </span>
 
                 <span className="about-social-name">{social.label}</span>
 
@@ -279,29 +284,29 @@ const About = () => {
       <section className="about-final">
         <div className="about-container">
           <div className="about-final-content">
-            <span className="about-final-mark">✦</span>
+            <span className="about-final-mark" aria-hidden="true">
+              ✦
+            </span>
 
             <h2>
-              Let's build something
-              <span> meaningful.</span>
+              Bring home something
+              <span> handmade.</span>
             </h2>
 
-            <p>Explore the work, join the community and grow together.</p>
+            <p>
+              Browse the collection or reach out for a custom piece — we'd love
+              to make something just for you.
+            </p>
 
             <div className="about-final-actions">
-              <Link to="/" className="about-btn about-btn-primary">
-                Back to Home
+              <Link to="/shop" className="about-btn about-btn-primary">
+                Shop Now
                 <span aria-hidden="true">→</span>
               </Link>
 
-              <a
-                href="https://theshivanshvasu.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="about-btn about-btn-light"
-              >
-                Visit Website
-              </a>
+              <Link to="/contact" className="about-btn about-btn-light">
+                Request a Custom Order
+              </Link>
             </div>
           </div>
         </div>

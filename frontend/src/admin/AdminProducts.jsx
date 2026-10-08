@@ -1,268 +1,6 @@
-// import React, { useEffect, useState, useContext } from "react";
-// import { AuthContext } from "../context/AuthContext";
+// import React, { useCallback, useContext, useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
-// import "../styles/admin-products.css";
-
-// const AdminProducts = () => {
-//   const { user } = useContext(AuthContext);
-//   const [products, setProducts] = useState([]);
-
-//   useEffect(() => {
-//     const fetchProducts = async () => {
-//       const res = await fetch("/api/products");
-//       const data = await res.json();
-//       setProducts(Array.isArray(data) ? data : []);
-//     };
-//     fetchProducts();
-//   }, []);
-
-//   const handleDelete = async (id) => {
-//     if (window.confirm("Are you strictly sure you want to delete this?")) {
-//       const res = await fetch(`/api/products/${id}`, {
-//         method: "DELETE",
-//         headers: { Authorization: `Bearer ${user.token}` },
-//       });
-//       if (res.ok) {
-//         setProducts(products.filter((p) => p._id !== id));
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className="admin-products">
-//       <div className="admin-products-header">
-//         <h1>Manage Products</h1>
-//         <Link to="/admin/add-product" className="btn btn-primary">
-//           + Add Product
-//         </Link>
-//       </div>
-
-//       <div className="admin-products-table-wrapper">
-//         <table className="admin-products-table">
-//           <thead>
-//             <tr>
-//               <th>Image</th>
-//               <th>ID</th>
-//               <th>Name</th>
-//               <th>Price</th>
-//               <th>Category</th>
-//               <th>Stock</th>
-//               <th>Actions</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {products.map((product) => (
-//               <tr key={product._id}>
-//                 <td className="product-image-cell">
-//                   {product.imageUrl ? (
-//                     <img
-//                       src={product.imageUrl}
-//                       alt={product.name}
-//                       className="product-thumbnail"
-//                       loading="lazy"
-//                     />
-//                   ) : (
-//                     <div className="product-thumbnail-placeholder">🧶</div>
-//                   )}
-//                 </td>
-//                 <td className="product-id">{product._id.substring(0, 8)}…</td>
-//                 <td className="product-name">{product.name}</td>
-//                 <td className="product-price">₹{product.price.toFixed(2)}</td>
-//                 <td className="product-category">{product.category}</td>
-//                 <td className="product-stock">
-//                   <span
-//                     className={`stock-badge ${product.stock > 0 ? "in-stock" : "out-of-stock"}`}
-//                   >
-//                     {product.stock > 0 ? product.stock : "Out of Stock"}
-//                   </span>
-//                 </td>
-//                 <td className="product-actions">
-//                   <Link
-//                     to={`/admin/edit-product/${product._id}`}
-//                     className="btn-edit"
-//                   >
-//                     Edit
-//                   </Link>
-//                   <button
-//                     onClick={() => handleDelete(product._id)}
-//                     className="btn-delete"
-//                   >
-//                     Delete
-//                   </button>
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AdminProducts;
-
-// import React, { useEffect, useState, useContext } from "react";
 // import { AuthContext } from "../context/AuthContext";
-// import { Link } from "react-router-dom";
-// import "../styles/admin-products.css";
-
-// const AdminProducts = () => {
-//   const { user } = useContext(AuthContext);
-
-//   const [products, setProducts] = useState([]);
-
-//   useEffect(() => {
-//     const fetchProducts = async () => {
-//       try {
-//         const res = await fetch("/api/products");
-
-//         const data = await res.json();
-
-//         setProducts(Array.isArray(data) ? data : []);
-//       } catch (error) {
-//         console.error("Fetch products error:", error);
-
-//         setProducts([]);
-//       }
-//     };
-
-//     fetchProducts();
-//   }, []);
-
-//   const handleDelete = async (id) => {
-//     if (window.confirm("Are you strictly sure you want to delete this?")) {
-//       try {
-//         const res = await fetch(`/api/products/${id}`, {
-//           method: "DELETE",
-//           headers: {
-//             Authorization: `Bearer ${user.token}`,
-//           },
-//         });
-
-//         if (res.ok) {
-//           setProducts((prevProducts) =>
-//             prevProducts.filter((product) => product._id !== id),
-//           );
-//         } else {
-//           const data = await res.json();
-
-//           alert(data.message || "Failed to delete product");
-//         }
-//       } catch (error) {
-//         console.error("Delete product error:", error);
-
-//         alert("Something went wrong while deleting the product");
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className="admin-products-page">
-//       <div className="admin-products-header">
-//         <h1>Manage Products</h1>
-
-//         <Link to="/admin/add-product" className="btn-add-product">
-//           + Add Product
-//         </Link>
-//       </div>
-
-//       <div className="admin-products-table-wrapper">
-//         <table className="admin-products-table">
-//           <thead>
-//             <tr>
-//               <th>Image</th>
-//               <th>ID</th>
-//               <th>Name</th>
-//               <th>Price</th>
-//               <th>Category</th>
-//               <th>Stock</th>
-//               <th>Actions</th>
-//             </tr>
-//           </thead>
-
-//           <tbody>
-//             {products.map((product) => (
-//               <tr key={product._id}>
-//                 {/* Image */}
-//                 <td className="product-image-cell">
-//                   {product.imageUrl ? (
-//                     <img
-//                       src={product.imageUrl}
-//                       alt={product.name}
-//                       className="product-thumbnail"
-//                       loading="lazy"
-//                     />
-//                   ) : (
-//                     <div className="product-thumbnail-placeholder">🧶</div>
-//                   )}
-//                 </td>
-
-//                 {/* ID */}
-//                 <td className="product-id">{product._id.substring(0, 8)}…</td>
-
-//                 {/* Name */}
-//                 <td className="product-name">{product.name}</td>
-
-//                 {/* Price */}
-//                 {/* <td className="product-price">₹{product.price.toFixed(2)}</td> */}
-//                 <td className="product-price">
-//                   ₹{Number(product.price).toFixed(2)}
-//                 </td>
-//                 {/* Category */}
-//                 <td className="product-category">
-//                   {product.category?.icon}{" "}
-//                   {product.category?.name || "No Category"}
-//                 </td>
-
-//                 {/* Stock */}
-//                 <td className="product-stock">
-//                   <span
-//                     className={`stock-badge ${
-//                       product.stock > 0 ? "in-stock" : "out-of-stock"
-//                     }`}
-//                   >
-//                     {product.stock > 0 ? product.stock : "Out of Stock"}
-//                   </span>
-//                 </td>
-
-//                 {/* Actions */}
-//                 <td className="product-actions">
-//                   <Link
-//                     to={`/admin/edit-product/${product._id}`}
-//                     className="btn-edit"
-//                   >
-//                     Edit
-//                   </Link>
-
-//                   <button
-//                     onClick={() => handleDelete(product._id)}
-//                     className="btn-delete"
-//                   >
-//                     Delete
-//                   </button>
-//                 </td>
-//               </tr>
-//             ))}
-
-//             {products.length === 0 && (
-//               <tr>
-//                 <td colSpan="7" style={{ textAlign: "center" }}>
-//                   No products found.
-//                 </td>
-//               </tr>
-//             )}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AdminProducts;
-
-// import React, { useEffect, useState, useContext, useCallback } from "react";
-// import { AuthContext } from "../context/AuthContext";
-// import { Link } from "react-router-dom";
 // import "../styles/admin-products.css";
 
 // const AdminProducts = () => {
@@ -270,26 +8,36 @@
 
 //   const [products, setProducts] = useState([]);
 //   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState("");
+//   const [deletingId, setDeletingId] = useState(null);
 
-//   // ----------------------------------------------------------
-//   // Fetch products
-//   // ----------------------------------------------------------
+//   /*
+//    * ------------------------------------------------------------
+//    * Fetch Products
+//    * ------------------------------------------------------------
+//    */
 
 //   const fetchProducts = useCallback(async () => {
 //     try {
 //       setLoading(true);
+//       setError("");
 
-//       const res = await fetch("/api/products");
+//       const response = await fetch("/api/products");
 
-//       const data = await res.json();
+//       const data = await response.json();
 
-//       if (!res.ok) {
-//         throw new Error(data?.message || "Failed to fetch products");
+//       if (!response.ok) {
+//         throw new Error(data.message || "Failed to fetch products");
 //       }
 
-//       setProducts(Array.isArray(data) ? data : []);
-//     } catch (error) {
-//       console.error("Fetch products error:", error);
+//       if (!Array.isArray(data)) {
+//         throw new Error("Invalid products response");
+//       }
+
+//       setProducts(data);
+//     } catch (err) {
+//       console.error("Fetch products error:", err);
+//       setError(err.message || "Unable to load products");
 //       setProducts([]);
 //     } finally {
 //       setLoading(false);
@@ -300,362 +48,432 @@
 //     fetchProducts();
 //   }, [fetchProducts]);
 
-//   // ----------------------------------------------------------
-//   // Calculate selling price
-//   // ----------------------------------------------------------
+//   /*
+//    * ------------------------------------------------------------
+//    * Calculate Selling Price
+//    *
+//    * price = original price
+//    * discount = percentage
+//    *
+//    * Example:
+//    * price = 120
+//    * discount = 10
+//    *
+//    * selling price = 120 - (120 * 10 / 100)
+//    *               = 108
+//    * ------------------------------------------------------------
+//    */
 
-//   const getSellingPrice = (price, discount) => {
-//     const originalPrice = Number(price) || 0;
-//     const discountPercentage = Number(discount) || 0;
+//   const getSellingPrice = (product) => {
+//     const price = Number(product?.price) || 0;
+//     const discount = Number(product?.discount) || 0;
 
-//     const finalPrice =
-//       originalPrice - (originalPrice * discountPercentage) / 100;
+//     const safeDiscount = Math.min(Math.max(discount, 0), 100);
 
-//     return Math.max(0, finalPrice);
+//     return price - (price * safeDiscount) / 100;
 //   };
 
-//   // ----------------------------------------------------------
-//   // Delete product
-//   // ----------------------------------------------------------
+//   /*
+//    * ------------------------------------------------------------
+//    * Delete Product
+//    *
+//    * Backend performs soft delete:
+//    * isActive = false
+//    * ------------------------------------------------------------
+//    */
 
-//   const handleDelete = async (id) => {
-//     if (!window.confirm("Are you sure you want to delete this product?")) {
+//   const handleDelete = async (product) => {
+//     const confirmed = window.confirm(
+//       `Are you sure you want to remove "${product.name}"?\n\n` +
+//         "This product will be marked as inactive.",
+//     );
+
+//     if (!confirmed) {
 //       return;
 //     }
 
 //     try {
-//       const res = await fetch(`/api/products/${id}`, {
+//       setDeletingId(product._id);
+
+//       const response = await fetch(`/api/products/${product._id}`, {
 //         method: "DELETE",
 //         headers: {
 //           Authorization: `Bearer ${user?.token}`,
 //         },
 //       });
 
-//       const data = await res.json();
+//       const data = await response.json();
 
-//       if (!res.ok) {
-//         throw new Error(data?.message || "Failed to delete product");
+//       if (!response.ok) {
+//         throw new Error(data.message || "Failed to remove product");
 //       }
 
-//       setProducts((prevProducts) =>
-//         prevProducts.filter((product) => product._id !== id),
+//       /*
+//        * Since backend soft-deletes the product and GET /products
+//        * only returns active products, remove it from the UI.
+//        */
+//       setProducts((previousProducts) =>
+//         previousProducts.filter(
+//           (currentProduct) => currentProduct._id !== product._id,
+//         ),
 //       );
-//     } catch (error) {
-//       console.error("Delete product error:", error);
-//       alert(error.message || "Something went wrong while deleting the product");
+//     } catch (err) {
+//       console.error("Delete product error:", err);
+
+//       alert(err.message || "Something went wrong while removing the product");
+//     } finally {
+//       setDeletingId(null);
 //     }
 //   };
 
-//   // ----------------------------------------------------------
-//   // Loading state
-//   // ----------------------------------------------------------
+//   /*
+//    * ------------------------------------------------------------
+//    * Loading State
+//    * ------------------------------------------------------------
+//    */
 
 //   if (loading) {
 //     return (
 //       <div className="admin-products-page">
-//         <div className="admin-products-header">
-//           <h1>Manage Products</h1>
-
-//           <Link to="/admin/add-product" className="btn-add-product">
-//             + Add Product
-//           </Link>
-//         </div>
-
-//         <div className="admin-products-table-wrapper">
-//           <div className="products-loading">
-//             <div className="spinner"></div>
-//             <p>Loading products...</p>
-//           </div>
+//         <div className="admin-products-loading">
+//           <span className="admin-products-spinner"></span>
+//           <p>Loading products...</p>
 //         </div>
 //       </div>
 //     );
 //   }
 
-//   // ----------------------------------------------------------
-//   // Render
-//   // ----------------------------------------------------------
+//   /*
+//    * ------------------------------------------------------------
+//    * Main UI
+//    * ------------------------------------------------------------
+//    */
 
 //   return (
 //     <div className="admin-products-page">
-//       {/* =====================================================
-//           HEADER
-//       ====================================================== */}
+//       <div className="admin-products-container">
+//         {/* ======================================================
+//             HEADER
+//         ====================================================== */}
 
-//       <div className="admin-products-header">
-//         <div>
-//           <h1>Manage Products</h1>
-//           <p>
-//             {products.length} {products.length === 1 ? "product" : "products"}{" "}
-//             in store
-//           </p>
-//         </div>
+//         <header className="admin-products-header">
+//           <div>
+//             <span className="admin-products-eyebrow">Store Management</span>
 
-//         <Link to="/admin/add-product" className="btn-add-product">
-//           + Add Product
-//         </Link>
-//       </div>
+//             <h1>Manage Products</h1>
 
-//       {/* =====================================================
-//           PRODUCTS TABLE
-//       ====================================================== */}
+//             <p>
+//               Manage your products, pricing, discounts, stock and visibility.
+//             </p>
+//           </div>
 
-//       <div className="admin-products-table-wrapper">
-//         <table className="admin-products-table">
-//           <thead>
-//             <tr>
-//               <th>Image</th>
-//               <th>ID</th>
-//               <th>Name</th>
-//               <th>Original Price</th>
-//               <th>Discount</th>
-//               <th>Selling Price</th>
-//               <th>Category</th>
-//               <th>Stock</th>
-//               <th>Status</th>
-//               <th>Featured</th>
-//               <th>Actions</th>
-//             </tr>
-//           </thead>
+//           <Link to="/admin/add-product" className="btn-add-product">
+//             <span aria-hidden="true">+</span>
+//             Add Product
+//           </Link>
+//         </header>
 
-//           <tbody>
-//             {products.length > 0 ? (
-//               products.map((product) => {
-//                 /*
-//                  * IMPORTANT:
-//                  * MongoDB may return numbers as numbers,
-//                  * but converting them explicitly makes the UI
-//                  * safe against string values as well.
-//                  */
+//         {/* ======================================================
+//             ERROR
+//         ====================================================== */}
 
-//                 const originalPrice = Number(product?.price) || 0;
+//         {error && (
+//           <div className="admin-products-error" role="alert">
+//             <div>
+//               <strong>Unable to load products</strong>
+//               <p>{error}</p>
+//             </div>
 
-//                 // const discount = Math.min(
-//                 //   100,
-//                 //   Math.max(0, Number(product?.discount) || 0),
-//                 // );
-//                 console.log("🔍 Product:", product);
-//                 console.log("🧾 Raw discount:", product?.discount);
-//                 const discount = Math.min(
-//                   100,
-//                   Math.max(0, Number(product?.discount) || 0),
-//                 );
-//                 console.log("✅ Computed discount:", discount);
-//                 const sellingPrice = getSellingPrice(originalPrice, discount);
+//             <button type="button" onClick={fetchProducts} className="btn-retry">
+//               Try Again
+//             </button>
+//           </div>
+//         )}
 
-//                 const stock = Number(product?.stock) || 0;
+//         {/* ======================================================
+//             PRODUCT COUNT
+//         ====================================================== */}
 
-//                 const isActive = product?.isActive !== false;
+//         {!error && (
+//           <div className="admin-products-summary">
+//             <span>
+//               {products.length} {products.length === 1 ? "product" : "products"}
+//             </span>
+//           </div>
+//         )}
 
-//                 const isFeatured = product?.isFeatured === true;
+//         {/* ======================================================
+//             EMPTY STATE
+//         ====================================================== */}
 
-//                 return (
-//                   <tr key={product._id}>
-//                     {/* =================================================
-//                         IMAGE
-//                     ================================================== */}
+//         {!error && products.length === 0 ? (
+//           <div className="admin-products-empty">
+//             <div className="empty-icon">🧶</div>
 
-//                     <td className="product-image-cell">
-//                       {product?.imageUrl ? (
-//                         <img
-//                           src={product.imageUrl}
-//                           alt={product?.name || "Product"}
-//                           className="product-thumbnail"
-//                           loading="lazy"
-//                         />
-//                       ) : (
-//                         <div className="product-thumbnail-placeholder">🧶</div>
-//                       )}
-//                     </td>
+//             <h2>No products found</h2>
 
-//                     {/* =================================================
-//                         ID
-//                     ================================================== */}
+//             <p>You haven't added any active products yet.</p>
 
-//                     <td className="product-id">
-//                       {product?._id ? `${product._id.substring(0, 8)}…` : "—"}
-//                     </td>
+//             <Link to="/admin/add-product" className="btn-add-product">
+//               + Add Your First Product
+//             </Link>
+//           </div>
+//         ) : (
+//           /* ====================================================
+//              PRODUCT TABLE
+//           ==================================================== */
 
-//                     {/* =================================================
-//                         NAME
-//                     ================================================== */}
-
-//                     <td className="product-name">
-//                       {product?.name || "Unnamed Product"}
-//                     </td>
-
-//                     {/* =================================================
-//                         ORIGINAL PRICE
-//                     ================================================== */}
-
-//                     <td className="product-price">
-//                       <span
-//                         className={
-//                           discount > 0
-//                             ? "original-price discounted"
-//                             : "original-price"
-//                         }
-//                       >
-//                         ₹{originalPrice.toFixed(2)}
-//                       </span>
-//                     </td>
-
-//                     {/* =================================================
-//                         DISCOUNT
-//                     ================================================== */}
-
-//                     <td className="product-discount">
-//                       {discount > 0 ? (
-//                         <span className="discount-badge">{discount}% OFF</span>
-//                       ) : (
-//                         <span className="no-discount">No Discount</span>
-//                       )}
-//                     </td>
-
-//                     {/* =================================================
-//                         SELLING PRICE
-//                     ================================================== */}
-
-//                     <td className="product-selling-price">
-//                       <strong>₹{sellingPrice.toFixed(2)}</strong>
-//                     </td>
-
-//                     {/* =================================================
-//                         CATEGORY
-//                     ================================================== */}
-
-//                     <td className="product-category">
-//                       {product?.category?.icon || "🧶"}{" "}
-//                       {product?.category?.name || "No Category"}
-//                     </td>
-
-//                     {/* =================================================
-//                         STOCK
-//                     ================================================== */}
-
-//                     <td className="product-stock">
-//                       <span
-//                         className={`stock-badge ${
-//                           stock > 0 ? "in-stock" : "out-of-stock"
-//                         }`}
-//                       >
-//                         {stock > 0 ? stock : "Out of Stock"}
-//                       </span>
-//                     </td>
-
-//                     {/* =================================================
-//                         ACTIVE STATUS
-//                     ================================================== */}
-
-//                     <td className="product-status">
-//                       {isActive ? (
-//                         <span className="status-badge active">Active</span>
-//                       ) : (
-//                         <span className="status-badge inactive">Inactive</span>
-//                       )}
-//                     </td>
-
-//                     {/* =================================================
-//                         FEATURED
-//                     ================================================== */}
-
-//                     <td className="product-featured">
-//                       {isFeatured ? (
-//                         <span className="featured-badge">★ Featured</span>
-//                       ) : (
-//                         <span className="not-featured">—</span>
-//                       )}
-//                     </td>
-
-//                     {/* =================================================
-//                         ACTIONS
-//                     ================================================== */}
-
-//                     <td className="product-actions">
-//                       <Link
-//                         to={`/admin/edit-product/${product._id}`}
-//                         className="btn-edit"
-//                       >
-//                         Edit
-//                       </Link>
-
-//                       <button
-//                         type="button"
-//                         onClick={() => handleDelete(product._id)}
-//                         className="btn-delete"
-//                       >
-//                         Delete
-//                       </button>
-//                     </td>
+//           !error && (
+//             <div className="admin-products-table-wrapper">
+//               <table className="admin-products-table">
+//                 <thead>
+//                   <tr>
+//                     <th scope="col">Product</th>
+//                     <th scope="col">Price</th>
+//                     <th scope="col">Discount</th>
+//                     <th scope="col">Selling Price</th>
+//                     <th scope="col">Category</th>
+//                     <th scope="col">Stock</th>
+//                     <th scope="col">Status</th>
+//                     <th scope="col">Featured</th>
+//                     <th scope="col">Actions</th>
 //                   </tr>
-//                 );
-//               })
-//             ) : (
-//               <tr>
-//                 <td colSpan="11" className="no-products">
-//                   <div className="no-products-content">
-//                     <span>🧶</span>
-//                     <h3>No products found</h3>
-//                     <p>Start by adding your first product.</p>
+//                 </thead>
 
-//                     <Link to="/admin/add-product" className="btn-add-product">
-//                       + Add Product
-//                     </Link>
-//                   </div>
-//                 </td>
-//               </tr>
-//             )}
-//           </tbody>
-//         </table>
+//                 <tbody>
+//                   {products.map((product) => {
+//                     const originalPrice = Number(product?.price) || 0;
+
+//                     const discount = Number(product?.discount) || 0;
+
+//                     const sellingPrice = getSellingPrice(product);
+
+//                     const hasDiscount = discount > 0;
+
+//                     const isInStock = Number(product?.stock) > 0;
+
+//                     return (
+//                       <tr key={product._id}>
+//                         {/* ====================================
+//                             PRODUCT
+//                         ==================================== */}
+
+//                         <td className="product-info-cell">
+//                           <div className="product-info">
+//                             <div className="product-image-wrapper">
+//                               {product.imageUrl ? (
+//                                 <img
+//                                   src={product.imageUrl}
+//                                   alt={product.name || "Product"}
+//                                   className="product-thumbnail"
+//                                   loading="lazy"
+//                                 />
+//                               ) : (
+//                                 <div className="product-thumbnail-placeholder">
+//                                   🧶
+//                                 </div>
+//                               )}
+//                             </div>
+
+//                             <div className="product-details">
+//                               <strong
+//                                 className="product-name"
+//                                 title={product.name}
+//                               >
+//                                 {product.name}
+//                               </strong>
+
+//                               <span className="product-id">
+//                                 ID:{" "}
+//                                 {product._id
+//                                   ? `${product._id.substring(0, 8)}…`
+//                                   : "—"}
+//                               </span>
+//                             </div>
+//                           </div>
+//                         </td>
+
+//                         {/* ====================================
+//                             ORIGINAL PRICE
+//                         ==================================== */}
+
+//                         <td className="product-price-cell">
+//                           <span
+//                             className={
+//                               hasDiscount
+//                                 ? "original-price discounted"
+//                                 : "original-price"
+//                             }
+//                           >
+//                             ₹{originalPrice.toFixed(2)}
+//                           </span>
+//                         </td>
+
+//                         {/* ====================================
+//                             DISCOUNT
+//                         ==================================== */}
+
+//                         <td className="product-discount-cell">
+//                           {hasDiscount ? (
+//                             <span className="discount-badge">
+//                               {discount}% OFF
+//                             </span>
+//                           ) : (
+//                             <span className="no-discount">No discount</span>
+//                           )}
+//                         </td>
+
+//                         {/* ====================================
+//                             SELLING PRICE
+//                         ==================================== */}
+
+//                         <td className="product-selling-price-cell">
+//                           <strong>₹{sellingPrice.toFixed(2)}</strong>
+
+//                           {hasDiscount && (
+//                             <span className="saving-text">
+//                               Save ₹{(originalPrice - sellingPrice).toFixed(2)}
+//                             </span>
+//                           )}
+//                         </td>
+
+//                         {/* ====================================
+//                             CATEGORY
+//                         ==================================== */}
+
+//                         <td className="product-category-cell">
+//                           {product.category ? (
+//                             <span className="category-display">
+//                               <span aria-hidden="true">
+//                                 {product.category.icon}
+//                               </span>
+
+//                               <span>{product.category.name}</span>
+//                             </span>
+//                           ) : (
+//                             <span className="missing-data">No category</span>
+//                           )}
+//                         </td>
+
+//                         {/* ====================================
+//                             STOCK
+//                         ==================================== */}
+
+//                         <td className="product-stock-cell">
+//                           <span
+//                             className={`stock-badge ${
+//                               isInStock ? "in-stock" : "out-of-stock"
+//                             }`}
+//                           >
+//                             {isInStock
+//                               ? `${product.stock} in stock`
+//                               : "Out of stock"}
+//                           </span>
+//                         </td>
+
+//                         {/* ====================================
+//                             STATUS
+//                         ==================================== */}
+
+//                         <td className="product-status-cell">
+//                           {product.isActive !== false ? (
+//                             <span className="status-badge active">Active</span>
+//                           ) : (
+//                             <span className="status-badge inactive">
+//                               Inactive
+//                             </span>
+//                           )}
+//                         </td>
+
+//                         {/* ====================================
+//                             FEATURED
+//                         ==================================== */}
+
+//                         <td className="product-featured-cell">
+//                           {product.isFeatured ? (
+//                             <span className="featured-badge">★ Featured</span>
+//                           ) : (
+//                             <span className="not-featured">—</span>
+//                           )}
+//                         </td>
+
+//                         {/* ====================================
+//                             ACTIONS
+//                         ==================================== */}
+
+//                         <td className="product-actions-cell">
+//                           <div className="product-actions">
+//                             <Link
+//                               to={`/admin/edit-product/${product._id}`}
+//                               className="btn-edit"
+//                             >
+//                               Edit
+//                             </Link>
+
+//                             <button
+//                               type="button"
+//                               className="btn-delete"
+//                               onClick={() => handleDelete(product)}
+//                               disabled={deletingId === product._id}
+//                             >
+//                               {deletingId === product._id
+//                                 ? "Removing..."
+//                                 : "Remove"}
+//                             </button>
+//                           </div>
+//                         </td>
+//                       </tr>
+//                     );
+//                   })}
+//                 </tbody>
+//               </table>
+//             </div>
+//           )
+//         )}
 //       </div>
 //     </div>
 //   );
 // };
 
-//
-import React, { useEffect, useState, useContext, useCallback } from "react";
-import { AuthContext } from "../context/AuthContext";
+// export default AdminProducts;
+
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import "../styles/admin-products.css";
-
-// ------------------------------------------------------------
-// Helpers
-// ------------------------------------------------------------
-
-const getSellingPrice = (price, discount) => {
-  const original = Number(price) || 0;
-  const disc = Math.min(100, Math.max(0, Number(discount) || 0));
-  return Math.max(0, original * (1 - disc / 100));
-};
-
-const clampDiscount = (value) => {
-  const num = Number(value);
-  if (isNaN(num)) return 0;
-  return Math.min(100, Math.max(0, num));
-};
-
-// ------------------------------------------------------------
-// Component
-// ------------------------------------------------------------
 
 const AdminProducts = () => {
   const { user } = useContext(AuthContext);
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [deletingId, setDeletingId] = useState(null);
+
+  /* ------------------------------------------------------------
+   * Fetch Products
+   * ------------------------------------------------------------ */
 
   const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/products");
-      const data = await res.json();
+      setError("");
 
-      if (!res.ok) {
-        throw new Error(data?.message || "Failed to fetch products");
+      const response = await fetch("/api/products");
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to fetch products");
       }
 
-      setProducts(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error("Fetch products error:", error);
+      if (!Array.isArray(data)) {
+        throw new Error("Invalid products response");
+      }
+
+      setProducts(data);
+    } catch (err) {
+      console.error("Fetch products error:", err);
+      setError(err.message || "Unable to load products");
       setProducts([]);
     } finally {
       setLoading(false);
@@ -666,238 +484,373 @@ const AdminProducts = () => {
     fetchProducts();
   }, [fetchProducts]);
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this product?"))
-      return;
+  /* ------------------------------------------------------------
+   * Calculate Selling Price
+   * ------------------------------------------------------------ */
+
+  const getSellingPrice = (product) => {
+    const price = Number(product?.price) || 0;
+    const discount = Number(product?.discount) || 0;
+    const safeDiscount = Math.min(Math.max(discount, 0), 100);
+
+    return price - (price * safeDiscount) / 100;
+  };
+
+  /* ------------------------------------------------------------
+   * Delete Product (soft delete)
+   * ------------------------------------------------------------ */
+
+  const handleDelete = async (product) => {
+    const confirmed = window.confirm(
+      `Are you sure you want to remove "${product.name}"?\n\n` +
+        "This product will be marked as inactive.",
+    );
+
+    if (!confirmed) return;
 
     try {
-      const res = await fetch(`/api/products/${id}`, {
+      setDeletingId(product._id);
+
+      const response = await fetch(`/api/products/${product._id}`, {
         method: "DELETE",
-        headers: { Authorization: `Bearer ${user?.token}` },
+        headers: {
+          Authorization: `Bearer ${user?.token}`,
+        },
       });
 
-      const data = await res.json();
+      const data = await response.json();
 
-      if (!res.ok) {
-        throw new Error(data?.message || "Failed to delete product");
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to remove product");
       }
 
-      setProducts((prev) => prev.filter((p) => p._id !== id));
-    } catch (error) {
-      console.error("Delete error:", error);
-      alert(error.message || "Something went wrong while deleting");
+      setProducts((previousProducts) =>
+        previousProducts.filter(
+          (currentProduct) => currentProduct._id !== product._id,
+        ),
+      );
+    } catch (err) {
+      console.error("Delete product error:", err);
+      alert(err.message || "Something went wrong while removing the product");
+    } finally {
+      setDeletingId(null);
     }
   };
+
+  /* ------------------------------------------------------------
+   * Loading State
+   * ------------------------------------------------------------ */
 
   if (loading) {
     return (
       <div className="admin-products-page">
-        <div className="admin-products-header">
-          <h1>Manage Products</h1>
-          <Link to="/admin/add-product" className="btn-add-product">
-            + Add Product
-          </Link>
-        </div>
-        <div className="admin-products-table-wrapper">
-          <div className="products-loading">
-            <div className="spinner" />
-            <p>Loading products…</p>
-          </div>
+        <div className="admin-products-loading">
+          <span className="admin-products-spinner" aria-hidden="true"></span>
+          <p>Loading products...</p>
         </div>
       </div>
     );
   }
 
+  /* ------------------------------------------------------------
+   * Main UI
+   * ------------------------------------------------------------ */
+
   return (
     <div className="admin-products-page">
-      <div className="admin-products-header">
-        <div>
-          <h1>Manage Products</h1>
-          <p>
-            {products.length} {products.length === 1 ? "product" : "products"}{" "}
-            in store
-          </p>
-        </div>
-        <Link to="/admin/add-product" className="btn-add-product">
-          + Add Product
-        </Link>
-      </div>
+      <div className="admin-products-container">
+        {/* ======================================================
+            HEADER
+        ====================================================== */}
 
-      <div className="admin-products-table-wrapper">
-        <table className="admin-products-table">
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Original Price</th>
-              <th>Discount</th>
-              <th>Selling Price</th>
-              <th>Category</th>
-              <th>Stock</th>
-              <th>Status</th>
-              <th>Featured</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.length === 0 ? (
-              <tr>
-                <td colSpan="11" className="no-products">
-                  <div className="no-products-content">
-                    <span>🧶</span>
-                    <h3>No products found</h3>
-                    <p>Start by adding your first product.</p>
-                    <Link to="/admin/add-product" className="btn-add-product">
-                      + Add Product
-                    </Link>
-                  </div>
-                </td>
-              </tr>
-            ) : (
-              products.map((product) => {
-                // --- Computed values ---
-                const id = product?._id || "";
-                const name = product?.name || "Unnamed Product";
-                const originalPrice = Number(product?.price) || 0;
-                const discount = clampDiscount(product?.discount);
-                const sellingPrice = getSellingPrice(originalPrice, discount);
-                const stock = Number(product?.stock) || 0;
-                const isActive = product?.isActive !== false;
-                const isFeatured = product?.isFeatured === true;
-                const categoryName = product?.category?.name || "No Category";
-                const categoryIcon = product?.category?.icon || "🧶";
-                const imageUrl = product?.imageUrl || null;
+        <header className="admin-products-header">
+          <div className="admin-products-header-text">
+            <span className="admin-products-eyebrow">Store Management</span>
 
-                return (
-                  <tr key={id}>
-                    <td className="product-image-cell">
-                      {imageUrl ? (
-                        <img
-                          src={imageUrl}
-                          alt={name}
-                          className="product-thumbnail"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="product-thumbnail-placeholder">🧶</div>
-                      )}
-                    </td>
+            <h1>Manage Products</h1>
 
-                    <td className="product-id">
-                      {id ? `${id.substring(0, 8)}…` : "—"}
-                    </td>
+            <p>
+              Manage your products, pricing, discounts, stock and visibility.
+            </p>
+          </div>
 
-                    <td className="product-name">{name}</td>
+          <Link to="/admin/add-product" className="btn-add-product">
+            <span aria-hidden="true">+</span>
+            Add Product
+          </Link>
+        </header>
 
-                    <td className="product-price">
-                      <span
-                        className={
-                          discount > 0
-                            ? "original-price discounted"
-                            : "original-price"
-                        }
-                      >
-                        ₹{originalPrice.toFixed(2)}
-                      </span>
-                    </td>
+        {/* ======================================================
+            ERROR
+        ====================================================== */}
 
-                    {/* ---------- DISCOUNT COLUMN with inline styles ---------- */}
-                    <td
-                      className="product-discount"
-                      data-discount={discount} // for debugging
-                    >
-                      {discount > 0 ? (
-                        <span
-                          className="discount-badge"
-                          style={{
-                            display: "inline-block",
-                            padding: "4px 12px",
-                            borderRadius: "50px",
-                            background: "rgba(239, 68, 68, 0.10)",
-                            color: "#dc2626",
-                            fontSize: "0.8rem",
-                            fontWeight: "600",
-                            border: "1px solid rgba(239, 68, 68, 0.20)",
-                            whiteSpace: "nowrap",
-                          }}
-                        >
-                          {discount}% OFF
-                        </span>
-                      ) : (
-                        <span
-                          className="no-discount"
-                          style={{
-                            display: "inline-block",
-                            padding: "4px 12px",
-                            borderRadius: "50px",
-                            background: "rgba(107, 114, 128, 0.08)",
-                            color: "#6b7280",
-                            fontSize: "0.8rem",
-                            fontWeight: "400",
-                            whiteSpace: "nowrap",
-                          }}
-                        >
-                          No Discount
-                        </span>
-                      )}
-                    </td>
+        {error && (
+          <div className="admin-products-error" role="alert">
+            <div className="admin-products-error-text">
+              <strong>Unable to load products</strong>
+              <p>{error}</p>
+            </div>
 
-                    <td className="product-selling-price">
-                      <strong>₹{sellingPrice.toFixed(2)}</strong>
-                    </td>
+            <button type="button" onClick={fetchProducts} className="btn-retry">
+              Try Again
+            </button>
+          </div>
+        )}
 
-                    <td className="product-category">
-                      {categoryIcon} {categoryName}
-                    </td>
+        {/* ======================================================
+            PRODUCT COUNT
+        ====================================================== */}
 
-                    <td className="product-stock">
-                      <span
-                        className={`stock-badge ${
-                          stock > 0 ? "in-stock" : "out-of-stock"
-                        }`}
-                      >
-                        {stock > 0 ? stock : "Out of Stock"}
-                      </span>
-                    </td>
+        {!error && (
+          <div className="admin-products-summary">
+            <span className="admin-products-summary-count">
+              {products.length} {products.length === 1 ? "product" : "products"}
+            </span>
+          </div>
+        )}
 
-                    <td className="product-status">
-                      {isActive ? (
-                        <span className="status-badge active">Active</span>
-                      ) : (
-                        <span className="status-badge inactive">Inactive</span>
-                      )}
-                    </td>
+        {/* ======================================================
+            EMPTY STATE
+        ====================================================== */}
 
-                    <td className="product-featured">
-                      {isFeatured ? (
-                        <span className="featured-badge">★ Featured</span>
-                      ) : (
-                        <span className="not-featured">—</span>
-                      )}
-                    </td>
+        {!error && products.length === 0 ? (
+          <div className="admin-products-empty">
+            <div className="empty-icon" aria-hidden="true">
+              🧶
+            </div>
 
-                    <td className="product-actions">
-                      <Link
-                        to={`/admin/edit-product/${id}`}
-                        className="btn-edit"
-                      >
-                        Edit
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => handleDelete(id)}
-                        className="btn-delete"
-                      >
-                        Delete
-                      </button>
-                    </td>
+            <h2>No products found</h2>
+
+            <p>You haven&apos;t added any active products yet.</p>
+
+            <Link to="/admin/add-product" className="btn-add-product">
+              + Add Your First Product
+            </Link>
+          </div>
+        ) : (
+          /* ====================================================
+             PRODUCT TABLE / MOBILE CARDS
+          ==================================================== */
+
+          !error && (
+            <div className="admin-products-table-wrapper">
+              <table className="admin-products-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Selling Price</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Featured</th>
+                    <th scope="col">Actions</th>
                   </tr>
-                );
-              })
-            )}
-          </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                  {products.map((product) => {
+                    const originalPrice = Number(product?.price) || 0;
+                    const discount = Number(product?.discount) || 0;
+                    const sellingPrice = getSellingPrice(product);
+                    const hasDiscount = discount > 0;
+                    const isInStock = Number(product?.stock) > 0;
+
+                    return (
+                      <tr key={product._id}>
+                        {/* ====================================
+                            PRODUCT
+                        ==================================== */}
+
+                        <td className="product-info-cell" data-label="Product">
+                          <div className="product-info">
+                            <div className="product-image-wrapper">
+                              {product.imageUrl ? (
+                                <img
+                                  src={product.imageUrl}
+                                  alt={product.name || "Product"}
+                                  className="product-thumbnail"
+                                  loading="lazy"
+                                />
+                              ) : (
+                                <div className="product-thumbnail-placeholder">
+                                  🧶
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="product-details">
+                              <strong
+                                className="product-name"
+                                title={product.name}
+                              >
+                                {product.name}
+                              </strong>
+
+                              <span className="product-id">
+                                ID:{" "}
+                                {product._id
+                                  ? `${product._id.substring(0, 8)}…`
+                                  : "—"}
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+
+                        {/* ====================================
+                            ORIGINAL PRICE
+                        ==================================== */}
+
+                        <td className="product-price-cell" data-label="Price">
+                          <span
+                            className={
+                              hasDiscount
+                                ? "original-price discounted"
+                                : "original-price"
+                            }
+                          >
+                            ₹{originalPrice.toFixed(2)}
+                          </span>
+                        </td>
+
+                        {/* ====================================
+                            DISCOUNT
+                        ==================================== */}
+
+                        <td
+                          className="product-discount-cell"
+                          data-label="Discount"
+                        >
+                          {hasDiscount ? (
+                            <span className="discount-badge">
+                              {discount}% OFF
+                            </span>
+                          ) : (
+                            <span className="no-discount">No discount</span>
+                          )}
+                        </td>
+
+                        {/* ====================================
+                            SELLING PRICE
+                        ==================================== */}
+
+                        <td
+                          className="product-selling-price-cell"
+                          data-label="Selling Price"
+                        >
+                          <strong className="selling-price-value">
+                            ₹{sellingPrice.toFixed(2)}
+                          </strong>
+
+                          {hasDiscount && (
+                            <span className="saving-text">
+                              Save ₹{(originalPrice - sellingPrice).toFixed(2)}
+                            </span>
+                          )}
+                        </td>
+
+                        {/* ====================================
+                            CATEGORY
+                        ==================================== */}
+
+                        <td
+                          className="product-category-cell"
+                          data-label="Category"
+                        >
+                          {product.category ? (
+                            <span className="category-display">
+                              <span aria-hidden="true">
+                                {product.category.icon}
+                              </span>
+                              <span>{product.category.name}</span>
+                            </span>
+                          ) : (
+                            <span className="missing-data">No category</span>
+                          )}
+                        </td>
+
+                        {/* ====================================
+                            STOCK
+                        ==================================== */}
+
+                        <td className="product-stock-cell" data-label="Stock">
+                          <span
+                            className={`stock-badge ${
+                              isInStock ? "in-stock" : "out-of-stock"
+                            }`}
+                          >
+                            {isInStock
+                              ? `${product.stock} in stock`
+                              : "Out of stock"}
+                          </span>
+                        </td>
+
+                        {/* ====================================
+                            STATUS
+                        ==================================== */}
+
+                        <td className="product-status-cell" data-label="Status">
+                          {product.isActive !== false ? (
+                            <span className="status-badge active">Active</span>
+                          ) : (
+                            <span className="status-badge inactive">
+                              Inactive
+                            </span>
+                          )}
+                        </td>
+
+                        {/* ====================================
+                            FEATURED
+                        ==================================== */}
+
+                        <td
+                          className="product-featured-cell"
+                          data-label="Featured"
+                        >
+                          {product.isFeatured ? (
+                            <span className="featured-badge">★ Featured</span>
+                          ) : (
+                            <span className="not-featured">—</span>
+                          )}
+                        </td>
+
+                        {/* ====================================
+                            ACTIONS
+                        ==================================== */}
+
+                        <td
+                          className="product-actions-cell"
+                          data-label="Actions"
+                        >
+                          <div className="product-actions">
+                            <Link
+                              to={`/admin/edit-product/${product._id}`}
+                              className="btn-edit"
+                            >
+                              Edit
+                            </Link>
+
+                            <button
+                              type="button"
+                              className="btn-delete"
+                              onClick={() => handleDelete(product)}
+                              disabled={deletingId === product._id}
+                            >
+                              {deletingId === product._id
+                                ? "Removing..."
+                                : "Remove"}
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )
+        )}
       </div>
     </div>
   );
