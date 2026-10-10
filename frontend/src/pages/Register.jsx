@@ -37,7 +37,14 @@ const Register = () => {
     <div className="register-page">
       <div className="register-card">
         <div className="register-header">
-          <span className="register-icon">🧶</span>
+          <span className="register-icon">
+            <img
+              // src="/handylogo.png"
+              src="/logobg.png"
+              alt="HandyArtStore logo"
+              className="login-logo"
+            />
+          </span>
           <h1>Create Account</h1>
           <p>Join the HandyArtStore community</p>
         </div>

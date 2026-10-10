@@ -157,8 +157,8 @@ const Footer = () => {
         <div className="footer-col">
           <Link to="/" className="footer-brand">
             <img
-              src="/handylogo.png"
-              // src="/handyartstorelogo1.png"
+              src="/logobg.png"
+              // src="/logobg-cropped.png"
               alt="HandyArtStore logo"
               className="footer-logo"
             />

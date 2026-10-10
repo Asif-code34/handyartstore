@@ -452,7 +452,7 @@
 import React, { useEffect, useState, useMemo, memo } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-import "../styles/home1.css";
+import "../styles/home.css";
 
 /* ============================================================
    API HOOK

@@ -301,7 +301,8 @@ const Login = () => {
         {/* ---------- Header ---------- */}
         <div className="login-header">
           <img
-            src="/handylogo.png"
+            // src="/handylogo.png"
+            src="/logobg.png"
             alt="HandyArtStore logo"
             className="login-logo"
           />

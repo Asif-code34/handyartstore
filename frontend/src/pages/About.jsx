@@ -10,13 +10,13 @@ const socialLinks = [
   {
     label: "Instagram",
     icon: "◎",
-    href: "https://instagram.com/handyartstore",
+    href: "https://www.instagram.com/handyartstore",
     className: "instagram",
   },
   {
     label: "WhatsApp",
     icon: "◉",
-    href: "https://wa.me/919999999999",
+    href: "https://wa.me/918740864334",
     className: "whatsapp",
   },
   {
@@ -40,7 +40,7 @@ const socialLinks = [
   {
     label: "Email Us",
     icon: "✉",
-    href: "mailto:hello@handyartstore.com",
+    href: "mailto:handyartstore.help@gmail.com",
     className: "email",
   },
 ];

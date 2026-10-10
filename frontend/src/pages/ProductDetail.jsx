@@ -464,7 +464,7 @@ const ProductDetail = () => {
 
         <span>/</span>
 
-        {product.category && (
+        {/* {product.category && (
           <>
             <Link
               to={`/shop?category=${encodeURIComponent(product.category.slug)}`}
@@ -476,7 +476,7 @@ const ProductDetail = () => {
           </>
         )}
 
-        <span className="current">{product.name}</span>
+        <span className="current">{product.name}</span> */}
       </nav>
 
       {/* =====================================================

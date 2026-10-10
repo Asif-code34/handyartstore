@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Shop from "./pages/Shop";
+// import Shop from "./pages/shop1";
 import Cart from "./pages/Cart";
 import ProductDetail from "./pages/ProductDetail";
 import About from "./pages/About";

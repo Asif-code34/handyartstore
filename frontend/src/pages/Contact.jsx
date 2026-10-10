@@ -442,14 +442,14 @@ const Contact = () => {
                     <div className="contact-icon">📞</div>
                     <div>
                       <h4>Phone</h4>
-                      <a href="tel:+919999999999">+91 99999 99999</a>
+                      <a href="tel:+918740864334">+91 8740864334</a>
                     </div>
                   </div>
                   <div className="contact-info-item">
                     <div className="contact-icon">📍</div>
                     <div>
                       <h4>Address</h4>
-                      <p>Mumbai, India</p>
+                      <p>Udaipur, India</p>
                     </div>
                   </div>
                   <div className="contact-info-item">

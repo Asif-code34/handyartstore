@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-import "../styles/shop.css";
+import "../styles/shop1.css";
 
 /* ============================================================
    CONSTANTS
@@ -15,8 +15,8 @@ import "../styles/shop.css";
 
 const PRODUCTS_PER_PAGE = 12;
 
-// Height of the sticky filter bar — used to offset the scroll
-// target so the grid isn't hidden behind the sticky element.
+// Offset used when scrolling the products grid into view so the
+// sticky navbar / filter bar doesn't cover the first row.
 const NAV_OFFSET = 90;
 
 const CATEGORY_COLORS = {
@@ -138,8 +138,6 @@ const Shop = () => {
 
   /* ==========================================================
      DISABLE BROWSER AUTO SCROLL RESTORATION
-     Prevents the browser from snapping back to a saved position
-     on history changes — we control scroll manually.
   ========================================================== */
 
   useEffect(() => {
@@ -238,11 +236,6 @@ const Shop = () => {
 
   /* ==========================================================
      SCROLL-TO-PRODUCTS HELPER
-
-     Uses window.scrollTo(x, y) — the two-argument form — which
-     always scrolls INSTANTLY and bypasses any CSS scroll-behavior
-     and any in-flight smooth animation. This guarantees the user
-     never sees an intermediate position.
   ========================================================== */
 
   const scrollToProducts = () => {
@@ -255,16 +248,6 @@ const Shop = () => {
 
   /* ==========================================================
      SCROLL WHEN CATEGORY CHANGES
-
-     useLayoutEffect runs AFTER React commits the DOM but BEFORE
-     the browser paints. That's the key — the user never sees the
-     page at scrollTop === 0 because we reposition it first.
-
-     We also re-apply the scroll on the next frame and a few
-     short timers afterwards, so any competing scroll-to-top
-     (React Router default, a global <ScrollToTop />, a
-     programmatic window.scrollTo(0,0) elsewhere) gets
-     immediately overridden.
   ========================================================== */
 
   useLayoutEffect(() => {
@@ -274,15 +257,13 @@ const Shop = () => {
       return;
     }
 
-    // Nothing to do if the category didn't actually change
     if (prevCategoryRef.current === selectedCategory) return;
     prevCategoryRef.current = selectedCategory;
 
     // 1. Immediate, synchronous jump — happens before paint
     scrollToProducts();
 
-    // 2. Re-apply on next frame (in case something scrolled
-    //    us between commit and paint)
+    // 2. Re-apply on next frame
     const raf = requestAnimationFrame(scrollToProducts);
 
     // 3. Re-apply a few more times to guarantee we win the race
@@ -427,10 +408,6 @@ const Shop = () => {
 
   /* ==========================================================
      CATEGORY NAVIGATION
-
-     Only updates the URL. Scroll is handled by useLayoutEffect
-     above — never here. Keeping the two concerns separate is
-     what makes the timing deterministic.
   ========================================================== */
 
   const handleCategoryChange = (slug) => {
@@ -517,7 +494,7 @@ const Shop = () => {
   };
 
   /* ==========================================================
-     PAGINATION
+     PAGINATION HANDLERS
   ========================================================== */
 
   const handlePageChange = (page) => {
@@ -551,12 +528,6 @@ const Shop = () => {
   }, [totalPages, safeCurrentPage]);
 
   /* ==========================================================
-     HERO PRODUCTS
-  ========================================================== */
-
-  const heroProducts = useMemo(() => products.slice(0, 4), [products]);
-
-  /* ==========================================================
      ACTIVE FILTER?
   ========================================================== */
 
@@ -572,76 +543,62 @@ const Shop = () => {
   return (
     <main className="shop-page">
       {/* ======================================================
-          HERO
+          PAGE HEADER — compact, professional, no giant hero
       ====================================================== */}
-      <section className="shop-hero">
-        <div className="shop-hero-bg" />
+      <header className="shop-header">
+        <div className="container">
+          {/* <nav className="shop-breadcrumb" aria-label="Breadcrumb">
+            <Link to="/">Home</Link>
+            <span className="shop-breadcrumb-sep" aria-hidden="true">
+              /
+            </span>
+            <span className="shop-breadcrumb-current" aria-current="page">
+              Shop
+            </span>
+          </nav> */}
 
-        <div className="container shop-hero-container">
-          <div className="shop-hero-content">
-            <span className="shop-hero-badge">✦ Handmade with Love</span>
+          <div className="shop-header-inner">
+            <div className="shop-header-text">
+              <span className="shop-eyebrow">Handmade Collection</span>
 
-            <h1>
-              Crochet <span>Treasury</span>
-            </h1>
+              <h1>
+                Shop <span>Handmade</span> Treasures
+              </h1>
 
-            <p>
-              Discover our curated collection of handcrafted crochet pieces —
-              made with premium yarn, patience and plenty of love.
-            </p>
-
-            <div className="shop-hero-stats">
-              <div className="stat">
-                <span className="stat-number">{products.length}+</span>
-                <span className="stat-label">Products</span>
-              </div>
-              <div className="stat">
-                <span className="stat-number">{categories.length}</span>
-                <span className="stat-label">Categories</span>
-              </div>
-              <div className="stat">
-                <span className="stat-number">100%</span>
-                <span className="stat-label">Handmade</span>
-              </div>
+              <p>
+                Explore our full collection of handcrafted crochet pieces — made
+                with premium yarn, patience and plenty of love.
+              </p>
             </div>
-          </div>
 
-          <div className="shop-hero-visual">
-            <div className="hero-visual-grid">
-              {heroProducts.length > 0 ? (
-                heroProducts.map((product, index) => (
-                  <div
-                    key={product._id}
-                    className={`hero-visual-item item-${index + 1}`}
-                  >
-                    {product.imageUrl ? (
-                      <img
-                        src={product.imageUrl}
-                        alt={product.name}
-                        loading="lazy"
-                      />
-                    ) : (
-                      <span aria-hidden="true">🧶</span>
-                    )}
-                  </div>
-                ))
-              ) : (
-                <>
-                  <div className="hero-visual-item item-1">🧶</div>
-                  <div className="hero-visual-item item-2">🌸</div>
-                  <div className="hero-visual-item item-3">🧸</div>
-                  <div className="hero-visual-item item-4">👜</div>
-                </>
-              )}
+            <div className="shop-header-stats">
+              <div className="shop-stat">
+                <span className="shop-stat-value">
+                  {loading ? "—" : products.length}
+                </span>
+                <span className="shop-stat-label">Products</span>
+              </div>
+
+              <div className="shop-stat">
+                <span className="shop-stat-value">
+                  {categoriesLoading ? "—" : categories.length}
+                </span>
+                <span className="shop-stat-label">Categories</span>
+              </div>
+
+              <div className="shop-stat">
+                <span className="shop-stat-value">100%</span>
+                <span className="shop-stat-label">Handmade</span>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </header>
 
       {/* ======================================================
           CATEGORIES
       ====================================================== */}
-      <section className="shop-categories">
+      <section className="shop-categories" aria-label="Product categories">
         <div className="container">
           <div className="categories-header">
             <div>
@@ -664,7 +621,7 @@ const Shop = () => {
             </div>
           ) : categoriesError ? (
             <div className="shop-inline-error">
-              <span>⚠️</span>
+              <span aria-hidden="true">⚠️</span>
               <p>{categoriesError}</p>
             </div>
           ) : (
@@ -691,6 +648,7 @@ const Shop = () => {
                     <span
                       className="category-icon"
                       style={{ color: isActive ? "#fff" : color }}
+                      aria-hidden="true"
                     >
                       {category.icon || "🧶"}
                     </span>
@@ -708,18 +666,19 @@ const Shop = () => {
       {/* ======================================================
           FILTER BAR
       ====================================================== */}
-      <section className="shop-filters">
+      <section className="shop-filters" aria-label="Product filters">
         <div className="container">
           <div className="filters-wrapper">
             <div className="search-wrapper">
               <svg
                 className="search-icon"
-                width="19"
-                height="19"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
+                strokeLinecap="round"
                 aria-hidden="true"
               >
                 <circle cx="11" cy="11" r="8" />
@@ -899,7 +858,7 @@ const Shop = () => {
         <section className="shop-bottom-cta">
           <div className="container">
             <div className="shop-bottom-cta-inner">
-              <div>
+              <div className="shop-bottom-cta-text">
                 <span>✦ Handmade with care</span>
                 <h2>Can't find what you're looking for?</h2>
                 <p>

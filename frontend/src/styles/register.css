@@ -42,10 +42,50 @@
   margin-bottom: 28px;
 }
 
+/* ---- Logo ---- */
+
 .register-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 12px;
+
+  /* Kept for the old emoji fallback */
   font-size: 2.8rem;
+  line-height: 1;
+}
+
+/* The <img className="login-logo"> inside .register-icon */
+.register-icon .login-logo,
+.register-header .login-logo {
   display: block;
-  margin-bottom: 8px;
+
+  width: clamp(64px, 20vw, 92px);
+  height: clamp(64px, 20vw, 92px);
+
+  max-width: 100%;
+
+  margin: 0 auto;
+
+  object-fit: contain;
+  object-position: center;
+
+  flex-shrink: 0;
+
+  image-rendering: -webkit-optimize-contrast;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+
+  /* OPTIONAL — circular badge look (uncomment if needed)
+  border-radius: 50%;
+  background: #fcf8f3;
+  padding: 10px;
+  box-shadow: 0 6px 18px rgba(90, 63, 54, 0.08);
+  */
 }
 
 .register-header h1 {
@@ -150,17 +190,73 @@
    RESPONSIVE
    ================================================================ */
 
-@media (max-width: 480px) {
+/* ---------- Small phones (≤ 380px) ---------- */
+@media (max-width: 380px) {
+  .register-page {
+    padding: 24px 14px;
+  }
+
   .register-card {
     padding: 28px 20px 24px;
+    border-radius: 16px;
+  }
+
+  .register-icon {
+    margin-bottom: 10px;
+  }
+
+  .register-icon .login-logo,
+  .register-header .login-logo {
+    width: 64px;
+    height: 64px;
   }
 
   .register-header h1 {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
   }
 
   .register-header p {
     font-size: 0.85rem;
+  }
+
+  .register-form input {
+    padding: 11px 14px;
+    font-size: 0.95rem;
+  }
+
+  .btn-register {
+    min-height: 48px;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .register-footer {
+    font-size: 0.85rem;
+  }
+}
+
+/* ---------- Phones (≤ 480px) ---------- */
+@media (max-width: 480px) {
+  .register-card {
+    padding: 32px 24px 28px;
+  }
+
+  .register-icon {
+    margin-bottom: 10px;
+  }
+
+  .register-icon .login-logo,
+  .register-header .login-logo {
+    width: 72px;
+    height: 72px;
+  }
+
+  .register-header h1 {
+    font-size: 1.7rem;
+  }
+
+  .register-header p {
+    font-size: 0.88rem;
   }
 
   .register-form input {
@@ -175,5 +271,46 @@
 
   .register-footer {
     font-size: 0.85rem;
+  }
+}
+
+/* ---------- Landscape phones — keep card from being cut off ---------- */
+@media (max-height: 520px) and (orientation: landscape) {
+  .register-page {
+    align-items: flex-start;
+    padding: 24px 16px;
+  }
+
+  .register-card {
+    padding: 24px 22px;
+  }
+
+  .register-header {
+    margin-bottom: 16px;
+  }
+
+  .register-icon {
+    margin-bottom: 6px;
+  }
+
+  .register-icon .login-logo,
+  .register-header .login-logo {
+    width: 52px;
+    height: 52px;
+  }
+
+  .register-header h1 {
+    font-size: 1.4rem;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .register-page *,
+  .register-page *::before,
+  .register-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

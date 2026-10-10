@@ -1,0 +1,786 @@
+/* ================================================================
+   PRODUCT CARD — Standalone production stylesheet
+   Scoped to ProductCard component only.
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   Design tokens (safe fallbacks if global tokens are missing)
+   ---------------------------------------------------------------- */
+.product-card {
+  /* Local variable fallbacks — do not leak outside the card */
+  --pc-white: var(--white, #ffffff);
+  --pc-beige: var(--warm-beige, #f3e8df);
+  --pc-brown: var(--warm-brown, #7a5140);
+  --pc-deep: var(--deep-brown, #43302a);
+  --pc-charcoal: var(--charcoal, #2f2925);
+  --pc-terracotta: var(--terracotta, #b97961);
+  --pc-sage: var(--soft-sage, #8fb08a);
+  --pc-radius: var(--radius, 16px);
+  --pc-danger: #d9534f;
+  --pc-star: #f5a623;
+}
+
+/* ================================================================
+   1. CARD CONTAINER
+   ================================================================ */
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+  background: var(--pc-white);
+  border-radius: var(--pc-radius);
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+  border: 1px solid rgba(212, 160, 138, 0.08);
+  box-shadow: 0 2px 12px rgba(90, 63, 54, 0.06);
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(90, 63, 54, 0.12);
+  border-color: rgba(212, 160, 138, 0.22);
+}
+
+/* ================================================================
+   2. IMAGE SECTION
+   ================================================================ */
+
+.product-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--pc-beige);
+  flex-shrink: 0;
+}
+
+.product-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition:
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.35s ease;
+}
+
+.product-image.loaded {
+  opacity: 1;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.05);
+}
+
+.product-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 3rem;
+  background: var(--pc-beige);
+  color: var(--pc-brown);
+  user-select: none;
+}
+
+/* --- Loading overlay --- */
+.product-image-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pc-beige);
+  pointer-events: none;
+}
+
+.spinner-small {
+  width: 26px;
+  height: 26px;
+  border: 3px solid rgba(185, 121, 97, 0.2);
+  border-top-color: var(--pc-terracotta);
+  border-radius: 50%;
+  animation: pcSpin 0.8s linear infinite;
+}
+
+@keyframes pcSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================================================================
+   3. BADGES (top-left)
+   ================================================================ */
+
+.product-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  pointer-events: none;
+  max-width: calc(100% - 60px); /* leave room for wishlist */
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background: rgba(90, 63, 54, 0.85);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+}
+
+.badge-sale {
+  background: linear-gradient(135deg, #d4a08a, #c28a72);
+}
+
+.badge-new {
+  background: linear-gradient(135deg, #b5c9b0, #8fb08a);
+}
+
+.badge-low-stock {
+  background: rgba(90, 63, 54, 0.85);
+}
+
+.badge-out-of-stock {
+  background: rgba(217, 83, 79, 0.92);
+}
+
+/* ================================================================
+   4. WISHLIST (top-right)
+   ================================================================ */
+
+.wishlist-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 5;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--pc-brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wishlist-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+}
+
+.wishlist-btn:active {
+  transform: scale(0.95);
+}
+
+.wishlist-btn:focus-visible {
+  outline: 2px solid var(--pc-terracotta);
+  outline-offset: 2px;
+}
+
+.wishlist-btn.active {
+  background: rgba(217, 83, 79, 0.1);
+  color: var(--pc-danger);
+}
+
+.wishlist-btn.active:hover {
+  background: rgba(217, 83, 79, 0.18);
+}
+
+/* ================================================================
+   5. QUICK ACTIONS OVERLAY
+   ----------------------------------------------------------------
+   • Desktop (hover-capable): revealed on card hover / focus.
+   • Touch devices (no hover): always visible so Quick Add is
+     reachable and the button never traps taps.
+   ================================================================ */
+
+.product-quick-actions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(
+    to top,
+    rgba(67, 48, 42, 0.85) 0%,
+    rgba(67, 48, 42, 0.5) 55%,
+    rgba(67, 48, 42, 0) 100%
+  );
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* --- Hover-capable devices only --- */
+@media (hover: hover) {
+  .product-card:hover .product-quick-actions,
+  .product-card:focus-within .product-quick-actions {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* --- Quick Add: hover state (desktop) --- */
+  .btn-quick-add:hover:not(:disabled) {
+    background: var(--pc-deep);
+    color: #ffffff;
+    border-color: var(--pc-deep);
+    transform: translateY(-1px);
+    box-shadow:
+      0 8px 20px rgba(67, 48, 42, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .btn-quick-view:hover {
+    background: var(--pc-deep);
+    color: #ffffff;
+    border-color: var(--pc-deep);
+    transform: scale(1.06);
+    box-shadow: 0 8px 20px rgba(67, 48, 42, 0.42);
+  }
+}
+
+/* --- Touch / no-hover devices: always visible, strong press feedback --- */
+@media (hover: none) {
+  .product-quick-actions {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    padding: 12px;
+    background: linear-gradient(
+      to top,
+      rgba(67, 48, 42, 0.9) 0%,
+      rgba(67, 48, 42, 0.55) 60%,
+      rgba(67, 48, 42, 0) 100%
+    );
+  }
+}
+
+/* ================================================================
+   QUICK ADD BUTTON (solid, never transparent)
+   ================================================================ */
+
+.btn-quick-add {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50px;
+  background: #ffffff;
+  color: var(--pc-deep);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.18s ease,
+    box-shadow 0.22s ease;
+  -webkit-tap-highlight-color: transparent;
+  isolation: isolate;
+}
+
+.btn-quick-add svg {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+/* Press feedback for every device (universal) */
+.btn-quick-add:active:not(:disabled) {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(67, 48, 42, 0.35);
+}
+
+/* On touch devices, also flip colors on press so the button
+   feels alive without :hover */
+@media (hover: none) {
+  .btn-quick-add:active:not(:disabled) {
+    background: var(--pc-deep);
+    color: #ffffff;
+    border-color: var(--pc-deep);
+  }
+}
+
+.btn-quick-add:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
+}
+
+.btn-quick-add:disabled {
+  background: rgba(255, 255, 255, 0.6);
+  color: rgba(67, 48, 42, 0.55);
+  border-color: rgba(255, 255, 255, 0.4);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ================================================================
+   QUICK VIEW (round icon button)
+   ================================================================ */
+
+.btn-quick-view {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--pc-deep);
+  text-decoration: none;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    background-color 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.18s ease,
+    box-shadow 0.22s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-quick-view svg {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.btn-quick-view:active {
+  transform: scale(0.94);
+}
+
+@media (hover: none) {
+  .btn-quick-view:active {
+    background: var(--pc-deep);
+    color: #ffffff;
+    border-color: var(--pc-deep);
+  }
+}
+
+.btn-quick-view:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
+}
+
+/* ================================================================
+   6. PRODUCT INFO
+   ================================================================ */
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px 16px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.product-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.68rem;
+  line-height: 1.2;
+}
+
+.product-category {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--pc-terracotta);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.stock-status {
+  flex-shrink: 0;
+  font-size: 0.64rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.stock-status.in-stock {
+  color: var(--pc-sage);
+}
+
+.stock-status.out-of-stock {
+  color: var(--pc-danger);
+}
+
+/* --- Product name --- */
+.product-name {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--pc-deep);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.product-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.product-name a:hover {
+  color: var(--pc-terracotta);
+}
+
+/* --- Rating --- */
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 1px;
+  color: var(--pc-star);
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.star {
+  line-height: 1;
+  transition: opacity 0.2s ease;
+}
+
+.rating-value {
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--pc-charcoal);
+}
+
+.review-count {
+  font-size: 0.72rem;
+  color: var(--pc-brown);
+}
+
+/* --- Pricing --- */
+.product-pricing {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--pc-deep);
+}
+
+.price-original {
+  font-size: 0.85rem;
+  color: var(--pc-brown);
+  text-decoration: line-through;
+}
+
+.price-sale {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--pc-danger);
+}
+
+/* ================================================================
+   7. VIEW DETAILS BUTTON
+   ================================================================ */
+
+.btn-view-details {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: auto;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 50px;
+  background: var(--pc-beige);
+  color: var(--pc-deep);
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-view-details svg {
+  transition: transform 0.25s ease;
+  flex-shrink: 0;
+}
+
+.btn-view-details:hover {
+  background: var(--pc-deep);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-view-details:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-view-details:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.btn-view-details:focus-visible {
+  outline: 3px solid rgba(185, 121, 97, 0.5);
+  outline-offset: 2px;
+}
+
+/* ================================================================
+   8. RESPONSIVE — TABLET (≤ 767px)
+   ================================================================ */
+
+@media (max-width: 767px) {
+  .product-image-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .product-info {
+    padding: 12px 14px 14px;
+    gap: 5px;
+  }
+
+  .product-name {
+    font-size: 0.92rem;
+  }
+
+  .price,
+  .price-sale {
+    font-size: 1.02rem;
+  }
+
+  .price-original {
+    font-size: 0.8rem;
+  }
+
+  .btn-view-details {
+    padding: 9px 14px;
+    font-size: 0.8rem;
+  }
+
+  .wishlist-btn {
+    width: 34px;
+    height: 34px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .badge {
+    font-size: 0.6rem;
+    padding: 4px 10px;
+  }
+
+  .product-badges {
+    top: 10px;
+    left: 10px;
+  }
+
+  .product-quick-actions {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .btn-quick-add {
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+
+  .btn-quick-add svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .btn-quick-view {
+    width: 38px;
+    height: 38px;
+  }
+
+  .btn-quick-view svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ================================================================
+   9. RESPONSIVE — SMALL PHONE (≤ 480px)
+   ================================================================ */
+
+@media (max-width: 480px) {
+  .product-quick-actions {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .btn-quick-add {
+    padding: 9px 12px;
+    font-size: 0.74rem;
+    letter-spacing: 0;
+  }
+
+  .btn-quick-add svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .btn-quick-view {
+    width: 36px;
+    height: 36px;
+  }
+
+  .btn-quick-view svg {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+/* ================================================================
+   10. RESPONSIVE — VERY SMALL PHONE (≤ 380px)
+   ================================================================ */
+
+@media (max-width: 380px) {
+  .product-image-wrapper {
+    aspect-ratio: 1 / 1;
+  }
+
+  .product-name {
+    font-size: 0.88rem;
+  }
+
+  .price,
+  .price-sale {
+    font-size: 0.96rem;
+  }
+
+  .product-info {
+    padding: 11px 12px 12px;
+  }
+
+  .btn-quick-add {
+    padding: 9px 10px;
+    font-size: 0.72rem;
+    gap: 5px;
+  }
+
+  .btn-quick-view {
+    width: 34px;
+    height: 34px;
+  }
+
+  .btn-quick-view svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .wishlist-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* ================================================================
+   11. REDUCED MOTION
+   ================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .product-card *,
+  .product-card *::before,
+  .product-card *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .product-card:hover .product-image {
+    transform: none;
+  }
+}

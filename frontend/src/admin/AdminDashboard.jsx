@@ -46,11 +46,7 @@ const AdminDashboard = () => {
         {/* Header */}
         <div className="admin-header">
           <div className="admin-header-left">
-            <img
-              src="/handyartstorelogo1.png"
-              alt="Logo"
-              className="admin-logo"
-            />
+            <img src="/handylogo.png" alt="Logo" className="admin-logo" />
             <div>
               <h1>Admin Dashboard</h1>
               <p className="admin-welcome">

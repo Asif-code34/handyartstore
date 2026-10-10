@@ -4,7 +4,6 @@
    ============================================================ */
 
 
-
 /* ============================================================
    1. PAGE
    ============================================================ */
@@ -80,23 +79,45 @@
   text-align: center;
 }
 
-/* Logo image (replaces the old emoji icon) */
+/* Logo image — scales smoothly between 64px and 92px */
 .login-logo {
-  display: inline-block;
+  display: block;
 
-  width: 56px;
-  height: 56px;
+  /* Responsive sizing: min 64px, preferred 20vw, max 92px */
+  width: clamp(64px, 20vw, 92px);
+  height: clamp(64px, 20vw, 92px);
 
-  margin-bottom: 10px;
+  max-width: 100%;
 
+  margin: 0 auto 14px;
+
+  /* Never stretch or squash the artwork */
   object-fit: contain;
-  vertical-align: middle;
+  object-position: center;
 
-  /* If the PNG has transparency and you want a circular badge look,
-     uncomment the lines below: */
-  /* border-radius: 50%; */
-  /* background: #fcf8f3; */
-  /* padding: 6px; */
+  /* Prevents flex/grid parents from shrinking it */
+  flex-shrink: 0;
+
+  /* Keeps the logo crisp when the browser downscales a large PNG */
+  image-rendering: -webkit-optimize-contrast;
+
+  /* No accidental drag / selection / long-press menu */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+
+  /* ---------------------------------------------------------
+     OPTIONAL — circular "badge" look.
+     Uncomment ONLY if logobg.png has transparency and you want
+     it sitting on a soft cream disc.
+  --------------------------------------------------------- */
+  /*
+  border-radius: 50%;
+  background: #fcf8f3;
+  padding: 10px;
+  box-shadow: 0 6px 18px rgba(90, 63, 54, 0.08);
+  */
 }
 
 .login-header h1 {
@@ -413,11 +434,7 @@
     border-radius: 16px;
   }
 
-  .login-logo {
-    width: 46px;
-    height: 46px;
-    margin-bottom: 8px;
-  }
+  /* Logo size is handled by clamp() – no override needed */
 
   .login-header h1 {
     font-size: 1.55rem;
@@ -469,11 +486,7 @@
     font-size: 0.88rem;
   }
 
-  .login-logo {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 9px;
-  }
+  /* Logo size is handled by clamp() – no override needed */
 }
 
 
@@ -508,10 +521,11 @@
     margin-bottom: 16px;
   }
 
+  /* Reduce logo size in landscape to save vertical space */
   .login-logo {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 4px;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 6px;
   }
 
   .login-header h1 {

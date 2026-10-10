@@ -1693,10 +1693,9 @@ const Navbar = () => {
             <Link to="/" aria-label="HandyArtStore home">
               <span className="brand-logo-wrapper">
                 <img
-                  src="/handyartstorelogo1.png"
-                  alt=""
+                  src="/logobg-cropped.png"
+                  alt="HandyArtStore"
                   className="brand-logo"
-                  aria-hidden="true"
                 />
               </span>
 
@@ -1741,10 +1740,10 @@ const Navbar = () => {
             >
               <span className="brand-logo-wrapper">
                 <img
-                  src="/handyartstorelogo1.png"
-                  alt=""
+                  src="/logobg-cropped.png"
+                  // src="/logobg.png"
+                  alt="HandyArtStore"
                   className="brand-logo"
-                  aria-hidden="true"
                 />
               </span>
 
@@ -1841,11 +1840,10 @@ const Navbar = () => {
           <Link to="/" onClick={closeMenus} aria-label="HandyArtStore home">
             <span className="brand-logo-wrapper">
               <img
-                src="/handyartstorelogo1.png"
-                // src="/handylogo.png"
-                alt=""
+                src="/logobg-cropped.png"
+                // src="/logobg.png"
+                alt="HandyArtStore"
                 className="brand-logo"
-                aria-hidden="true"
               />
             </span>
 
