@@ -5,7 +5,10 @@
 
 /* ----------------------------------------------------------------
    Design tokens (safe fallbacks if global tokens are missing)
-   ---------------------------------------------------------------- */
+  /* ================================================================
+   PRODUCT CARD STYLES
+   ================================================================ */
+
 .product-card {
   /* Local variable fallbacks — do not leak outside the card */
   --pc-white: var(--white, #ffffff);
@@ -228,9 +231,8 @@
 /* ================================================================
    5. QUICK ACTIONS OVERLAY
    ----------------------------------------------------------------
-   • Desktop (hover-capable): revealed on card hover / focus.
-   • Touch devices (no hover): always visible so Quick Add is
-     reachable and the button never traps taps.
+   • Touch / no-hover devices: always visible by default.
+   • Hover + fine pointer devices: hidden until card hover/focus.
    ================================================================ */
 
 .product-quick-actions {
@@ -250,24 +252,32 @@
     rgba(67, 48, 42, 0.5) 55%,
     rgba(67, 48, 42, 0) 100%
   );
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
 }
 
-/* --- Hover-capable devices only --- */
-@media (hover: hover) {
+/* Hide Quick Actions only on true hover + fine pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  .product-quick-actions {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+  }
+
   .product-card:hover .product-quick-actions,
   .product-card:focus-within .product-quick-actions {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
   }
+}
 
-  /* --- Quick Add: hover state (desktop) --- */
+/* --- Hover states for buttons on hover-capable devices --- */
+@media (hover: hover) {
   .btn-quick-add:hover:not(:disabled) {
     background: var(--pc-deep);
     color: #ffffff;
@@ -287,12 +297,9 @@
   }
 }
 
-/* --- Touch / no-hover devices: always visible, strong press feedback --- */
+/* --- Touch / no-hover devices: stronger press feedback --- */
 @media (hover: none) {
   .product-quick-actions {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
     padding: 12px;
     background: linear-gradient(
       to top,
