@@ -359,16 +359,25 @@
 // export default MyOrders;
 
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/my-orders.css";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  /* Admins don't place orders — send them to the admin order list */
+  useEffect(() => {
+    if (user?.role === "admin") {
+      navigate("/admin/orders", { replace: true });
+    }
+  }, [user, navigate]);
 
   /* -----------------------------------------------------------
      FETCH — unchanged

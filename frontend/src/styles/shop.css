@@ -2243,3 +2243,146 @@
   .shop-skeleton-line-md   { width: 60%; }
   .shop-skeleton-line-sm   { width: 40%; }
 }
+
+/* ============================================================
+   ★ SHOP HERO — COMPACT PRODUCTION BANNER
+   Slim replacement for the marketing-style hero.
+   Append at the very end of shop.css.
+   ============================================================ */
+
+/* ---------- DESKTOP (≥992px) ---------- */
+@media (min-width: 992px) {
+  .shop-hero { min-height: 0; }
+
+  .shop-hero-container {
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+    padding-block: 40px;
+    gap: 40px;
+  }
+
+  .shop-hero-badge {
+    margin-bottom: 12px;
+    padding: 6px 11px;
+    font-size: 10.5px;
+  }
+
+  .shop-hero-content h1 {
+    margin-bottom: 12px;
+    font-size: clamp(30px, 3.2vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .shop-hero-content p {
+    margin-bottom: 18px;
+    max-width: 480px;
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+
+  .shop-hero-stats { gap: 22px; }
+  .shop-hero-stats .stat-number { font-size: 19px; }
+  .shop-hero-stats .stat-label  { font-size: 10px; }
+  .shop-hero-stats .stat + .stat::before { height: 26px; left: -11px; }
+
+  .shop-hero-visual { min-height: 200px; }
+
+  .hero-visual-grid {
+    width: min(100%, 320px);
+    aspect-ratio: 1.4;
+  }
+
+  .hero-visual-item { border-width: 5px; }
+}
+
+/* ---------- TABLET (576px – 991px) ---------- */
+@media (min-width: 576px) and (max-width: 991px) {
+  .shop-hero { min-height: 0; }
+
+  .shop-hero-container {
+    padding-block: 30px 34px;
+    gap: 22px;
+  }
+
+  .shop-hero-badge {
+    margin-bottom: 12px;
+    font-size: 10.5px;
+  }
+
+  .shop-hero-content h1 {
+    margin-bottom: 10px;
+    font-size: clamp(28px, 5vw, 38px);
+  }
+
+  .shop-hero-content p {
+    margin-bottom: 14px;
+    max-width: 520px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .shop-hero-stats { gap: 22px; }
+  .shop-hero-stats .stat-number { font-size: 18px; }
+  .shop-hero-stats .stat-label  { font-size: 10px; }
+
+  .shop-hero-visual { min-height: 180px; }
+
+  .hero-visual-grid {
+    width: min(100%, 280px);
+    aspect-ratio: 1.45;
+  }
+
+  .hero-visual-item { border-width: 5px; }
+}
+
+/* ---------- MOBILE (≤575px) — content-only banner ---------- */
+@media (max-width: 575px) {
+  .shop-hero { min-height: 0; }
+
+  .shop-hero-container {
+    padding-block: 22px 24px;
+    gap: 0;
+  }
+
+  /* The collage eats ~300px and hides the products.
+     On a shop page that trade is not worth it. */
+  .shop-hero-visual { display: none; }
+
+  .shop-hero-badge {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+  }
+
+  .shop-hero-content h1 {
+    margin-bottom: 8px;
+    font-size: clamp(26px, 7.5vw, 34px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .shop-hero-content p {
+    margin-bottom: 0;
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.55;
+
+    /* hard-cap at 2 lines so the banner stays short */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* "500+ Products · 8 Categories · 100% Handmade" is noise on a phone.
+     Buyers already know it's handmade — it's in the badge. */
+  .shop-hero-stats { display: none; }
+}
+
+/* ---------- SMALL PHONES (≤380px) ---------- */
+@media (max-width: 380px) {
+  .shop-hero-container { padding-block: 18px 20px; }
+  .shop-hero-content h1 { font-size: 24px; }
+  .shop-hero-content p  { font-size: 12.5px; }
+}

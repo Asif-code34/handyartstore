@@ -1,6 +1,6 @@
 /* ============================================================
    HANDYARTSTORE — ABOUT PAGE STYLESHEET
-   Production-grade · Mobile responsive
+   Production-grade · Mobile responsive · Height-corrected
    ============================================================ */
 
 
@@ -180,14 +180,14 @@
 
 
 /* ============================================================
-   5. HERO
+   5. HERO  ← compact by default (laptop-friendly)
    ============================================================ */
 
 .about-hero {
   position: relative;
   isolation: isolate;
 
-  padding: 88px 0 120px;
+  padding: 52px 0 64px;
 
   overflow: hidden;
 
@@ -205,7 +205,7 @@
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   align-items: center;
 
-  gap: clamp(40px, 6vw, 88px);
+  gap: clamp(40px, 5vw, 72px);
 }
 
 /* ---------- Visual ---------- */
@@ -219,12 +219,12 @@
 .about-image-frame {
   position: relative;
 
-  width: min(100%, 440px);
-  aspect-ratio: 1 / 1.05;
+  width: min(100%, 340px);
+  aspect-ratio: 1 / 1;
 
-  padding: 14px;
+  padding: 12px;
 
-  border-radius: var(--about-radius-xl);
+  border-radius: 26px;
   background: rgba(255, 255, 255, 0.72);
 
   box-shadow: var(--about-shadow-lg);
@@ -234,12 +234,16 @@
 }
 
 .about-profile-image {
+  display: block;
+
   width: 100%;
   height: 100%;
 
   object-fit: cover;
 
-  border-radius: calc(var(--about-radius-xl) - 8px);
+  border-radius: 18px;
+
+  background: linear-gradient(135deg, #f3e3d6, #ead2c6);
 
   transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -248,7 +252,7 @@
   transform: scale(1.03);
 }
 
-/* Floating decorations */
+/* ---------- Floating decorations ---------- */
 
 .about-image-decoration {
   position: absolute;
@@ -258,12 +262,12 @@
   align-items: center;
   justify-content: center;
 
-  width: 54px;
-  height: 54px;
+  width: 48px;
+  height: 48px;
 
   border-radius: 50%;
 
-  font-size: 22px;
+  font-size: 19px;
 
   background: #fff;
   color: var(--about-primary);
@@ -274,13 +278,13 @@
 }
 
 .about-decoration-one {
-  top: -14px;
-  left: -14px;
+  top: -12px;
+  left: -12px;
 }
 
 .about-decoration-two {
-  bottom: -14px;
-  right: -14px;
+  bottom: -12px;
+  right: -12px;
 
   background: var(--about-primary);
   color: #fff;
@@ -303,8 +307,8 @@
   display: inline-flex;
   align-items: center;
 
-  margin-bottom: 22px;
-  padding: 8px 14px;
+  margin-bottom: 16px;
+  padding: 6px 12px;
 
   border: 1px solid rgba(185, 121, 97, 0.22);
   border-radius: 999px;
@@ -312,7 +316,7 @@
   color: var(--about-primary-dark);
   background: rgba(255, 255, 255, 0.6);
 
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -322,15 +326,15 @@
 }
 
 .about-hero-content h1 {
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 
   color: var(--about-text);
 
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(40px, 5vw, 68px);
+  font-size: clamp(32px, 3.4vw, 46px);
   font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
 }
 
 .about-hero-content h1 span {
@@ -338,13 +342,13 @@
 }
 
 .about-intro {
-  max-width: 560px;
-  margin-bottom: 30px;
+  max-width: 520px;
+  margin-bottom: 22px;
 
   color: var(--about-text-soft);
 
-  font-size: 17px;
-  line-height: 1.75;
+  font-size: 15.5px;
+  line-height: 1.65;
 }
 
 /* ---------- Name block ---------- */
@@ -354,11 +358,13 @@
   align-items: center;
   gap: 14px;
 
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .about-name-line {
   display: inline-block;
+  flex-shrink: 0;
+
   width: 42px;
   height: 2px;
 
@@ -378,7 +384,8 @@
   font-weight: 700;
 }
 
-.about-name span {
+/* Scoped — does NOT bleed into .about-name-line */
+.about-name > div > span {
   color: var(--about-text-muted);
   font-size: 13px;
   font-weight: 500;
@@ -389,7 +396,7 @@
 .about-hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* ---------- Bottom decorative shape ---------- */
@@ -400,7 +407,7 @@
   right: 0;
   bottom: -1px;
 
-  height: 80px;
+  height: 64px;
 
   pointer-events: none;
 
@@ -408,7 +415,7 @@
 
   clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 60%);
 
-  opacity: 0.7;
+  opacity: 1;
 }
 
 
@@ -462,7 +469,7 @@
    ============================================================ */
 
 .about-values {
-  padding: 92px 0;
+  padding: 80px 0;
   background: var(--about-bg);
 }
 
@@ -545,7 +552,7 @@
    ============================================================ */
 
 .about-story {
-  padding: 0 0 92px;
+  padding: 0 0 80px;
   background: var(--about-bg);
 }
 
@@ -705,7 +712,7 @@
    ============================================================ */
 
 .about-social {
-  padding: 0 0 92px;
+  padding: 0 0 80px;
   background: var(--about-bg);
 }
 
@@ -760,13 +767,16 @@
 
   border-radius: 12px;
 
-  font-size: 16px;
-  font-weight: 700;
-
   background: var(--about-surface-soft);
   color: var(--about-primary-dark);
 
   transition: background 180ms ease, color 180ms ease;
+}
+
+/* SVG icons inside the social tiles */
+.about-social-icon svg {
+  width: 18px;
+  height: 18px;
 }
 
 .about-social-name {
@@ -824,13 +834,17 @@
   color: #fff;
 }
 
+.about-social-card.email .about-social-name {
+  font-size: 12.5px;
+}
+
 
 /* ============================================================
    10. FINAL CTA
    ============================================================ */
 
 .about-final {
-  padding: 0 0 100px;
+  padding: 0 0 88px;
   background: var(--about-bg);
 }
 
@@ -931,7 +945,8 @@
 
 
 /* ============================================================
-   11. RESPONSIVE — LARGE DESKTOP (1440+)
+   11. RESPONSIVE — LARGE DESKTOP (≥1440px)
+   Only a modest bump, since the base is already compact.
    ============================================================ */
 
 @media (min-width: 1440px) {
@@ -941,23 +956,43 @@
   }
 
   .about-hero {
-    padding: 104px 0 140px;
+    padding: 64px 0 80px;
+  }
+
+  .about-image-frame {
+    width: min(100%, 380px);
+  }
+
+  .about-hero-content h1 {
+    font-size: clamp(38px, 3.2vw, 52px);
+  }
+
+  .about-intro {
+    font-size: 16px;
   }
 }
 
 
 /* ============================================================
-   12. RESPONSIVE — LAPTOP / SMALL DESKTOP (≤1199)
+   12. RESPONSIVE — LAPTOP / SMALL DESKTOP (≤1199px)
    ============================================================ */
 
 @media (max-width: 1199px) {
   .about-hero-grid {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    gap: 44px;
+    gap: 40px;
   }
 
   .about-image-frame {
-    max-width: 380px;
+    width: min(100%, 300px);
+  }
+
+  .about-hero-content h1 {
+    font-size: clamp(30px, 3.6vw, 40px);
+  }
+
+  .about-intro {
+    font-size: 15px;
   }
 
   .about-values-grid {
@@ -967,7 +1002,8 @@
 
 
 /* ============================================================
-   13. RESPONSIVE — TABLET LANDSCAPE (≤991)
+   13. RESPONSIVE — TABLET LANDSCAPE (≤991px)
+   Grid flips to a single column here — centre everything.
    ============================================================ */
 
 @media (max-width: 991px) {
@@ -976,12 +1012,12 @@
   }
 
   .about-hero {
-    padding: 72px 0 100px;
+    padding: 48px 0 64px;
   }
 
   .about-hero-grid {
     grid-template-columns: 1fr;
-    gap: 44px;
+    gap: 32px;
 
     text-align: center;
   }
@@ -993,6 +1029,8 @@
 
   .about-intro {
     margin-inline: auto;
+    font-size: 15px;
+    line-height: 1.7;
   }
 
   .about-name {
@@ -1004,11 +1042,11 @@
   }
 
   .about-image-frame {
-    max-width: 360px;
+    width: min(100%, 300px);
   }
 
   .about-values {
-    padding: 76px 0;
+    padding: 72px 0;
   }
 
   .about-values-grid {
@@ -1021,7 +1059,7 @@
   }
 
   .about-story {
-    padding-bottom: 76px;
+    padding-bottom: 72px;
   }
 
   .about-story-card {
@@ -1034,7 +1072,7 @@
   }
 
   .about-social {
-    padding-bottom: 76px;
+    padding-bottom: 72px;
   }
 
   .about-social-grid {
@@ -1042,13 +1080,13 @@
   }
 
   .about-final {
-    padding-bottom: 80px;
+    padding-bottom: 76px;
   }
 }
 
 
 /* ============================================================
-   14. RESPONSIVE — TABLET PORTRAIT (≤767)
+   14. RESPONSIVE — TABLET PORTRAIT (≤767px)
    ============================================================ */
 
 @media (max-width: 767px) {
@@ -1057,16 +1095,16 @@
   }
 
   .about-hero {
-    padding: 56px 0 80px;
+    padding: 44px 0 60px;
   }
 
   .about-hero-grid {
-    gap: 36px;
+    gap: 30px;
   }
 
   .about-image-frame {
-    max-width: 300px;
-    padding: 12px;
+    width: min(100%, 280px);
+    padding: 10px;
     border-radius: var(--about-radius-lg);
   }
 
@@ -1075,18 +1113,32 @@
   }
 
   .about-image-decoration {
-    width: 46px;
-    height: 46px;
-    font-size: 18px;
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
+  }
+
+  .about-decoration-one {
+    top: -10px;
+    left: -10px;
+  }
+
+  .about-decoration-two {
+    top: auto;
+    left: auto;
+    bottom: -10px;
+    right: -10px;
   }
 
   .about-hero-content h1 {
-    font-size: clamp(34px, 9vw, 46px);
+    font-size: clamp(32px, 8.5vw, 44px);
+    margin-bottom: 14px;
   }
 
   .about-intro {
-    font-size: 15px;
+    font-size: 14.5px;
     line-height: 1.7;
+    margin-bottom: 20px;
   }
 
   .about-hero-actions {
@@ -1099,8 +1151,9 @@
     width: 100%;
   }
 
+  /* Kill the diagonal on phones — it eats vertical space for no payoff */
   .about-hero-bottom-shape {
-    height: 50px;
+    display: none;
   }
 
   /* Section headings */
@@ -1118,7 +1171,7 @@
 
   /* Values */
   .about-values {
-    padding: 64px 0;
+    padding: 60px 0;
   }
 
   .about-values-grid {
@@ -1148,7 +1201,7 @@
 
   /* Story */
   .about-story {
-    padding-bottom: 64px;
+    padding-bottom: 60px;
   }
 
   .about-story-card {
@@ -1178,7 +1231,7 @@
 
   /* Social */
   .about-social {
-    padding-bottom: 64px;
+    padding-bottom: 60px;
   }
 
   .about-social-grid {
@@ -1194,7 +1247,11 @@
   .about-social-icon {
     width: 36px;
     height: 36px;
-    font-size: 15px;
+  }
+
+  .about-social-icon svg {
+    width: 16px;
+    height: 16px;
   }
 
   .about-social-name {
@@ -1203,7 +1260,7 @@
 
   /* Final CTA */
   .about-final {
-    padding-bottom: 64px;
+    padding-bottom: 60px;
   }
 
   .about-final-content {
@@ -1227,7 +1284,7 @@
 
 
 /* ============================================================
-   15. RESPONSIVE — MOBILE (≤575)
+   15. RESPONSIVE — MOBILE (≤575px)
    ============================================================ */
 
 @media (max-width: 575px) {
@@ -1236,12 +1293,12 @@
   }
 
   .about-hero {
-    padding: 44px 0 68px;
+    padding: 32px 0 48px;
   }
 
   .about-image-frame {
-    max-width: 260px;
-    padding: 10px;
+    width: min(100%, 220px);
+    padding: 8px;
     border-radius: var(--about-radius-md);
   }
 
@@ -1250,36 +1307,41 @@
   }
 
   .about-image-decoration {
-    width: 42px;
-    height: 42px;
-    font-size: 16px;
-    top: -10px;
-    left: -10px;
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+
+  .about-decoration-one {
+    top: -9px;
+    left: -9px;
   }
 
   .about-decoration-two {
-    bottom: -10px;
-    right: -10px;
+    top: auto;
+    left: auto;
+    bottom: -9px;
+    right: -9px;
   }
 
   .about-eyebrow {
-    margin-bottom: 18px;
-    padding: 7px 12px;
-    font-size: 10.5px;
+    margin-bottom: 14px;
+    padding: 6px 11px;
+    font-size: 10px;
   }
 
   .about-hero-content h1 {
-    font-size: clamp(30px, 10vw, 40px);
-    margin-bottom: 18px;
+    font-size: clamp(28px, 9vw, 34px);
+    margin-bottom: 14px;
   }
 
   .about-intro {
-    font-size: 14px;
-    margin-bottom: 24px;
+    font-size: 13.5px;
+    margin-bottom: 22px;
   }
 
   .about-name {
-    margin-bottom: 26px;
+    margin-bottom: 22px;
   }
 
   .about-name-line {
@@ -1287,7 +1349,7 @@
   }
 
   .about-name strong { font-size: 14px; }
-  .about-name span   { font-size: 12px; }
+  .about-name > div > span { font-size: 12px; }
 
   .about-btn {
     min-height: 46px;
@@ -1296,7 +1358,7 @@
 
   /* Sections */
   .about-values {
-    padding: 54px 0;
+    padding: 52px 0;
   }
 
   .about-section-eyebrow {
@@ -1313,7 +1375,7 @@
 
   /* Story */
   .about-story {
-    padding-bottom: 54px;
+    padding-bottom: 52px;
   }
 
   .about-story-card {
@@ -1344,7 +1406,7 @@
 
   /* Social */
   .about-social {
-    padding-bottom: 54px;
+    padding-bottom: 52px;
   }
 
   .about-social-grid {
@@ -1352,6 +1414,7 @@
   }
 
   .about-social-card {
+    min-height: 48px;
     padding: 12px 12px;
     gap: 10px;
     border-radius: var(--about-radius-sm);
@@ -1360,8 +1423,12 @@
   .about-social-icon {
     width: 32px;
     height: 32px;
-    font-size: 13px;
     border-radius: 9px;
+  }
+
+  .about-social-icon svg {
+    width: 15px;
+    height: 15px;
   }
 
   .about-social-name {
@@ -1374,7 +1441,7 @@
 
   /* Final */
   .about-final {
-    padding-bottom: 54px;
+    padding-bottom: 52px;
   }
 
   .about-final-mark {
@@ -1396,7 +1463,7 @@
 
 
 /* ============================================================
-   16. RESPONSIVE — SMALL PHONES (≤380)
+   16. RESPONSIVE — SMALL PHONES (≤380px)
    ============================================================ */
 
 @media (max-width: 380px) {
@@ -1405,11 +1472,11 @@
   }
 
   .about-image-frame {
-    max-width: 220px;
+    width: min(100%, 190px);
   }
 
   .about-hero-content h1 {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .about-intro {

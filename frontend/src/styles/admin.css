@@ -294,3 +294,188 @@
     justify-content: center;
   }
 }
+
+
+/* ============================================================
+   ★ ADMIN DASHBOARD — PRODUCTION ADDITIONS
+   ============================================================ */
+
+/* ---------- 1. Stat icon wrapper (was emoji, now SVG) ---------- */
+
+.stat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 14px;
+
+  background: var(--warm-beige, #f5ede4);
+  color: var(--terracotta, #d4a08a);
+
+  font-size: 0; /* kill any inherited emoji sizing */
+}
+
+.stat-icon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+/* ---------- 2. Admin control button icons ---------- */
+
+.controls-grid .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.controls-grid .btn svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* The primary "+" button: white icon on the colored background */
+.controls-grid .btn-primary svg {
+  color: currentColor;
+}
+
+/* ---------- 3. Error banner (replaces silent failure) ---------- */
+
+.admin-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 18px;
+  margin-bottom: 24px;
+
+  border: 1px solid #fecaca;
+  border-radius: var(--radius, 14px);
+
+  background: #fef2f2;
+  color: #991b1b;
+
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.admin-error-icon {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: rgba(220, 38, 38, 0.12);
+  color: #dc2626;
+
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.admin-error-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-error-text strong {
+  display: block;
+  margin-bottom: 2px;
+  font-weight: 700;
+  color: #7f1d1d;
+}
+
+.admin-error-text p {
+  margin: 0;
+  color: #991b1b;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.admin-error-retry {
+  flex-shrink: 0;
+
+  padding: 8px 16px;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm, 10px);
+
+  background: #ffffff;
+  color: #b91c1c;
+
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.admin-error-retry:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+}
+
+.admin-error-retry:focus-visible {
+  outline: 3px solid rgba(220, 38, 38, 0.25);
+  outline-offset: 2px;
+}
+
+/* ---------- 4. Stat number: tabular alignment ---------- */
+
+.stat-number {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 5. Loading spinner: prefers-reduced-motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-stats .spinner {
+    animation-duration: 1.6s;
+  }
+}
+
+/* ---------- 6. Mobile: stack error banner ---------- */
+
+@media (max-width: 480px) {
+  .admin-error-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 15px;
+  }
+
+  .admin-error-retry {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stat-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+  }
+
+  .stat-icon svg {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+/* ---------- 7. Focus ring on admin control buttons ---------- */
+
+.controls-grid .btn:focus-visible {
+  outline: 3px solid rgba(212, 160, 138, 0.35);
+  outline-offset: 3px;
+}

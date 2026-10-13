@@ -563,3 +563,113 @@
     transform: scale(0.98);
   }
 }
+
+
+/* ============================================================
+   ★ LOGIN — PRODUCTION ADDITIONS
+   ============================================================ */
+
+/* ---------- 1. Contextual info banner (from Checkout) ---------- */
+.login-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  padding: 12px 14px;
+  margin-bottom: 18px;
+
+  border: 1px solid #d8e3f0;
+  border-radius: 10px;
+
+  background: #f2f7fd;
+  color: #3f5670;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.login-info-icon {
+  flex-shrink: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #5a78a0;
+}
+
+.login-info p {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- 2. Password label row + forgot link ---------- */
+.form-group-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 6px;
+}
+
+.form-group-head label {
+  margin-bottom: 0; /* overrides the base .form-group label spacing */
+}
+
+.login-forgot {
+  color: #b97961;
+
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  text-decoration: none;
+
+  transition: color 180ms ease;
+}
+
+.login-forgot:hover {
+  color: #5a3f36;
+  text-decoration: underline;
+}
+
+.login-forgot:focus-visible {
+  outline: 2px solid #d4a08a;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- 3. SVG sizing inside the toggle ---------- */
+.password-toggle svg {
+  width: 19px;
+  height: 19px;
+  display: block;
+}
+
+/* Small phones — slightly tighter */
+@media (max-width: 380px) {
+  .password-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .login-forgot {
+    font-size: 0.75rem;
+  }
+}
+
+/* ---------- 4. Disabled inputs during submit ---------- */
+.login-form input:disabled {
+  background: #f5efe9;
+  color: #8b6b5e;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+/* ---------- 5. Kill the iOS auto-zoom guard's specificity conflict ----------
+   Your existing rule at (max-width: 767px) sets font-size: 16px.
+   The disabled state above would inherit the base 0.98rem without
+   this — keep them consistent. */
+@media (max-width: 767px) {
+  .login-form input:disabled {
+    font-size: 16px;
+  }
+}

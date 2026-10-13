@@ -1449,3 +1449,107 @@
     transform: scale(0.98);
   }
 }
+
+
+/* ============================================================
+   ★ HOME HERO — PRODUCTION HEIGHT CAP
+   Shrinks the desktop/laptop hero so the value strip peeks in
+   on a standard 900px laptop viewport. Mobile & tablet-portrait
+   are intentionally left unchanged.
+   ============================================================ */
+
+/* ---------- Base desktop (≥1200px) ---------- */
+@media (min-width: 1200px) {
+  .home-hero {
+    padding: 56px 0 68px;
+  }
+
+  .home-hero-visual {
+    min-height: 480px;
+  }
+
+  .home-hero-main-image {
+    height: 440px;
+  }
+
+  .home-hero-small-image {
+    width: 175px;
+    height: 175px;
+  }
+
+  .home-hero-small-image-one {
+    top: 88px;
+  }
+}
+
+/* ---------- Large desktop (≥1440px) ---------- */
+@media (min-width: 1440px) {
+  .home-hero {
+    /* Was 96 / 110 — that was the killer */
+    padding: 64px 0 80px;
+  }
+
+  .home-hero-visual {
+    min-height: 480px;
+  }
+
+  .home-hero-main-image {
+    height: 440px;
+  }
+}
+
+/* ---------- Small laptop (992–1199px) ---------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .home-hero {
+    padding: 48px 0 60px;
+  }
+
+  .home-hero-visual {
+    min-height: 440px;
+  }
+
+  .home-hero-main-image {
+    height: 400px;
+  }
+
+  .home-hero-small-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .home-hero-small-image-one {
+    top: 78px;
+  }
+}
+
+/* ---------- Tablet landscape (768–991px) ---------- */
+@media (min-width: 768px) and (max-width: 991px) {
+  .home-hero {
+    padding: 44px 0 56px;
+  }
+
+  .home-hero-visual {
+    min-height: 420px;
+  }
+
+  .home-hero-main-image {
+    height: 380px;
+  }
+
+  .home-hero-small-image {
+    width: 140px;
+    height: 140px;
+  }
+
+  .home-hero-small-image-one {
+    top: 72px;
+  }
+}
+
+/* ---------- Fix: border-width on main image does nothing ----------
+   .home-hero-main-image has no border in the base styles, so the
+   `border-width: 5px` at (max-width: 575px) was a no-op. Removing
+   the confusion by explicitly stating no border here. */
+.home-hero-main-image {
+  border: 0;
+}

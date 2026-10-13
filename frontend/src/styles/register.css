@@ -1,64 +1,78 @@
-/* ===== register.css ===== */
-/* Warm, elegant register page – fully responsive */
+/* ============================================================
+   HANDYARTSTORE — REGISTER PAGE STYLESHEET
+   Production-grade · Mobile-first
+   ============================================================ */
 
 .register-page {
+  position: relative;
+
   min-height: 80vh;
+  min-height: 80dvh;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 40px 20px;
-  background: linear-gradient(160deg, #fcf8f3 0%, #f5ede4 35%, #f0ded9 100%);
-  position: relative;
+
+  background: linear-gradient(
+    160deg,
+    #fcf8f3 0%,
+    #f5ede4 35%,
+    #f0ded9 100%
+  );
+
+  overflow-x: hidden;
 }
 
-/* Subtle background pattern (matching login) */
+/* Subtle background pattern */
 .register-page::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
+
   opacity: 0.03;
-  background-image:
-    radial-gradient(circle at 20px 20px, var(--deep-brown) 1.5px, transparent 1.5px),
-    radial-gradient(circle at 60px 60px, var(--deep-brown) 1px, transparent 1px);
-  background-size: 40px 40px, 80px 80px;
   pointer-events: none;
+
+  background-image:
+    radial-gradient(circle at 20px 20px, var(--deep-brown, #5a3f36) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 60px 60px, var(--deep-brown, #5a3f36) 1px, transparent 1px);
+  background-size: 40px 40px, 80px 80px;
 }
 
+/* ============================================================
+   CARD
+   ============================================================ */
+
 .register-card {
-  width: 100%;
-  max-width: 420px;
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 40px 36px 36px;
-  box-shadow: var(--shadow-md);
-  border: 1px solid rgba(212, 160, 138, 0.08);
   position: relative;
   z-index: 2;
-  transition: var(--transition);
+
+  width: 100%;
+  max-width: 440px;
+
+  padding: 40px 36px 36px;
+
+  background: var(--white, #ffffff);
+
+  border: 1px solid rgba(212, 160, 138, 0.08);
+  border-radius: var(--radius-lg, 20px);
+
+  box-shadow: var(--shadow-md, 0 12px 32px rgba(90, 63, 54, 0.1));
+
+  transition: var(--transition, all 0.3s ease);
 }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
 
 .register-header {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 26px;
 }
 
-/* ---- Logo ---- */
-
-.register-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  margin: 0 auto 12px;
-
-  /* Kept for the old emoji fallback */
-  font-size: 2.8rem;
-  line-height: 1;
-}
-
-/* The <img className="login-logo"> inside .register-icon */
-.register-icon .login-logo,
-.register-header .login-logo {
+.register-logo {
   display: block;
 
   width: clamp(64px, 20vw, 92px);
@@ -66,7 +80,7 @@
 
   max-width: 100%;
 
-  margin: 0 auto;
+  margin: 0 auto 14px;
 
   object-fit: contain;
   object-position: center;
@@ -79,176 +93,347 @@
   -webkit-user-select: none;
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
-
-  /* OPTIONAL — circular badge look (uncomment if needed)
-  border-radius: 50%;
-  background: #fcf8f3;
-  padding: 10px;
-  box-shadow: 0 6px 18px rgba(90, 63, 54, 0.08);
-  */
 }
 
 .register-header h1 {
   font-family: "Playfair Display", Georgia, serif;
   font-size: 2rem;
   font-weight: 600;
-  color: var(--deep-brown);
-  margin: 0 0 4px 0;
+  color: var(--deep-brown, #5a3f36);
+
+  margin: 0 0 6px;
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .register-header p {
-  color: var(--warm-brown);
-  font-size: 0.95rem;
   margin: 0;
+
+  color: var(--warm-brown, #8b6b5e);
+  font-size: 0.94rem;
+  line-height: 1.5;
 }
 
-/* ---- Form ---- */
-.register-form .form-group {
+/* ============================================================
+   MESSAGES (error + success)
+   ============================================================ */
+
+.register-error,
+.register-success {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  padding: 12px 14px;
   margin-bottom: 18px;
+
+  border-radius: 10px;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.register-error {
+  border: 1px solid #f0cdc4;
+  background: #fdf4f1;
+  color: #a04b3c;
+}
+
+.register-success {
+  border: 1px solid #c8ddc4;
+  background: #f1f8ef;
+  color: #3d6b34;
+}
+
+.register-msg-icon {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  margin-top: 1px;
+}
+
+.register-error p,
+.register-success p {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form .form-group {
+  margin-bottom: 16px;
 }
 
 .register-form label {
   display: block;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--warm-brown);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+
+  color: var(--warm-brown, #8b6b5e);
+
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
 }
+
+/* ---------- Inputs ---------- */
 
 .register-form input {
   width: 100%;
-  padding: 12px 16px;
-  border: 1.5px solid rgba(212, 160, 138, 0.12);
-  border-radius: var(--radius-sm);
-  background: var(--cream);
-  color: var(--charcoal);
-  font-size: 1rem;
-  font-family: inherit;
-  transition: var(--transition);
-  outline: none;
-}
+  min-height: 48px;
 
-.register-form input:focus {
-  border-color: var(--terracotta);
-  box-shadow: 0 0 0 3px rgba(212, 160, 138, 0.08);
-  background: var(--white);
+  padding: 12px 16px;
+
+  border: 1.5px solid rgba(212, 160, 138, 0.18);
+  border-radius: var(--radius-sm, 10px);
+
+  background: var(--cream, #fcf8f3);
+  color: var(--charcoal, #2d2420);
+
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.4;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .register-form input::placeholder {
-  color: var(--warm-brown);
-  opacity: 0.4;
+  color: var(--warm-brown, #8b6b5e);
+  opacity: 0.55;
 }
+
+.register-form input:hover:not(:disabled) {
+  border-color: rgba(212, 160, 138, 0.35);
+}
+
+.register-form input:focus {
+  border-color: var(--terracotta, #d4a08a);
+  background: var(--white, #ffffff);
+  box-shadow: 0 0 0 4px rgba(212, 160, 138, 0.1);
+}
+
+.register-form input:disabled {
+  background: #f5efe9;
+  color: var(--warm-brown, #8b6b5e);
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+/* ---------- Password wrapper + toggle ---------- */
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  padding-right: 48px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  transform: translateY(-50%);
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+  color: var(--warm-brown, #8b6b5e);
+
+  cursor: pointer;
+
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.password-toggle:hover {
+  background: rgba(212, 160, 138, 0.14);
+  color: var(--deep-brown, #5a3f36);
+}
+
+.password-toggle:focus-visible {
+  outline: 2px solid var(--terracotta, #d4a08a);
+  outline-offset: 2px;
+}
+
+.password-toggle svg {
+  display: block;
+  width: 19px;
+  height: 19px;
+}
+
+/* ============================================================
+   SUBMIT BUTTON
+   ============================================================ */
 
 .btn-register {
   width: 100%;
-  padding: 14px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  justify-content: center;
+  min-height: 52px;
+
   margin-top: 6px;
-  background: var(--deep-brown);
-  color: var(--white);
-  border: none;
+  padding: 14px 20px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: 0;
   border-radius: 50px;
+
+  background: var(--deep-brown, #5a3f36);
+  color: var(--white, #ffffff);
+
+  font-family: inherit;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1;
+
   cursor: pointer;
-  transition: var(--transition);
+
   box-shadow: 0 4px 20px rgba(90, 63, 54, 0.2);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.btn-register:hover {
-  background: var(--charcoal);
+.btn-register:hover:not(:disabled) {
+  background: var(--charcoal, #2d2420);
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(90, 63, 54, 0.3);
 }
 
-.btn-register:active {
+.btn-register:active:not(:disabled) {
   transform: translateY(0);
 }
 
+.btn-register:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-register:focus-visible {
+  outline: 3px solid rgba(212, 160, 138, 0.4);
+  outline-offset: 3px;
+}
+
+/* ---------- Button spinner ---------- */
+
+.btn-spinner {
+  display: inline-block;
+
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+
+  animation: register-spin 0.7s linear infinite;
+
+  flex-shrink: 0;
+}
+
+@keyframes register-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
 .register-footer {
+  margin: 20px 0 0;
+
   text-align: center;
-  font-size: 0.95rem;
-  color: var(--warm-brown);
-  margin-top: 20px;
-  margin-bottom: 0;
+
+  color: var(--warm-brown, #8b6b5e);
+
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 .register-footer a {
-  color: var(--terracotta);
-  font-weight: 600;
+  color: var(--terracotta, #d4a08a);
+  font-weight: 700;
   text-decoration: none;
-  transition: color 0.3s ease;
+
+  transition: color 0.2s ease;
 }
 
 .register-footer a:hover {
-  color: var(--deep-brown);
+  color: var(--deep-brown, #5a3f36);
   text-decoration: underline;
 }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
+.register-footer a:focus-visible {
+  outline: 2px solid var(--terracotta, #d4a08a);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 
-/* ---------- Small phones (≤ 380px) ---------- */
-@media (max-width: 380px) {
-  .register-page {
-    padding: 24px 14px;
-  }
+/* ============================================================
+   iOS ZOOM GUARD — inputs must be >= 16px on mobile
+   ============================================================ */
 
-  .register-card {
-    padding: 28px 20px 24px;
-    border-radius: 16px;
-  }
-
-  .register-icon {
-    margin-bottom: 10px;
-  }
-
-  .register-icon .login-logo,
-  .register-header .login-logo {
-    width: 64px;
-    height: 64px;
-  }
-
-  .register-header h1 {
-    font-size: 1.55rem;
-  }
-
-  .register-header p {
-    font-size: 0.85rem;
-  }
-
+@media (max-width: 767px) {
   .register-form input {
-    padding: 11px 14px;
-    font-size: 0.95rem;
-  }
-
-  .btn-register {
-    min-height: 48px;
-    padding: 12px;
-    font-size: 0.95rem;
-  }
-
-  .register-footer {
-    font-size: 0.85rem;
+    font-size: 16px;
   }
 }
 
-/* ---------- Phones (≤ 480px) ---------- */
+/* ============================================================
+   RESPONSIVE — PHONES (≤ 480px)
+   ============================================================ */
+
 @media (max-width: 480px) {
+  .register-page {
+    padding: 28px 16px;
+  }
+
   .register-card {
     padding: 32px 24px 28px;
+    border-radius: 18px;
   }
 
-  .register-icon {
-    margin-bottom: 10px;
-  }
-
-  .register-icon .login-logo,
-  .register-header .login-logo {
-    width: 72px;
-    height: 72px;
+  .register-header {
+    margin-bottom: 22px;
   }
 
   .register-header h1 {
@@ -259,14 +444,19 @@
     font-size: 0.88rem;
   }
 
+  .register-form .form-group {
+    margin-bottom: 14px;
+  }
+
   .register-form input {
-    padding: 10px 14px;
-    font-size: 0.95rem;
+    padding: 11px 14px;
+    min-height: 46px;
   }
 
   .btn-register {
-    padding: 12px;
-    font-size: 0.95rem;
+    min-height: 50px;
+    padding: 13px;
+    font-size: 0.98rem;
   }
 
   .register-footer {
@@ -274,7 +464,67 @@
   }
 }
 
-/* ---------- Landscape phones — keep card from being cut off ---------- */
+/* ============================================================
+   RESPONSIVE — SMALL PHONES (≤ 380px)
+   ============================================================ */
+
+@media (max-width: 380px) {
+  .register-page {
+    padding: 24px 14px;
+  }
+
+  .register-card {
+    padding: 28px 20px 24px;
+    border-radius: 16px;
+  }
+
+  .register-header h1 {
+    font-size: 1.55rem;
+  }
+
+  .register-header p {
+    font-size: 0.82rem;
+  }
+
+  .register-form label {
+    font-size: 0.78rem;
+  }
+
+  .register-form input {
+    padding: 11px 14px;
+    font-size: 16px; /* keep iOS zoom guard */
+  }
+
+  .password-toggle {
+    width: 36px;
+    height: 36px;
+    right: 5px;
+  }
+
+  .password-toggle svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .password-wrapper input {
+    padding-right: 44px;
+  }
+
+  .btn-register {
+    min-height: 48px;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+  .register-footer {
+    font-size: 0.82rem;
+  }
+}
+
+/* ============================================================
+   LANDSCAPE PHONES — prevent card from clipping
+   ============================================================ */
+
 @media (max-height: 520px) and (orientation: landscape) {
   .register-page {
     align-items: flex-start;
@@ -289,22 +539,35 @@
     margin-bottom: 16px;
   }
 
-  .register-icon {
-    margin-bottom: 6px;
-  }
-
-  .register-icon .login-logo,
-  .register-header .login-logo {
+  .register-logo {
     width: 52px;
     height: 52px;
+    margin-bottom: 6px;
   }
 
   .register-header h1 {
     font-size: 1.4rem;
   }
+
+  .register-form .form-group {
+    margin-bottom: 12px;
+  }
+
+  .register-form input {
+    min-height: 42px;
+    padding: 10px 14px;
+  }
+
+  .btn-register {
+    min-height: 44px;
+    padding: 11px;
+  }
 }
 
-/* ---------- Reduced motion ---------- */
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
 @media (prefers-reduced-motion: reduce) {
   .register-page *,
   .register-page *::before,
@@ -312,5 +575,26 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep the spinner visible — it's the only progress signal */
+  .btn-spinner {
+    animation-duration: 1.6s;
+  }
+}
+
+/* ============================================================
+   TOUCH DEVICES — replace hover-lift with tap feedback
+   ============================================================ */
+
+@media (hover: none) {
+  .btn-register:hover:not(:disabled) {
+    transform: none;
+    box-shadow: 0 4px 20px rgba(90, 63, 54, 0.2);
+  }
+
+  .btn-register:active:not(:disabled) {
+    transform: scale(0.985);
   }
 }

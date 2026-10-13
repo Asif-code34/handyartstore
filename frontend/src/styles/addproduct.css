@@ -717,3 +717,442 @@
   }
 }
 
+
+/* ============================================================
+   ★ ADD PRODUCT — PRODUCTION FIXES
+   ============================================================ */
+
+/* ---------- 1. Product Settings (was completely unstyled) ---------- */
+
+.product-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 20px;
+  margin-top: 4px;
+
+  border: 1px solid rgba(212, 160, 138, 0.15);
+  border-radius: var(--radius-sm, 10px);
+
+  background: var(--cream, #fcf8f3);
+}
+
+.product-settings h3 {
+  margin: 0 0 6px;
+  color: var(--deep-brown, #5a3f36);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.setting-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  padding: 12px 14px;
+
+  border: 1px solid rgba(212, 160, 138, 0.14);
+  border-radius: var(--radius-sm, 10px);
+
+  background: var(--white, #ffffff);
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.setting-option:hover {
+  border-color: rgba(212, 160, 138, 0.35);
+  background: var(--warm-beige, #fffaf6);
+}
+
+.setting-option:focus-within {
+  border-color: var(--terracotta, #d4a08a);
+  box-shadow: 0 0 0 3px rgba(212, 160, 138, 0.12);
+}
+
+.setting-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+
+  accent-color: var(--terracotta, #d4a08a);
+
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.setting-option input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.setting-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.setting-content strong {
+  color: var(--deep-brown, #5a3f36);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.setting-content small {
+  color: var(--warm-brown, #8b6b5e);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+/* ---------- 2. Three-column row for Price / Discount / Stock ---------- */
+
+.form-row-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 768px) {
+  .form-row-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- 3. iOS zoom guard — inputs must be >= 16px on mobile ---------- */
+
+@media (max-width: 767px) {
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px;
+  }
+}
+
+/* ---------- 4. Inline message banner (replaces alerts) ---------- */
+
+.add-product-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  padding: 13px 15px;
+  margin-bottom: 22px;
+
+  border-radius: var(--radius-sm, 10px);
+
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.add-product-message p {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.add-product-message-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.add-product-message-close {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  margin: -2px -4px -2px 0;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+  opacity: 0.6;
+
+  transition: opacity 0.18s ease, background-color 0.18s ease;
+}
+
+.add-product-message-close:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.add-product-message.error {
+  border: 1px solid #f0cdc4;
+  background: #fdf4f1;
+  color: #a04b3c;
+}
+
+.add-product-message.success {
+  border: 1px solid #c8ddc4;
+  background: #f1f8ef;
+  color: #3d6b34;
+}
+
+/* ---------- 5. Header icon wrapper (SVG, not emoji) ---------- */
+
+.add-product-header .header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
+
+  margin: 0 auto 10px;
+
+  border-radius: 18px;
+  background: var(--cream, #fcf8f3);
+  color: var(--terracotta, #d4a08a);
+
+  font-size: 0; /* kill any inherited emoji sizing */
+}
+
+.add-product-header .header-icon svg {
+  display: block;
+  width: 34px;
+  height: 34px;
+}
+
+/* ---------- 6. Upload icon wrapper (SVG) ---------- */
+
+.file-upload-area .upload-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
+
+  color: var(--terracotta, #d4a08a);
+
+  font-size: 0;
+}
+
+.file-upload-area .upload-icon svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+  opacity: 0.85;
+}
+
+/* ---------- 7. Remove-image button: SVG centering ---------- */
+
+.remove-image svg {
+  display: block;
+  width: 13px;
+  height: 13px;
+}
+
+/* ---------- 8. Disabled input/textarea/select during submit ---------- */
+
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled {
+  background: #f5efe9;
+  color: var(--warm-brown, #8b6b5e);
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+/* ---------- 9. Cleanup: number input spinners on desktop ---------- */
+
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-group input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* ---------- 10. Small phones — tighten the settings cards ---------- */
+
+@media (max-width: 480px) {
+  .product-settings {
+    padding: 16px;
+  }
+
+  .setting-option {
+    padding: 11px 12px;
+    gap: 10px;
+  }
+
+  .setting-content strong { font-size: 0.86rem; }
+  .setting-content small  { font-size: 0.74rem; }
+
+  .add-product-header .header-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+  }
+
+  .add-product-header .header-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 360px) {
+  .setting-option {
+    padding: 10px;
+  }
+}
+
+/* ============================================================
+   ★ PRICE PREVIEW — production styling
+   Was previously unstyled (no rules existed for any of these).
+   ============================================================ */
+
+.price-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 18px 20px;
+
+  border: 1px solid rgba(212, 160, 138, 0.22);
+  border-radius: var(--radius-sm, 10px);
+
+  background: linear-gradient(
+    135deg,
+    rgba(252, 248, 243, 1) 0%,
+    rgba(247, 239, 231, 1) 100%
+  );
+}
+
+.price-preview-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.price-preview-label {
+  display: block;
+
+  color: var(--warm-brown, #8b6b5e);
+
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.price-preview-values {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+}
+
+/* Original (struck-through) price */
+.price-preview-original {
+  color: var(--warm-brown, #8b6b5e);
+
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: rgba(139, 107, 94, 0.6);
+
+  opacity: 0.75;
+}
+
+/* The hero number — final selling price */
+.price-preview-final {
+  color: var(--deep-brown, #5a3f36);
+
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+
+  font-variant-numeric: tabular-nums;
+}
+
+/* Discount pill */
+.price-preview-discount {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  background: #d4a08a;
+  color: #ffffff;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* No discount → final price stands alone, still looks good */
+.price-preview-values:has(.price-preview-final:only-child) {
+  /* nothing extra needed, but keeps the intent explicit */
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 575px) {
+  .price-preview {
+    padding: 15px 16px;
+  }
+
+  .price-preview-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  .price-preview-values {
+    gap: 10px;
+  }
+
+  .price-preview-original {
+    font-size: 0.92rem;
+  }
+
+  .price-preview-final {
+    font-size: 1.35rem;
+  }
+
+  .price-preview-discount {
+    padding: 3px 8px;
+    font-size: 0.66rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .price-preview-final {
+    font-size: 1.2rem;
+  }
+
+  .price-preview-original {
+    font-size: 0.85rem;
+  }
+}
